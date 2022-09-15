@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiBuyerDesktop", "GuiBuyerDesktop\GuiBuyerDesktop.csproj", "{886150FD-448D-44BD-B86E-2F34DF22CEAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiBuyerDesktop", "GuiBuyerDesktop\GuiBuyerDesktop.csproj", "{886150FD-448D-44BD-B86E-2F34DF22CEAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFCore", "WPFCore\WPFCore.csproj", "{932E17E1-752F-40A3-B64B-773DF00E4E57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{932E17E1-752F-40A3-B64B-773DF00E4E57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{932E17E1-752F-40A3-B64B-773DF00E4E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{932E17E1-752F-40A3-B64B-773DF00E4E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{932E17E1-752F-40A3-B64B-773DF00E4E57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
