@@ -1,0 +1,47 @@
+﻿<Window x:Class="GuiBuyerDesktop.Windows.LoginWindow.LoginWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
+        mc:Ignorable="d"
+        Title="Вход"
+        Width="350"
+        SizeToContent="Height"
+        ResizeMode="CanMinimize">
+    <StackPanel>
+        <TextBlock 
+            Background="#fcec5e" 
+            Height="65" 
+            FontFamily="{StaticResource AR}" 
+            FontSize="45" 
+            TextAlignment="Center" 
+            Padding="0,2,0,0">
+            Главпоставка
+        </TextBlock>
+        <StackPanel Margin="30,10,30,25">
+            <StackPanel.Resources>
+                <Style x:Key="BaseInputStyle" TargetType="{x:Type Control}">
+                    <Setter Property="Margin" Value="0,15,0,0"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="BorderBrush" Value="#d4b2ff"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="FontSize" Value="17"/>
+                    <Setter Property="Padding" Value="4,4,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBox Style="{StaticResource BaseInputStyle}"></TextBox>
+            <PasswordBox Style="{StaticResource BaseInputStyle}"></PasswordBox>
+            <Button 
+                Background="#fcec5e" 
+                BorderBrush="Black" 
+                BorderThickness="2" 
+                Height="45" 
+                Margin="0,15,0,0"
+                FontFamily="{StaticResource AR}" 
+                FontSize="22">
+                Вход
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

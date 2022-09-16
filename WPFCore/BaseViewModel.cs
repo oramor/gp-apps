@@ -5,17 +5,18 @@ namespace WPFCore
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        // All bindings subscribed to this event
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChaged([CallerMemberName] string PropertyName = null)
+        protected virtual void OnPropertyChaged([CallerMemberName] string PropertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        protected virtual bool Set<T>(ref T property, T value, [CallerMemberName] string PropertyName = null)
+        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = "")
         {
-            if (Equals(property, value)) return false;
-            property = value;
+            if (Equals(field, value)) return false;
+            field = value;
             OnPropertyChaged(PropertyName);
             return true;
         }
