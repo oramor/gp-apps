@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GuiBuyerDesktop"
-             StartupUri="./Windows/LoginWindow/LoginWindowView.xaml">
+             StartupUri="./Windows/MainWindow/MainWindowView.xaml">
     <Application.Resources>
         <FontFamily x:Key="AR">pack://application:,,,/Resources/#Montserrat</FontFamily>
+        <FontFamily x:Key="BR">pack://application:,,,/Resources/#Overpass Mono Medium</FontFamily>
     </Application.Resources>
 </Application>

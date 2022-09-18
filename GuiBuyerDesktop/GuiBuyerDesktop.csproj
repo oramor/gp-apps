@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Montserrat-Medium.ttf" />
+    <None Remove="Resources\OverpassMono-Medium.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WPFCore\WPFCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\OverpassMono-Medium.ttf" />
   </ItemGroup>
 
   <ItemGroup>

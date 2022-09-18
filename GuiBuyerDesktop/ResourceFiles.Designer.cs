@@ -69,5 +69,15 @@ namespace GuiBuyerDesktop {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] OverpassMono_Medium {
+            get {
+                object obj = ResourceManager.GetObject("OverpassMono_Medium", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
