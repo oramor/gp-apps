@@ -12,7 +12,7 @@
             <Button
                 Height="20"
                 Width="100" HorizontalAlignment="Right" Margin="0,0,10,0">
-                Веб-версия
+                Веб-кабинет
             </Button>
         </DockPanel>
         <!--<Menu DockPanel.Dock="Top" Background="white" FontSize="16" FontFamily="{StaticResource AR}">

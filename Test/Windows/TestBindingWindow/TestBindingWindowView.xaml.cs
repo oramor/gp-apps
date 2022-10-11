@@ -12,12 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GuiBuyerDesktop.Windows.LoginWindow {
+namespace Test.Windows.TestBindingWindow {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for TestBindingWindowView.xaml
     /// </summary>
-    public partial class LoginWindowView : Window {
-        public LoginWindowView()
+    public partial class TestBindingWindowView : Window {
+        public TestBindingWindowView()
         {
             InitializeComponent();
         }

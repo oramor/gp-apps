@@ -12,13 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace GuiBuyerDesktop.Windows.MainWindow
-{
+namespace GuiBuyerDesktop.Windows.MainWindow {
     /// <summary>
     /// Interaction logic for MainWindowView.xaml
     /// </summary>
-    public partial class MainWindowView : Window
-    {
+    public partial class MainWindowView : Window {
         public MainWindowView()
         {
             InitializeComponent();

@@ -3,12 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
+        xmlns:ctx="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
         mc:Ignorable="d"
         Title="Вход"
         Width="350"
         SizeToContent="Height"
         ResizeMode="CanMinimize">
+    <Window.DataContext>
+        <ctx:LoginWindowContext/>
+    </Window.DataContext>
     <StackPanel>
         <TextBlock 
             Background="#fcec5e" 
@@ -30,8 +33,20 @@
                     <Setter Property="Padding" Value="4,4,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBox Style="{StaticResource BaseInputStyle}"></TextBox>
-            <PasswordBox Style="{StaticResource BaseInputStyle}"></PasswordBox>
+            <TextBox
+                Style="{StaticResource BaseInputStyle}"
+                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"
+                >
+            </TextBox>
+            <TextBox
+                Style="{StaticResource BaseInputStyle}"
+                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                >
+            </TextBox>
+            <!--<PasswordBox
+                Style="{StaticResource BaseInputStyle}"
+                Password="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                ></PasswordBox>-->
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
@@ -39,7 +54,9 @@
                 Height="45" 
                 Margin="0,15,0,0"
                 FontFamily="{StaticResource AR}" 
-                FontSize="22">
+                FontSize="22"
+                IsEnabled="{Binding Path=IsFormReadyToSend}"
+                >
                 Вход
             </Button>
         </StackPanel>
