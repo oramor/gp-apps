@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctx="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
+        xmlns:lib="clr-namespace:LibControls;assembly=LibControls"
         mc:Ignorable="d"
         Title="Вход"
         Width="350"
@@ -33,20 +34,16 @@
                     <Setter Property="Padding" Value="4,4,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBox
+            <lib:TextBoxWithPlaceholder
                 Style="{StaticResource BaseInputStyle}"
+                DefaultText="Логин"
+                DefaultTextBrush="LightGray"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"
-                >
-            </TextBox>
-            <TextBox
+                />
+            <PasswordBox
                 Style="{StaticResource BaseInputStyle}"
-                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
-                >
-            </TextBox>
-            <!--<PasswordBox
-                Style="{StaticResource BaseInputStyle}"
-                Password="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
-                ></PasswordBox>-->
+                Tag="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                ></PasswordBox>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 

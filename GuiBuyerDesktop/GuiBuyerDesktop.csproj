@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LibControls\LibControls.csproj" />
     <ProjectReference Include="..\WPFCore\WPFCore.csproj" />
   </ItemGroup>
 

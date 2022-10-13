@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFCore {
-    public abstract class BaseViewModel : INotifyPropertyChanged {
+namespace WPFCore
+{
+    public abstract class BaseViewModel : INotifyPropertyChanged
+    {
         // All bindings subscribed to this event
         public event PropertyChangedEventHandler PropertyChanged;
 

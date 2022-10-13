@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Windows;
 using WPFCore;
 
-namespace GuiBuyerDesktop.Windows.LoginWindow {
-    internal class LoginWindowContext : BaseViewModel {
+namespace GuiBuyerDesktop.Windows.LoginWindow
+{
+    internal class LoginWindowContext : BaseViewModel
+    {
         private string _Login = String.Empty;
-        private string _Password = String.Empty;
+        private string _Password = null;
 
         public string Login
         {
             get => _Login;
             set {
+                MessageBox.Show("Checked!");
                 Set(ref _Login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
@@ -27,7 +31,7 @@ namespace GuiBuyerDesktop.Windows.LoginWindow {
         public bool IsFormReadyToSend
         {
             get {
-                return (_Login != String.Empty && _Password != String.Empty);
+                return _Login != String.Empty;
             }
         }
     }
