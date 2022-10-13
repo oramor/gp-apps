@@ -21,7 +21,12 @@ namespace LibControls
             set { SetValue(DefaultTextBrushProperty, value); }
         }
         public static readonly DependencyProperty DefaultTextBrushProperty =
-            DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(UnsecurePasswordBox), new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
+            DependencyProperty.Register(
+                "DefaultTextBrush",
+                typeof(Brush),
+                typeof(UnsecurePasswordBox),
+                new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush)
+                );
 
         /// <summary>
         /// Сам текст подсказки
@@ -32,7 +37,12 @@ namespace LibControls
             set { SetValue(DefaultTextProperty, value); }
         }
         public static readonly DependencyProperty DefaultTextProperty =
-            DependencyProperty.Register("DefaultText", typeof(string), typeof(UnsecurePasswordBox), new PropertyMetadata("Enter password..."));
+            DependencyProperty.Register(
+                "DefaultText",
+                typeof(string),
+                typeof(UnsecurePasswordBox),
+                new PropertyMetadata("Enter password...")
+                );
 
         /// <summary>
         /// Свойство для текста ввода
@@ -45,7 +55,14 @@ namespace LibControls
             }
         }
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(UnsecurePasswordBox), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "Text",
+                typeof(string),
+                typeof(UnsecurePasswordBox),
+                new FrameworkPropertyMetadata(string.Empty) {
+                    BindsTwoWayByDefault = true,
+                    CoerceValueCallback = (_, value) => value ?? string.Empty
+                });
 
         // Вся разница с TextBox, что здесь пароль обновляется не через биндинг к свойству Password,
         // Которое запрещено для биндинга, а через событие обновления пароля
@@ -55,8 +72,6 @@ namespace LibControls
 
             if (string.IsNullOrWhiteSpace(Text)) PART_TextBlock.Visibility = Visibility.Visible;
             else PART_TextBlock.Visibility = Visibility.Hidden;
-
-            //((PasswordBox)sender).Tag = ((PasswordBox)sender).Password;
         }
     }
 }

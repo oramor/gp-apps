@@ -1,19 +1,17 @@
 ﻿using LibCore;
 using System;
-using System.Windows;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {
     internal class LoginWindowContext : BaseViewModel
     {
         private string _Login = String.Empty;
-        private string _Password = null;
+        private string _Password = String.Empty;
 
         public string Login
         {
             get => _Login;
             set {
-                MessageBox.Show("Checked!");
                 Set(ref _Login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
@@ -25,14 +23,13 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             set {
                 Set(ref _Password, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
-                //MessageBox.Show(_Password);
             }
         }
 
         public bool IsFormReadyToSend
         {
             get {
-                return _Login != String.Empty;
+                return _Login != String.Empty && _Password != String.Empty;
             }
         }
     }

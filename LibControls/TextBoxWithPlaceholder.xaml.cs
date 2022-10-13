@@ -21,7 +21,12 @@ namespace LibControls
             set { SetValue(DefaultTextBrushProperty, value); }
         }
         public static readonly DependencyProperty DefaultTextBrushProperty =
-            DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(TextBoxWithPlaceholder), new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
+            DependencyProperty.Register(
+                "DefaultTextBrush",
+                typeof(Brush),
+                typeof(TextBoxWithPlaceholder),
+                new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush)
+                );
 
         /// <summary>
         /// Сам текст подсказки
@@ -32,7 +37,12 @@ namespace LibControls
             set { SetValue(DefaultTextProperty, value); }
         }
         public static readonly DependencyProperty DefaultTextProperty =
-            DependencyProperty.Register("DefaultText", typeof(string), typeof(TextBoxWithPlaceholder), new PropertyMetadata("Enter text..."));
+            DependencyProperty.Register(
+                "DefaultText",
+                typeof(string),
+                typeof(TextBoxWithPlaceholder),
+                new PropertyMetadata("Enter text...")
+                );
 
         /// <summary>
         /// Свойство для текста ввода
@@ -45,7 +55,15 @@ namespace LibControls
             }
         }
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(TextBoxWithPlaceholder), new PropertyMetadata(null));
+            DependencyProperty.Register(
+                "Text",
+                typeof(string),
+                typeof(TextBoxWithPlaceholder),
+                new FrameworkPropertyMetadata(string.Empty) {
+                    // Чтобы не прописывать в биндингах Mode=TwoWay
+                    BindsTwoWayByDefault = true,
+                    CoerceValueCallback = (_, value) => value ?? string.Empty
+                });
 
         /// <summary>
         /// Обработчик события изменения текста, устанавливающий
