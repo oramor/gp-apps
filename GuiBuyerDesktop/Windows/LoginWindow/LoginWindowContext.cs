@@ -25,6 +25,7 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             set {
                 Set(ref _Password, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
+                //MessageBox.Show(_Password);
             }
         }
 

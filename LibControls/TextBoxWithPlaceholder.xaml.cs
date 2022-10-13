@@ -32,7 +32,7 @@ namespace LibControls
             set { SetValue(DefaultTextProperty, value); }
         }
         public static readonly DependencyProperty DefaultTextProperty =
-            DependencyProperty.Register("DefaultText", typeof(string), typeof(TextBoxWithPlaceholder), new PropertyMetadata("Pls..."));
+            DependencyProperty.Register("DefaultText", typeof(string), typeof(TextBoxWithPlaceholder), new PropertyMetadata("Enter text..."));
 
         /// <summary>
         /// Свойство для текста ввода

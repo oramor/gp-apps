@@ -1,28 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LibControls
 {
-    /// <summary>
-    /// Interaction logic for UnsecurePasswordBox.xaml
-    /// </summary>
+    /// <summary>Логика взаимодействия для UnsecurePasswordBox.xaml</summary>
     public partial class UnsecurePasswordBox : UserControl
     {
         public UnsecurePasswordBox()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Цвета текста подсказки
+        /// </summary>
+        public Brush DefaultTextBrush
+        {
+            get { return (Brush)GetValue(DefaultTextBrushProperty); }
+            set { SetValue(DefaultTextBrushProperty, value); }
+        }
+        public static readonly DependencyProperty DefaultTextBrushProperty =
+            DependencyProperty.Register("DefaultTextBrush", typeof(Brush), typeof(UnsecurePasswordBox), new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
+
+        /// <summary>
+        /// Сам текст подсказки
+        /// </summary>
+        public string DefaultText
+        {
+            get { return (string)GetValue(DefaultTextProperty); }
+            set { SetValue(DefaultTextProperty, value); }
+        }
+        public static readonly DependencyProperty DefaultTextProperty =
+            DependencyProperty.Register("DefaultText", typeof(string), typeof(UnsecurePasswordBox), new PropertyMetadata("Enter password..."));
+
+        /// <summary>
+        /// Свойство для текста ввода
+        /// </summary>
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set {
+                SetValue(TextProperty, value);
+            }
+        }
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(UnsecurePasswordBox), new PropertyMetadata(null));
+
+        // Вся разница с TextBox, что здесь пароль обновляется не через биндинг к свойству Password,
+        // Которое запрещено для биндинга, а через событие обновления пароля
+        private void PART_PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Text = ((PasswordBox)sender).Password;
+
+            if (string.IsNullOrWhiteSpace(Text)) PART_TextBlock.Visibility = Visibility.Visible;
+            else PART_TextBlock.Visibility = Visibility.Hidden;
+
+            //((PasswordBox)sender).Tag = ((PasswordBox)sender).Password;
         }
     }
 }
