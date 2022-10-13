@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibControls\LibControls.csproj" />
-    <ProjectReference Include="..\WPFCore\WPFCore.csproj" />
+    <ProjectReference Include="..\WPFCore\LibCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using LibCore;
+using System;
 using System.Windows;
-using WPFCore;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {

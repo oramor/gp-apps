@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiBuyerDesktop", "GuiBuyerDesktop\GuiBuyerDesktop.csproj", "{886150FD-448D-44BD-B86E-2F34DF22CEAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFCore", "WPFCore\WPFCore.csproj", "{932E17E1-752F-40A3-B64B-773DF00E4E57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibCore", "WPFCore\LibCore.csproj", "{932E17E1-752F-40A3-B64B-773DF00E4E57}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiTest", "GuiTest\GuiTest.csproj", "{8E1D41DD-482E-4D66-82D4-2924356CD15E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibControls", "LibControls\LibControls.csproj", "{4E58222B-7024-40E8-B288-9DEB9CF982CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibControls", "LibControls\LibControls.csproj", "{4E58222B-7024-40E8-B288-9DEB9CF982CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

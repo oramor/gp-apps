@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFCore
+namespace LibCore
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
