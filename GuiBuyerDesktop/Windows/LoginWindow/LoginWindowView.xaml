@@ -34,11 +34,11 @@
                     <Setter Property="Padding" Value="4,4,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <lib:TextBoxWithPlaceholder
+            <lib:PlaceholderTextBox
                 Style="{StaticResource BaseInputStyle}"
                 DefaultText="Логин"
                 DefaultTextBrush="LightGray"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
             <lib:UnsecurePasswordBox
                 Style="{StaticResource BaseInputStyle}"

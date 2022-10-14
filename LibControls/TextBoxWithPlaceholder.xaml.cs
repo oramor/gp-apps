@@ -22,7 +22,7 @@ namespace LibControls
         }
         public static readonly DependencyProperty DefaultTextBrushProperty =
             DependencyProperty.Register(
-                "DefaultTextBrush",
+                nameof(DefaultTextBrush),
                 typeof(Brush),
                 typeof(TextBoxWithPlaceholder),
                 new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush)
@@ -38,7 +38,7 @@ namespace LibControls
         }
         public static readonly DependencyProperty DefaultTextProperty =
             DependencyProperty.Register(
-                "DefaultText",
+                nameof(DefaultText),
                 typeof(string),
                 typeof(TextBoxWithPlaceholder),
                 new PropertyMetadata("Enter text...")
@@ -56,10 +56,11 @@ namespace LibControls
         }
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(
-                "Text",
+                nameof(Text),
                 typeof(string),
                 typeof(TextBoxWithPlaceholder),
-                new FrameworkPropertyMetadata(string.Empty) {
+                new FrameworkPropertyMetadata(string.Empty)
+                {
                     // Чтобы не прописывать в биндингах Mode=TwoWay
                     BindsTwoWayByDefault = true,
                     CoerceValueCallback = (_, value) => value ?? string.Empty
