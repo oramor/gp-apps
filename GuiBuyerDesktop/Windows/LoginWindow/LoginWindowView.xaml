@@ -46,6 +46,7 @@
                 DefaultTextBrush="LightGray"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
                 />
+            <PasswordBox/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 

@@ -23,7 +23,7 @@
                 <ControlTemplate TargetType="{x:Type local:PlaceholderTextBox}">
                     <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                         <Grid>
-                            <TextBlock x:Name="PART_Placeholder" Text="{TemplateBinding DefaultText}" Foreground="{TemplateBinding DefaultTextBrush}"/>
+                            <TextBlock x:Name="PART_Placeholder" Text="{TemplateBinding DefaultText}" Foreground="{TemplateBinding DefaultTextBrush}" Padding="4,4,0,0"/>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Grid>
                     </Border>

@@ -8,7 +8,10 @@ namespace LibControls
     {
         static PlaceholderTextBox()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(PlaceholderTextBox), new FrameworkPropertyMetadata(typeof(PlaceholderTextBox)));
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(PlaceholderTextBox),
+                new FrameworkPropertyMetadata(typeof(PlaceholderTextBox))
+                );
         }
 
         /// <summary>
@@ -41,8 +44,6 @@ namespace LibControls
                 typeof(PlaceholderTextBox),
                 new PropertyMetadata("Enter text..."));
 
-
-
         /// <summary>
         /// Текстовое поле пустое.
         /// </summary>
@@ -53,7 +54,13 @@ namespace LibControls
         }
 
         private static readonly DependencyPropertyKey IsEmptyPropertyKey =
-            DependencyProperty.RegisterReadOnly(nameof(IsEmpty), typeof(bool), typeof(PlaceholderTextBox), new PropertyMetadata(true));
+            DependencyProperty.RegisterReadOnly(
+                nameof(IsEmpty),
+                typeof(bool),
+                typeof(PlaceholderTextBox),
+                new PropertyMetadata(true)
+                );
+        
         /// <summary><see cref="DependencyProperty"/> для свойства <see cref="IsEmpty"/>.</summary>
         public static readonly DependencyProperty IsEmptyProperty = IsEmptyPropertyKey.DependencyProperty;
 
