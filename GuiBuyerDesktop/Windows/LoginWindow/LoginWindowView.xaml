@@ -46,7 +46,7 @@
                 DefaultTextBrush="LightGray"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
                 />
-            <PasswordBox/>
+            <PasswordBox Style="{DynamicResource PasswordBoxStyle1}"/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
