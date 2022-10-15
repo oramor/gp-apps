@@ -40,13 +40,6 @@
                 DefaultTextBrush="LightGray"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <lib:UnsecurePasswordBox
-                Style="{StaticResource BaseInputStyle}"
-                DefaultText="Пароль"
-                DefaultTextBrush="LightGray"
-                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
-                />
-            <PasswordBox Style="{DynamicResource PasswordBoxStyle1}"/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
