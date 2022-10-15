@@ -34,7 +34,7 @@
                     <Setter Property="Padding" Value="4,4,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <lib:PlaceholderTextBox
+            <lib:CTextBoxWithPlaceholder
                 Style="{StaticResource BaseInputStyle}"
                 DefaultText="Логин"
                 DefaultTextBrush="LightGray"

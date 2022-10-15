@@ -1,21 +1,21 @@
-п»їusing System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace LibControls
 {
-    public class PlaceholderTextBox : TextBox
+    public class CTextBoxWithPlaceholder : TextBox
     {
-        static PlaceholderTextBox()
+        static CTextBoxWithPlaceholder()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(PlaceholderTextBox),
-                new FrameworkPropertyMetadata(typeof(PlaceholderTextBox))
+                typeof(CTextBoxWithPlaceholder),
+                new FrameworkPropertyMetadata(typeof(CTextBoxWithPlaceholder))
                 );
         }
 
         /// <summary>
-        /// Р¦РІРµС‚Р° С‚РµРєСЃС‚Р° РїРѕРґСЃРєР°Р·РєРё.
+        /// Цвета текста подсказки.
         /// </summary>
         public Brush DefaultTextBrush
         {
@@ -26,11 +26,11 @@ namespace LibControls
             DependencyProperty.Register(
                 nameof(DefaultTextBrush),
                 typeof(Brush),
-                typeof(PlaceholderTextBox),
+                typeof(CTextBoxWithPlaceholder),
                 new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
 
         /// <summary>
-        /// РЎР°Рј С‚РµРєСЃС‚ РїРѕРґСЃРєР°Р·РєРё.
+        /// Сам текст подсказки.
         /// </summary>
         public string DefaultText
         {
@@ -41,11 +41,11 @@ namespace LibControls
             DependencyProperty.Register(
                 nameof(DefaultText),
                 typeof(string),
-                typeof(PlaceholderTextBox),
+                typeof(CTextBoxWithPlaceholder),
                 new PropertyMetadata("Enter text..."));
 
         /// <summary>
-        /// РўРµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РїСѓСЃС‚РѕРµ.
+        /// Текстовое поле пустое.
         /// </summary>
         public bool IsEmpty
         {
@@ -57,16 +57,16 @@ namespace LibControls
             DependencyProperty.RegisterReadOnly(
                 nameof(IsEmpty),
                 typeof(bool),
-                typeof(PlaceholderTextBox),
+                typeof(CTextBoxWithPlaceholder),
                 new PropertyMetadata(true)
                 );
-        
-        /// <summary><see cref="DependencyProperty"/> РґР»СЏ СЃРІРѕР№СЃС‚РІР° <see cref="IsEmpty"/>.</summary>
+
+        /// <summary><see cref="DependencyProperty"/> для свойства <see cref="IsEmpty"/>.</summary>
         public static readonly DependencyProperty IsEmptyProperty = IsEmptyPropertyKey.DependencyProperty;
 
         /// <summary>
-        /// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РІС‹Р·С‹РІР°РµРјРѕРіРѕ РїСЂРё РёР·РјРµРЅРµРЅРёРё С‚РµРєСЃС‚Р°, СѓСЃС‚Р°РЅР°РІР»РёРІР°СЋС‰РёР№
-        /// РїСѓСЃС‚РѕРµ РёР»Рё РЅРµС‚ С‚РµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ.
+        /// Переопределение метода вызываемого при изменении текста, устанавливающий
+        /// пустое или нет текстовое поле.
         /// </summary>
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
