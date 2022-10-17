@@ -4,13 +4,13 @@ using System.Windows.Media;
 
 namespace LibControls
 {
-    public class CTextBoxWithPlaceholder : TextBox
+    public class TextBoxWithPlaceholder : TextBox
     {
-        static CTextBoxWithPlaceholder()
+        static TextBoxWithPlaceholder()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(CTextBoxWithPlaceholder),
-                new FrameworkPropertyMetadata(typeof(CTextBoxWithPlaceholder))
+                typeof(TextBoxWithPlaceholder),
+                new FrameworkPropertyMetadata(typeof(TextBoxWithPlaceholder))
                 );
         }
 
@@ -26,7 +26,7 @@ namespace LibControls
             DependencyProperty.Register(
                 nameof(DefaultTextBrush),
                 typeof(Brush),
-                typeof(CTextBoxWithPlaceholder),
+                typeof(TextBoxWithPlaceholder),
                 new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LibControls
             DependencyProperty.Register(
                 nameof(DefaultText),
                 typeof(string),
-                typeof(CTextBoxWithPlaceholder),
+                typeof(TextBoxWithPlaceholder),
                 new PropertyMetadata("Enter text..."));
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace LibControls
             DependencyProperty.RegisterReadOnly(
                 nameof(IsEmpty),
                 typeof(bool),
-                typeof(CTextBoxWithPlaceholder),
+                typeof(TextBoxWithPlaceholder),
                 new PropertyMetadata(true)
                 );
 
