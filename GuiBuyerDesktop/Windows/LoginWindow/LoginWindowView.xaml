@@ -25,23 +25,17 @@
         </TextBlock>
         <StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
-                <Style x:Key="BaseInputStyle" TargetType="{x:Type Control}">
+                <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
                     <Setter Property="Margin" Value="0,15,0,0"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="BorderBrush" Value="#d4b2ff"/>
-                    <Setter Property="BorderThickness" Value="3"/>
-                    <Setter Property="FontSize" Value="17"/>
-                    <Setter Property="Padding" Value="4,4,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <c:TextBoxWithPlaceholder
-                Style="{StaticResource BaseInputStyle}"
+            <c:TextBoxPlaceholder
+                Style="{StaticResource MarginStyle}"
                 DefaultText="Логин"
-                DefaultTextBrush="LightGray"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
             <c:TextBoxForPassword
-                Style="{StaticResource BaseInputStyle}"
+                Style="{StaticResource MarginStyle}"
                 DefaultText="Пароль"
                 DefaultTextBrush="LightGray"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

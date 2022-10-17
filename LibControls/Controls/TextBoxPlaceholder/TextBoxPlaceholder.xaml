@@ -3,41 +3,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:LibControls">
 
-    <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-    <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-    <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-
-    <FontFamily x:Key="password.font">pack://application:,,,/LibControls;component/Resources/Fonts/#password</FontFamily>
-
-    <Style
-        TargetType="{x:Type local:TextBoxForPassword}">
-
-        <Setter Property="FontFamily" Value="{StaticResource password.font}"/>
-        
+    <Style TargetType="{x:Type local:TextBoxPlaceholder}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="BorderBrush" Value="#d4b2ff"/>
+        <Setter Property="Height" Value="40"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Padding" Value="4,4,0,0"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="DefaultTextBrush" Value="LightGray"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:TextBoxForPassword}">
+                <ControlTemplate TargetType="{x:Type local:TextBoxPlaceholder}">
                     <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                         <Grid>
-                            <TextBlock x:Name="PART_Placeholder"
-                                       Text="{TemplateBinding DefaultText}"
-                                       Foreground="{TemplateBinding DefaultTextBrush}"
-                                       Padding="4,4,0,0"
-                                       FontFamily="Segoe UI"/>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="false"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"/>
+                            <TextBlock
+                                x:Name="PART_Placeholder" Text="{TemplateBinding DefaultText}" Foreground="{TemplateBinding DefaultTextBrush}" Padding="8,4,0,0" FontFamily="Segoe UI"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -68,4 +57,4 @@
         </Style.Triggers>
     </Style>
 
-</ResourceDictionary>
+</ResourceDictionary>    
