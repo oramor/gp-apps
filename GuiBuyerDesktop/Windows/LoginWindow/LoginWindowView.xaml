@@ -34,10 +34,9 @@
                 DefaultText="Логин"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <c:TextBoxForPassword
+            <c:TextBoxPlaceholderPassword
                 Style="{StaticResource MarginStyle}"
                 DefaultText="Пароль"
-                DefaultTextBrush="LightGray"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
             <Button 
