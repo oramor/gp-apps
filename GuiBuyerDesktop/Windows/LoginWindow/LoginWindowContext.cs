@@ -3,7 +3,7 @@ using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {
-    internal class LoginWindowContext : BaseViewModel
+    internal class LoginWindowContext : BaseContext
     {
         private string _Login = String.Empty;
         private string _Password = String.Empty;

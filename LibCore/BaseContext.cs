@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace LibCore
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseContext : INotifyPropertyChanged
     {
         // All bindings subscribed to this event
         public event PropertyChangedEventHandler PropertyChanged;
