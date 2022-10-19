@@ -53,7 +53,7 @@ namespace LibForm
         /// </summary>
         void SetFormError() { throw new NotImplementedException(); }
 
-        // Реализация DependencyProperty для SendApi
+        // Реализация DependencyProperty для SendApi и SendButtonTitle
 
         // Реализация команды sendFormCommand для кнопки "Отпрвить"
     }

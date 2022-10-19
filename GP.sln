@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibControls", "LibControls\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibCore", "LibCore\LibCore.csproj", "{1BC8DCA3-DA78-48F1-AF9D-BA83DD88399E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibForm", "LibForm\LibForm.csproj", "{DD939B68-202F-4881-A6FB-CC0A58458BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibForm", "LibForm\LibForm.csproj", "{DD939B68-202F-4881-A6FB-CC0A58458BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibGuiBlocks", "LibGuiBlocks\LibGuiBlocks.csproj", "{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibGuiBlocks", "LibGuiBlocks\LibGuiBlocks.csproj", "{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibModels", "LibModels\LibModels.csproj", "{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
