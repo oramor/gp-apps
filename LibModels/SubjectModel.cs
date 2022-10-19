@@ -1,39 +1,39 @@
 ﻿using LibCore;
 using LibModels.Interfaces;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 
 namespace LibModels
 {
     public class SubjectModel : BaseModel
     {
+        private string readonly apiList = "/v1/subject/item";
+        private string readonly apiItem = "/v1/subject/list";
+
         static SubjectModel()
         {
             HttpClient client = new HttpClient();
         }
 
-        public class Item : ISubjectItem
+        public class Item
         {
             private readonly int _id;
             private string _username;
             private string _email;
             private string _phone;
 
-            public Item(int subjectId)
-            {
-                // Здесь будет запрос к API и разбор JSON
-                _id = subjectId;
-                _username = "Roma";
-                _email = "ssdsd@sdsd.ru";
-                _email = "79797897788";
-            }
+            public int Id { get => _id; set { _id = value } }
+            public string Username { get => _username; set { _username = value } }
+            public string Email { get => _email;  set { _email = value } }
+            public string Phone { get => _phone; set { _phone = value } }
 
-            public int Id { get { return _id; } }
-            public string Username { get { return _username; } }
-            public string Email { get { return _email; } }
-            public string Phone { get { return _phone; } }
+            public List<object> GetProfiles() { }
         }
 
+        // Этот метод будет асинхронно получать список
+        // экземпляров сущности с сервера
         public static List<Item> GetList()
         {
             List<Item> list = new List<Item>();
@@ -44,6 +44,17 @@ namespace LibModels
             return list;
         }
 
+        // Этот метод будет запрашивать конкретный экземпляр
+        // сущности по API
+        public static Item GetItem(int id)
+        {
+            return new Item() {
+                Username = "ffff"
+            };
+        }
+
+        // Этот метод будет предпринимать асинхронную попытку
+        // аутентификации
         public static int TryAuth(string login, string password)
         {
             return 1;
