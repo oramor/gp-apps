@@ -29,7 +29,10 @@ namespace LibModels
             public string Email { get => _email;  set { _email = value } }
             public string Phone { get => _phone; set { _phone = value } }
 
-            public List<object> GetProfiles() { }
+            public async void UpdatePhone(string phone)
+            {
+                true;
+            }
         }
 
         // Этот метод будет асинхронно получать список
