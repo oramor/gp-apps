@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctx="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
         xmlns:c="clr-namespace:LibControls;assembly=LibControls"
+        xmlns:f="clr-namespace:LibForm;assembly=LibForm"
         mc:Ignorable="d"
         Title="Вход"
         Width="350"
@@ -23,7 +24,7 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
-        <StackPanel Margin="30,10,30,25">
+        <f:Form Margin="30,10,30,25">
             <StackPanel.Resources>
                 <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
                     <Setter Property="Margin" Value="0,15,0,0"/>
@@ -39,6 +40,7 @@
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
+            <f:FieldText/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
@@ -51,6 +53,6 @@
                 >
                 Вход
             </Button>
-        </StackPanel>
+        </f:Form>
     </StackPanel>
 </Window>

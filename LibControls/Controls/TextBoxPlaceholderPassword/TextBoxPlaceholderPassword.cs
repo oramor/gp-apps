@@ -21,7 +21,9 @@ namespace LibControls
             set => SetValue(IsTextVisibilityProperty, value);
         }
 
-        /// <summary><see cref="DependencyProperty"/> для свойства <see cref="IsTextVisibility"/>.</summary>
+        /// <summary>
+        /// <see cref="DependencyProperty"/> для свойства <see cref="IsTextVisibility"/>.
+        /// </summary>
         public static readonly DependencyProperty IsTextVisibilityProperty =
             DependencyProperty.Register(
                 nameof(IsTextVisibility),
