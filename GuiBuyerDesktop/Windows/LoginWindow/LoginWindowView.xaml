@@ -40,7 +40,7 @@
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <f:FieldText/>
+            <f:FieldText ErrorMessage="ssdsdsds"/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
