@@ -1,20 +1,10 @@
 using System.Runtime.InteropServices;
 
+// For ResourceDictionary files
 [assembly: System.Windows.ThemeInfo(System.Windows.ResourceDictionaryLocation.None, System.Windows.ResourceDictionaryLocation.SourceAssembly)]
 
-// В проектах SDK, таких как этот, некоторые атрибуты сборки, которые ранее определялись
-// в этом файле, теперь автоматически добавляются во время сборки и заполняются значениями,
-// заданными в свойствах проекта. Подробные сведения о том, какие атрибуты включены
-// и как настроить этот процесс, см. на странице: https://aka.ms/assembly-info-properties.
-
-
-// При установке значения false для параметра ComVisible типы в этой сборке становятся
-// невидимыми для компонентов COM. Если вам необходимо получить доступ к типу в этой
-// сборке из модели COM, установите значение true для атрибута ComVisible этого типа.
-
+// Enable COM availability
 [assembly: ComVisible(false)]
 
-// Следующий GUID служит для идентификации библиотеки типов typelib, если этот проект
-// будет видимым для COM.
-
-[assembly: Guid("259396fe-e104-4bea-b19a-63376a111eab")]
+// If ComVisible(true) it will using for identify types
+// [assembly: Guid("259396fe-e104-4bea-b19a-63376a111eab")]

@@ -8,6 +8,6 @@
              mc:Ignorable="d">
     <StackPanel>
         <c:TextBoxPlaceholder/>
-        <local:FieldErrorBlock/>
+        <local:FieldErrorBlock Visibility="Visible"/>
     </StackPanel>
 </UserControl>
