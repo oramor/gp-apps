@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibForm", "LibForm\LibForm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibGuiBlocks", "LibGuiBlocks\LibGuiBlocks.csproj", "{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibModels", "LibModels\LibModels.csproj", "{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibModels", "LibModels\LibModels.csproj", "{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
