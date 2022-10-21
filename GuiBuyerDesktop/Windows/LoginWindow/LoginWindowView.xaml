@@ -24,6 +24,11 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
+        <f:TestForm>
+            <StackPanel>
+                <TextBlock>Element 3</TextBlock>
+            </StackPanel>
+        </f:TestForm>
         <f:Form Margin="30,10,30,25">
             <StackPanel.Resources>
                 <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
@@ -40,7 +45,7 @@
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <f:FieldText ErrorMessage="ssdsdsds"/>
+            <f:FieldText ErrorMessage="ssdsdsds dfdfdfd dfdfdfdf dfdfdfdf dfdfdfd dfdfdf"/>
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
