@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:LibForm">
 
     <Style TargetType="{x:Type local:FieldErrorBlock}">
-        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextTrimming" Value="None"/>
         <Setter Property="Background" Value="Tomato"/>
         <Setter Property="Foreground" Value="White"/>
