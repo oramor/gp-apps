@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/LibForm;component/Internal/FieldErrorBlock/FieldErrorBlock.xaml"/>
+        <ResourceDictionary Source="/LibForm;component/Form/Form.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

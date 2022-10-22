@@ -14,6 +14,11 @@
     <Window.DataContext>
         <ctx:LoginWindowContext/>
     </Window.DataContext>
+    <!--<Window.Resources>
+        <Style TargetType="f:Form">
+            <Setter Property="Height" Value="15" />
+        </Style>
+    </Window.Resources>-->
     <StackPanel>
         <TextBlock 
             Background="#fcec5e" 
@@ -24,12 +29,12 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
-        <f:TestForm>
-            <StackPanel>
+        <f:Form>
+            <!--<StackPanel>
                 <TextBlock>Element 3</TextBlock>
-            </StackPanel>
-        </f:TestForm>
-        <f:Form Margin="30,10,30,25">
+            </StackPanel>-->
+        </f:Form>
+        <StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
                 <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
                     <Setter Property="Margin" Value="0,15,0,0"/>
@@ -45,7 +50,7 @@
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <f:FieldText ErrorMessage="ssdsdsds dfdfdfd dfdfdfdf dfdfdfdf dfdfdfd dfdfdf"/>
+            <!--<f:FieldText ErrorMessage="ssdsdsds dfdfdfd dfdfdfdf dfdfdfdf dfdfdfd dfdfdf"/>-->
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
@@ -58,6 +63,6 @@
                 >
                 Вход
             </Button>
-        </f:Form>
+        </StackPanel>
     </StackPanel>
 </Window>
