@@ -30,9 +30,9 @@
             Главпоставка
         </TextBlock>
         <f:Form>
-            <!--<StackPanel>
-                <TextBlock>Element 3</TextBlock>
-            </StackPanel>-->
+            <StackPanel>
+                <!--<TextBlock>Element 3</TextBlock>-->
+            </StackPanel>
         </f:Form>
         <StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
