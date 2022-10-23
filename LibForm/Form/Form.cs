@@ -14,6 +14,10 @@ namespace LibForm
                 );
         }
 
+        /// <summary>
+        /// Принимает значение из одноименного свойства вьюмодели (контекста)
+        /// и определяет возможность отправки формы
+        /// </summary>
         public bool IsFormReadyToSend
         {
             get { return (bool)GetValue(IsFormReadyToSendProperty); }
@@ -24,9 +28,26 @@ namespace LibForm
             nameof(IsFormReadyToSend),
             typeof(bool),
             typeof(Form),
-            new FrameworkPropertyMetadata(null) {
-                BindsTwoWayByDefault = true,
+            new FrameworkPropertyMetadata(false) {
+                BindsTwoWayByDefault = true
+            });
 
+        /// <summary>
+        /// Содержит текст ошибки, которая не привязана к конкретному полю
+        /// на форме. Пустая строка означает, что блок не будет показан
+        /// </summary>
+        public string TopErrorMessage
+        {
+            get { return (string)GetValue(TopErrorMessageProperty); }
+            set { SetValue(TopErrorMessageProperty, value); }
+        }
+
+        public static readonly DependencyProperty TopErrorMessageProperty = DependencyProperty.Register(
+            nameof(TopErrorMessage),
+            typeof(string),
+            typeof(Form),
+            new FrameworkPropertyMetadata(string.Empty) {
+                BindsTwoWayByDefault = true
             });
     }
 }

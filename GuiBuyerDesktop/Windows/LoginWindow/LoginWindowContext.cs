@@ -5,23 +5,23 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
 {
     internal class LoginWindowContext : BaseFormContext
     {
-        private string _Login = String.Empty;
-        private string _Password = String.Empty;
+        private string _login = String.Empty;
+        private string _password = String.Empty;
 
         public string Login
         {
-            get => _Login;
+            get => _login;
             set {
-                Set(ref _Login, value);
+                Set(ref _login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
         }
 
         public string Password
         {
-            get => _Password;
+            get => _password;
             set {
-                Set(ref _Password, value);
+                Set(ref _password, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
         }
@@ -29,7 +29,7 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
         public override bool IsFormReadyToSend
         {
             get {
-                return _Login != String.Empty && _Password != String.Empty;
+                return _login != String.Empty && _password != String.Empty;
             }
             set {
                 throw new NotSupportedException();

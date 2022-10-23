@@ -6,11 +6,20 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Form}">
-                    <StackPanel>
-                        <TextBlock Text="Element 1" Background="Aqua"/>
+                    <StackPanel x:Name="rootStack">
+                        <TextBlock Text="{TemplateBinding TopErrorMessage}"
+                                   Visibility="Visible"
+                                   Background="Tomato"/>
                         <ItemsPresenter/>
-                        <TextBlock Text="Element 2" Background="Red"/>
+                        <Button IsEnabled="{TemplateBinding IsFormReadyToSend}">
+                            Вход
+                        </Button>
                     </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="TopErrorMessage" Value="{x:Null}">
+                            <Setter TargetName="rootStack" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

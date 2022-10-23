@@ -29,7 +29,9 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
-        <f:Form>
+        <f:Form
+            IsFormReadyToSend="{Binding IsFormReadyToSend}"
+            TopErrorMessage="{Binding TopErrorMessage}">
             <TextBlock>Field 1</TextBlock>
             <TextBlock>Field 2</TextBlock>
             <TextBlock>Field 3</TextBlock>

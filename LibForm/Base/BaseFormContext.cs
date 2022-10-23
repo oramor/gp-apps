@@ -7,6 +7,7 @@ namespace LibForm
     public abstract class BaseFormContext : BaseContext
     {
         private bool _isFormReadyToSend = true;
+        private string _topErrorMessage = string.Empty;
 
         public BaseFormContext()
         {
@@ -21,8 +22,14 @@ namespace LibForm
         /// </summary>
         public virtual bool IsFormReadyToSend
         {
-            get { return _isFormReadyToSend; }
+            get => _isFormReadyToSend;
             set { _isFormReadyToSend = value; }
+        }
+
+        public string TopErrorMessage
+        {
+            get => _topErrorMessage;
+            set { _topErrorMessage = value; }
         }
 
         /// <summary>
