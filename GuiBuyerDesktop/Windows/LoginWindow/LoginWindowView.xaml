@@ -30,9 +30,9 @@
             Главпоставка
         </TextBlock>
         <f:Form>
-            <StackPanel>
-                <!--<TextBlock>Element 3</TextBlock>-->
-            </StackPanel>
+            <TextBlock>Field 1</TextBlock>
+            <TextBlock>Field 2</TextBlock>
+            <TextBlock>Field 3</TextBlock>
         </f:Form>
         <StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
@@ -50,7 +50,6 @@
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <!--<f:FieldText ErrorMessage="ssdsdsds dfdfdfd dfdfdfdf dfdfdfdf dfdfdfd dfdfdf"/>-->
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 

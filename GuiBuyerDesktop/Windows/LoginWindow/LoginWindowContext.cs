@@ -1,9 +1,9 @@
-﻿using LibCore;
+﻿using LibForm;
 using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {
-    internal class LoginWindowContext : BaseContext
+    internal class LoginWindowContext : BaseFormContext
     {
         private string _Login = String.Empty;
         private string _Password = String.Empty;
@@ -26,10 +26,13 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             }
         }
 
-        public bool IsFormReadyToSend
+        public override bool IsFormReadyToSend
         {
             get {
                 return _Login != String.Empty && _Password != String.Empty;
+            }
+            set {
+                throw new NotSupportedException();
             }
         }
     }

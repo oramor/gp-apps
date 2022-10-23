@@ -2,15 +2,27 @@
 using System;
 using System.Net.Http;
 
-namespace LibForm.Base
+namespace LibForm
 {
-    internal abstract class BaseFormContext : BaseContext
+    public abstract class BaseFormContext : BaseContext
     {
-        BaseFormContext()
+        private bool _isFormReadyToSend = true;
+
+        public BaseFormContext()
         {
             // Не просто собираем данные со вложенных полей формы,
             // а упаковываем их в формат multipart/form-data
             MultipartFormDataContent _formData = null;
+        }
+
+        /// <summary>
+        /// The method determines the possibilities to send Form.
+        /// If false, SendButton will be disabled
+        /// </summary>
+        public virtual bool IsFormReadyToSend
+        {
+            get { return _isFormReadyToSend; }
+            set { _isFormReadyToSend = value; }
         }
 
         /// <summary>
