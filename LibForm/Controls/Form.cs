@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace LibForm
 {
@@ -91,6 +92,22 @@ namespace LibForm
             typeof(string),
             typeof(Form),
             new PropertyMetadata("Send"));
+
+        #endregion
+
+        #region SendFormCommand
+
+        public string SendCommand
+        {
+            get { return (string)GetValue(SendCommandProperty); }
+            set { SetValue(SendCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty SendCommandProperty = DependencyProperty.Register(
+            nameof(SendCommand),
+            typeof(ICommand),
+            typeof(Form),
+            new PropertyMetadata(null));
 
         #endregion
     }

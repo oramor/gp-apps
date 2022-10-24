@@ -10,7 +10,7 @@ namespace LibCore
     {
         static Fetcher()
         {
-            HttpClient client = new HttpClient();
+            //HttpClient client = new HttpClient();
         }
     }
 }

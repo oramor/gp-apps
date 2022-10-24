@@ -1,7 +1,10 @@
 ﻿using LibCore;
+using LibForm.Commands;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Windows;
+using System.Windows.Input;
 
 namespace LibForm
 {
@@ -23,9 +26,23 @@ namespace LibForm
             get => _formFields;
         }
 
+        class SendFormCommand : ICommand
+        {
+            public event EventHandler? CanExecuteChanged;
+
+            public bool CanExecute(object? parameter) => true;
+
+            public void Execute(object? parameter)
+            {
+                MessageBox.Show("Sent!");
+            }
+        }
+
+        public ICommand SendFormCommandFabric => new SendFormCommand();
+
         protected void UpdateFieldForSend(IFormFieldInfo fieldInfo)
         {
-            if (_formFields.Contains(fieldInfo)) 
+            //if (_formFields.Contains(fieldInfo)) 
         }
 
         /// <summary>
@@ -49,23 +66,23 @@ namespace LibForm
         /// Вызывается в конструкторе. Обходит children-элементы, извлекая данные
         /// из тех объектов, которые соответствуют критерию поля формы
         /// </summary>
-        void MakeFormData() { throw new NotFiniteNumberException(); }
+        ///void MakeFormData() { throw new NotFiniteNumberException(); }
 
         /// <summary>
         /// Отправляет данные на сервер и получает json. При наличии в ответе
         /// ноды с ошибками, отправляет из в SetFieldsErrors()
         /// </summary>
-        async void SendForm() { throw new NotImplementedException(); }
+        ///async void SendForm() { throw new NotImplementedException(); }
 
         /// <summary>
         /// В цикле применяет к каждому элементу из children ошибку
         /// </summary>
-        void SetFieldErrors() { throw new NotImplementedException(); }
+        ///void SetFieldErrors() { throw new NotImplementedException(); }
 
         /// <summary>
         /// Устанавливает одиночную ошибку для формы при наличии
         /// соответствующей ноды в ответе сервера
         /// </summary>
-        void SetFormError() { throw new NotImplementedException(); }
+        ///void SetFormError() { throw new NotImplementedException(); }
     }
 }
