@@ -1,5 +1,6 @@
 ﻿using LibCore;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 
 namespace LibForm
@@ -8,12 +9,23 @@ namespace LibForm
     {
         private bool _isFormReadyToSend = true;
         private string _topErrorMessage = string.Empty;
+        private List<IFormFieldInfo> _formFields = new List<IFormFieldInfo>();
 
         public BaseFormContext()
         {
             // Не просто собираем данные со вложенных полей формы,
             // а упаковываем их в формат multipart/form-data
             MultipartFormDataContent _formData = null;
+        }
+
+        public List<IFormFieldInfo> FormFields
+        {
+            get => _formFields;
+        }
+
+        protected void UpdateFieldForSend(IFormFieldInfo fieldInfo)
+        {
+            if (_formFields.Contains(fieldInfo)) 
         }
 
         /// <summary>

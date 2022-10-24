@@ -17,7 +17,7 @@
     </UserControl.Resources>
             <StackPanel>
         <c:TextBoxPlaceholder/>
-        <local:FieldErrorBlock x:Name="fieldErrorBlock"
+        <local:FieldErrorMessage x:Name="fieldErrorBlock"
             Visibility="Visible"
             Text="{Binding ErrorMessage, ElementName=fieldText}"/>
     </StackPanel>

@@ -2,23 +2,32 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:LibForm">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/LibForm;component/Internal/SendButton.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
-
     <Style TargetType="{x:Type local:Form}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Form}">
                     <StackPanel>
                         <StackPanel.Resources>
-                            <ResourceDictionary Source="/LibForm;component/Internal/SendButton.xaml"/>
+                            <ResourceDictionary>
+                                <ResourceDictionary.MergedDictionaries>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/SendButtonStyle.xaml"/>
+                                    <ResourceDictionary>
+                                        <Style x:Key="formItemsMarginStyle" TargetType="{x:Type Control}">
+                                            <Setter Property="Margin" Value="0,15,0,0"/>
+                                        </Style>
+                                    </ResourceDictionary>
+                                </ResourceDictionary.MergedDictionaries>
+                            </ResourceDictionary>
                         </StackPanel.Resources>
                         <TextBlock x:Name="topErrorMessageContainer"
                             Text="{TemplateBinding TopErrorMessage}"
                             Visibility="Visible"
                             Background="Tomato"/>
-                        <ItemsPresenter/>
+                        <ItemsPresenter>
+                            <ItemsPresenter.Resources>
+
+                            </ItemsPresenter.Resources>
+                        </ItemsPresenter>
                         <Button x:Name="sendButton"
                             Content="{TemplateBinding SendButtonText}" 
                             IsEnabled="{TemplateBinding IsFormReadyToSend}"/>

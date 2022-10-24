@@ -32,26 +32,24 @@
         <f:Form
             IsFormReadyToSend="{Binding IsFormReadyToSend}"
             TopErrorMessage="{Binding TopErrorMessage}"
-            SendButtonText="Вход">
-            <TextBlock>Field 1</TextBlock>
-            <TextBlock>Field 2</TextBlock>
+            SendButtonText="Вход"
+            Margin="20">
+            <c:TextBoxPlaceholder
+                DefaultText="Логин"
+                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                />
+            <c:TextBoxPlaceholderPassword
+                DefaultText="Пароль"
+                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                />
         </f:Form>
-        <StackPanel Margin="30,10,30,25">
+        <!--<StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
                 <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
                     <Setter Property="Margin" Value="0,15,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <c:TextBoxPlaceholder
-                Style="{StaticResource MarginStyle}"
-                DefaultText="Логин"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                />
-            <c:TextBoxPlaceholderPassword
-                Style="{StaticResource MarginStyle}"
-                DefaultText="Пароль"
-                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                />
+
             <Button 
                 Background="#fcec5e" 
                 BorderBrush="Black" 
@@ -64,6 +62,6 @@
                 >
                 Вход
             </Button>
-        </StackPanel>
+        </StackPanel>-->
     </StackPanel>
 </Window>
