@@ -1,23 +1,35 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:LibForm">
-    
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/LibForm;component/Internal/SendButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="{x:Type local:Form}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Form}">
-                    <StackPanel x:Name="rootStack">
-                        <TextBlock Text="{TemplateBinding TopErrorMessage}"
-                                   Visibility="Visible"
-                                   Background="Tomato"/>
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <ResourceDictionary Source="/LibForm;component/Internal/SendButton.xaml"/>
+                        </StackPanel.Resources>
+                        <TextBlock x:Name="topErrorMessageContainer"
+                            Text="{TemplateBinding TopErrorMessage}"
+                            Visibility="Visible"
+                            Background="Tomato"/>
                         <ItemsPresenter/>
-                        <Button IsEnabled="{TemplateBinding IsFormReadyToSend}">
-                            Вход
-                        </Button>
+                        <Button x:Name="sendButton"
+                            Content="{TemplateBinding SendButtonText}" 
+                            IsEnabled="{TemplateBinding IsFormReadyToSend}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="TopErrorMessage" Value="{x:Null}">
-                            <Setter TargetName="rootStack" Property="Visibility" Value="Collapsed"/>
+                        <Trigger Property="TopErrorMessage" Value="">
+                            <Setter TargetName="topErrorMessageContainer" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsLoading" Value="True">
+                            <Setter TargetName="sendButton" Property="Content" Value="..."/>
+                            <Setter TargetName="sendButton" Property="FontSize" Value="25"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

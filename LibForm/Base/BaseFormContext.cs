@@ -20,6 +20,7 @@ namespace LibForm
         /// The method determines the possibilities to send Form.
         /// If false, SendButton will be disabled
         /// </summary>
+        /// TODO Эта реализация нарушает ППБЛ
         public virtual bool IsFormReadyToSend
         {
             get => _isFormReadyToSend;

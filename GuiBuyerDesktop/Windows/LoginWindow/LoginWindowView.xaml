@@ -31,10 +31,10 @@
         </TextBlock>
         <f:Form
             IsFormReadyToSend="{Binding IsFormReadyToSend}"
-            TopErrorMessage="{Binding TopErrorMessage}">
+            TopErrorMessage="{Binding TopErrorMessage}"
+            SendButtonText="Вход">
             <TextBlock>Field 1</TextBlock>
             <TextBlock>Field 2</TextBlock>
-            <TextBlock>Field 3</TextBlock>
         </f:Form>
         <StackPanel Margin="30,10,30,25">
             <StackPanel.Resources>
