@@ -34,8 +34,7 @@
             TopErrorMessage="{Binding TopErrorMessage}"
             SendCommand="{Binding SendFormCommand}"
             SendButtonText="Вход"
-            Margin="20"
-            SendCommand="{Binding SendFormCommandFabric}">
+            Margin="20">
             <c:TextBoxPlaceholder
                 DefaultText="Логин"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
