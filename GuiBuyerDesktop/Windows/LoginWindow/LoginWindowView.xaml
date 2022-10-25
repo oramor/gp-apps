@@ -14,11 +14,6 @@
     <Window.DataContext>
         <ctx:LoginWindowContext/>
     </Window.DataContext>
-    <!--<Window.Resources>
-        <Style TargetType="f:Form">
-            <Setter Property="Height" Value="15" />
-        </Style>
-    </Window.Resources>-->
     <StackPanel>
         <TextBlock 
             Background="#fcec5e" 
@@ -39,6 +34,7 @@
             <c:TextBoxPlaceholder
                 DefaultText="Логин"
                 Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Margin="0,0,0,10"
                 />
             <c:TextBoxPlaceholderPassword
                 DefaultText="Пароль"
