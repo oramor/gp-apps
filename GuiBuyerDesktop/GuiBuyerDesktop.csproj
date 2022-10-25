@@ -6,11 +6,16 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>GuiBuyerDesktop.Programm</StartupObject>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Montserrat-Medium.ttf" />
     <None Remove="Resources\OverpassMono-Medium.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Montserrat-Medium.ttf" />
-    <Resource Include="Resources\OverpassMono-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\Fonts\OverpassMono-Medium.ttf" />
   </ItemGroup>
 
   <ItemGroup>
