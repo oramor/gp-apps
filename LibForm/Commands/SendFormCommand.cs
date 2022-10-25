@@ -7,7 +7,7 @@ namespace LibForm.Commands
     {
         private BaseFormContext _context;
 
-        SendFormCommand(BaseFormContext ctx)
+        public SendFormCommand(BaseFormContext ctx)
         {
             _context = ctx;
         }
