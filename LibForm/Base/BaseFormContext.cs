@@ -23,11 +23,6 @@ namespace LibForm
             get => _formFields;
         }
 
-        protected void UpdateFieldForSend(IFormFieldInfo fieldInfo)
-        {
-            if (_formFields.Contains(fieldInfo)) 
-        }
-
         /// <summary>
         /// The method determines the possibilities to send Form.
         /// If false, SendButton will be disabled

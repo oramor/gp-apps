@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using LibCore;
+﻿using LibCore;
+using System.Windows;
 
 namespace LibForm.Commands
 {
     internal class SendFormCommand : BaseCommand
     {
-        public void Execute(IServerHandlingForm formContext)
-        {
+        private BaseFormContext _context;
 
+        SendFormCommand(BaseFormContext ctx)
+        {
+            _context = ctx;
+        }
+        public override bool CanExecute(object? parameter) => true;
+
+        public override void Execute(object? formContext)
+        {
+            MessageBox.Show("Send!!!");
         }
     }
 }
