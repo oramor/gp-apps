@@ -33,6 +33,7 @@
             IsFormReadyToSend="{Binding IsFormReadyToSend}"
             TopErrorMessage="{Binding TopErrorMessage}"
             SendCommand="{Binding SendFormCommand}"
+            IsLoading="{Binding IsLoading}"
             SendButtonText="Вход"
             Margin="20">
             <c:TextBoxPlaceholder

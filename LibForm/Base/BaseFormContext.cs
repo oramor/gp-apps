@@ -9,6 +9,7 @@ namespace LibForm
     public abstract class BaseFormContext : BaseContext
     {
         private bool _isFormReadyToSend = true;
+        private bool _isLoading = false;
         private string _topErrorMessage = string.Empty;
         private List<IFormFieldInfo> _formFields = new List<IFormFieldInfo>();
 
@@ -39,6 +40,17 @@ namespace LibForm
         {
             get => _topErrorMessage;
             set { Set(ref _topErrorMessage, value); }
+        }
+
+        /// <summary>
+        /// Указывает, что форма находится в статусе отправки данных на сервер.
+        /// Во время отправки кнопка меняет свой дизайн, а к полям применяется
+        /// стиль FormFieldDisableStyle
+        /// </summary>
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set { Set(ref _isLoading, value); }
         }
 
         public ICommand SendFormCommand => new SendFormCommand(this);

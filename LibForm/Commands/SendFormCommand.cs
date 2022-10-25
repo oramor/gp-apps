@@ -1,4 +1,5 @@
 ﻿using LibCore;
+using System.Threading.Tasks;
 
 namespace LibForm.Commands
 {
@@ -12,10 +13,18 @@ namespace LibForm.Commands
         }
         public override bool CanExecute(object? parameter) => true;
 
-        public override void Execute(object? formContext)
+        public async override void Execute(object? formContext)
         {
             _context.TopErrorMessage = "ddfddfd";
+            _context.IsLoading = true;
+            await Task.Delay(2000);
+            _context.IsLoading = false;
             //MessageBox.Show(_context.TopErrorMessage);
         }
+
+        //private Task SendHandle()
+        //{
+
+        //}
     }
 }
