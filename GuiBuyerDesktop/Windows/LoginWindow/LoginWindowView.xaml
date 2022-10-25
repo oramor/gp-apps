@@ -10,7 +10,8 @@
         Title="Вход"
         Width="350"
         SizeToContent="Height"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <ctx:LoginWindowContext/>
     </Window.DataContext>
