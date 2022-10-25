@@ -38,7 +38,7 @@ namespace LibForm
         public string TopErrorMessage
         {
             get => _topErrorMessage;
-            set { _topErrorMessage = value; }
+            set { Set(ref _topErrorMessage, value); }
         }
 
         public ICommand SendFormCommand => new SendFormCommand(this);

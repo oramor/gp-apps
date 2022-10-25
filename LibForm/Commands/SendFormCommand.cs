@@ -1,5 +1,4 @@
 ﻿using LibCore;
-using System.Windows;
 
 namespace LibForm.Commands
 {
@@ -15,7 +14,8 @@ namespace LibForm.Commands
 
         public override void Execute(object? formContext)
         {
-            MessageBox.Show("Send!!!");
+            _context.TopErrorMessage = "ddfddfd";
+            //MessageBox.Show(_context.TopErrorMessage);
         }
     }
 }
