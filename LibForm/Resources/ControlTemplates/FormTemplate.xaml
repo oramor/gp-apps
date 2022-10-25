@@ -30,7 +30,8 @@
                         </ItemsPresenter>
                         <Button x:Name="sendButton"
                             Content="{TemplateBinding SendButtonText}" 
-                            IsEnabled="{TemplateBinding IsFormReadyToSend}"/>
+                            IsEnabled="{TemplateBinding IsFormReadyToSend}"
+                            Command="{TemplateBinding SendCommand}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TopErrorMessage" Value="">

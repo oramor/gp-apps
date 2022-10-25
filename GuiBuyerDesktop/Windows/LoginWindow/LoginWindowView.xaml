@@ -32,6 +32,7 @@
         <f:Form
             IsFormReadyToSend="{Binding IsFormReadyToSend}"
             TopErrorMessage="{Binding TopErrorMessage}"
+            SendCommand="{Binding SendFormCommand}"
             SendButtonText="Вход"
             Margin="20">
             <c:TextBoxPlaceholder
@@ -43,25 +44,5 @@
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
         </f:Form>
-        <!--<StackPanel Margin="30,10,30,25">
-            <StackPanel.Resources>
-                <Style x:Key="MarginStyle" TargetType="{x:Type Control}">
-                    <Setter Property="Margin" Value="0,15,0,0"/>
-                </Style>
-            </StackPanel.Resources>
-
-            <Button 
-                Background="#fcec5e" 
-                BorderBrush="Black" 
-                BorderThickness="2" 
-                Height="45" 
-                Margin="0,15,0,0"
-                FontFamily="{StaticResource AR}" 
-                FontSize="22"
-                IsEnabled="{Binding Path=IsFormReadyToSend}"
-                >
-                Вход
-            </Button>
-        </StackPanel>-->
     </StackPanel>
 </Window>
