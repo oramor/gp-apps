@@ -5,7 +5,7 @@ namespace LibForm.Commands
 {
     internal class SendFormCommand : BaseCommand
     {
-        private BaseFormContext _context;
+        private readonly BaseFormContext _context;
 
         public SendFormCommand(BaseFormContext ctx)
         {
@@ -15,11 +15,14 @@ namespace LibForm.Commands
 
         public async override void Execute(object? formContext)
         {
-            _context.TopErrorMessage = "ddfddfd";
+            if (_context.TopErrorMessage != string.Empty) {
+                _context.TopErrorMessage = string.Empty;
+            }
+
             _context.IsLoading = true;
-            await Task.Delay(2000);
+            await Task.Delay(1000);
+            _context.TopErrorMessage = "Ошибка подключения: в данный момент сервис проверки учетных данных не доступен. Попробуйте повторить попытку позже.";
             _context.IsLoading = false;
-            //MessageBox.Show(_context.TopErrorMessage);
         }
 
         //private Task SendHandle()

@@ -11,6 +11,7 @@
                             <ResourceDictionary>
                                 <ResourceDictionary.MergedDictionaries>
                                     <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/SendButtonStyle.xaml"/>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopErrorStyle.xaml"/>
                                     <ResourceDictionary>
                                         <Style x:Key="formItemsMarginStyle" TargetType="{x:Type Control}">
                                             <Setter Property="Margin" Value="0,15,0,0"/>
@@ -19,15 +20,15 @@
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </StackPanel.Resources>
-                        <TextBlock x:Name="topErrorMessageContainer"
-                            Text="{TemplateBinding TopErrorMessage}"
-                            Visibility="Visible"
-                            Background="Tomato"/>
-                        <ItemsPresenter>
-                            <ItemsPresenter.Resources>
-
-                            </ItemsPresenter.Resources>
-                        </ItemsPresenter>
+                        <Border x:Name="topErrorMessageContainer"
+                                Style="{StaticResource topErrorStyle_Border}"
+                                Margin="0,0,0,10">
+                            <TextBlock Text="{TemplateBinding TopErrorMessage}"
+                                       Style="{StaticResource topErrorStyle_TextBlock}"
+                                       Visibility="Visible"
+                                       Margin="5"/>
+                        </Border>
+                        <ItemsPresenter/>
                         <Button x:Name="sendButton"
                             Content="{TemplateBinding SendButtonText}" 
                             IsEnabled="{TemplateBinding IsFormReadyToSend}"
