@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibForm
+﻿namespace LibForm
 {
     public interface IFormFieldInfo
     {
-        string Name { get; set; }
-        string Value { get; set; }
+        string Name { get; init; }
+        string Value { get; init; }
     }
 
     public interface IFormFieldDTO : IFormFieldInfo

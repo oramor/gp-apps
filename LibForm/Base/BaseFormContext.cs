@@ -1,6 +1,5 @@
 ﻿using LibCore;
 using LibForm.Commands;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
@@ -22,10 +21,31 @@ namespace LibForm
             MultipartFormDataContent _formData = null;
         }
 
-        public readonly struct FormFieldItem : IFormFieldInfo
+        readonly struct FormFieldItem : IFormFieldInfo
         {
             public readonly string Name { get; init; }
             public readonly string Value { get; init; }
+        }
+
+        /// <summary>
+        /// Утилитарный метод, который проверяет, относится ли свойство класса
+        /// к полям формы
+        /// </summary>
+        private static bool CheckPropertyIsFormField(string fieldName, PropertyInfo[] props)
+        {
+            foreach (PropertyInfo prop in props) {
+                string propName = prop.Name;
+
+                string s = string.Concat(fieldName, "Error");
+
+                if (fieldName.Equals(s)) {
+                    return true;
+                } else {
+                    continue;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -40,15 +60,21 @@ namespace LibForm
             foreach (PropertyInfo prop in props) {
                 string propName = prop.Name;
 
-                // Проверяем, есть ли по этому имени пара SomeError
+                // Пропускаем, если это свойство ошибки (содержит Error)
+                if (prop.Name.Contains("Error")) continue;
 
-                // Если есть, добавляем в структуру (или все-таки класс,
-                // ведь будем затем упаковывать в FormData
-                var formFieldItem = new FormFieldItem {
+                // Пропускаем, если свойство не содержит Error-пары (значит
+                // это не свойство формы
+                if (!CheckPropertyIsFormField(propName, props)) continue;
+
+                // Если есть, добавляем коллекцию в структуру
+                this._formFields.Add(new FormFieldItem {
                     Name = prop.Name,
                     Value = ""
-                };
+                });
             }
+
+            return _formFields;
         }
 
         /// <summary>
