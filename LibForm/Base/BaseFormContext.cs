@@ -12,7 +12,6 @@ namespace LibForm
         private bool _isFormReadyToSend = true;
         private bool _isLoading = false;
         private string _topErrorMessage = string.Empty;
-        private List<IFormFieldInfo> _formFields = new List<IFormFieldInfo>();
 
         public BaseFormContext()
         {
@@ -68,13 +67,13 @@ namespace LibForm
                 if (!CheckPropertyIsFormField(propName, props)) continue;
 
                 // Если есть, добавляем коллекцию в структуру
-                this._formFields.Add(new FormFieldItem {
+                formFieldInfoList.Add(new FormFieldItem {
                     Name = prop.Name,
                     Value = ""
                 });
             }
 
-            return _formFields;
+            return formFieldInfoList;
         }
 
         /// <summary>
