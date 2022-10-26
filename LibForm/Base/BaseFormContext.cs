@@ -1,7 +1,9 @@
 ﻿using LibCore;
 using LibForm.Commands;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Reflection;
 using System.Windows.Input;
 
 namespace LibForm
@@ -20,9 +22,33 @@ namespace LibForm
             MultipartFormDataContent _formData = null;
         }
 
-        public List<IFormFieldInfo> FormFields
+        public readonly struct FormFieldItem : IFormFieldInfo
         {
-            get => _formFields;
+            public readonly string Name { get; init; }
+            public readonly string Value { get; init; }
+        }
+
+        /// <summary>
+        /// Возвращает список данных о полях класса
+        /// </summary>
+        public List<IFormFieldInfo> GetFormFields()
+        {
+            List<IFormFieldInfo> formFieldInfoList = new List<IFormFieldInfo>();
+
+            var props = this.GetType().GetProperties();
+
+            foreach (PropertyInfo prop in props) {
+                string propName = prop.Name;
+
+                // Проверяем, есть ли по этому имени пара SomeError
+
+                // Если есть, добавляем в структуру (или все-таки класс,
+                // ведь будем затем упаковывать в FormData
+                var formFieldItem = new FormFieldItem {
+                    Name = prop.Name,
+                    Value = ""
+                };
+            }
         }
 
         /// <summary>
