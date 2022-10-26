@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject>GuiBuyerDesktop.Programm</StartupObject>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,13 +15,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibControls\LibControls.csproj" />
-    <ProjectReference Include="..\WPFCore\LibCore.csproj" />
+    <Content Include="AppIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Montserrat-Medium.ttf" />
-    <Resource Include="Resources\OverpassMono-Medium.ttf" />
+    <ProjectReference Include="..\LibControls\LibControls.csproj" />
+    <ProjectReference Include="..\LibCore\LibCore.csproj" />
+    <ProjectReference Include="..\LibForm\LibForm.csproj" />
+    <ProjectReference Include="..\LibModels\LibModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Montserrat-Medium.ttf" />
+    <Resource Include="Resources\Fonts\OverpassMono-Medium.ttf" />
   </ItemGroup>
 
   <ItemGroup>

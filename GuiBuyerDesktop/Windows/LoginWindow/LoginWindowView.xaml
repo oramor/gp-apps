@@ -4,12 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctx="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
-        xmlns:lib="clr-namespace:LibControls;assembly=LibControls"
+        xmlns:c="clr-namespace:LibControls;assembly=LibControls"
+        xmlns:f="clr-namespace:LibForm;assembly=LibForm"
         mc:Ignorable="d"
         Title="Вход"
         Width="350"
         SizeToContent="Height"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <ctx:LoginWindowContext/>
     </Window.DataContext>
@@ -23,41 +25,22 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
-        <StackPanel Margin="30,10,30,25">
-            <StackPanel.Resources>
-                <Style x:Key="BaseInputStyle" TargetType="{x:Type Control}">
-                    <Setter Property="Margin" Value="0,15,0,0"/>
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="BorderBrush" Value="#d4b2ff"/>
-                    <Setter Property="BorderThickness" Value="3"/>
-                    <Setter Property="FontSize" Value="17"/>
-                    <Setter Property="Padding" Value="4,4,0,0"/>
-                </Style>
-            </StackPanel.Resources>
-            <lib:TextBoxWithPlaceholder
-                Style="{StaticResource BaseInputStyle}"
+        <f:Form
+            IsFormReadyToSend="{Binding IsFormReadyToSend}"
+            TopErrorMessage="{Binding TopErrorMessage}"
+            SendCommand="{Binding SendFormCommand}"
+            IsLoading="{Binding IsLoading}"
+            SendButtonText="Вход"
+            Margin="20">
+            <c:TextBoxPlaceholder
                 DefaultText="Логин"
-                DefaultTextBrush="LightGray"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Margin="0,0,0,10"
                 />
-            <lib:UnsecurePasswordBox
-                Style="{StaticResource BaseInputStyle}"
+            <c:TextBoxPlaceholderPassword
                 DefaultText="Пароль"
-                DefaultTextBrush="LightGray"
-                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <Button 
-                Background="#fcec5e" 
-                BorderBrush="Black" 
-                BorderThickness="2" 
-                Height="45" 
-                Margin="0,15,0,0"
-                FontFamily="{StaticResource AR}" 
-                FontSize="22"
-                IsEnabled="{Binding Path=IsFormReadyToSend}"
-                >
-                Вход
-            </Button>
-        </StackPanel>
+        </f:Form>
     </StackPanel>
 </Window>
