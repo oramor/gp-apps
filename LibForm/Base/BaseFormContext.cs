@@ -37,7 +37,9 @@ namespace LibForm
 
                 string s = string.Concat(fieldName, "Error");
 
-                if (fieldName.Equals(s)) {
+                // Поле считается подходящим, если удастся найти
+                // для него пару с постфиксом Error
+                if (propName.Equals(s)) {
                     return true;
                 } else {
                     continue;
@@ -52,7 +54,7 @@ namespace LibForm
         /// </summary>
         public List<IFormFieldInfo> GetFormFields()
         {
-            List<IFormFieldInfo> formFieldInfoList = new List<IFormFieldInfo>();
+            var formFieldInfoList = new List<IFormFieldInfo>();
 
             var props = this.GetType().GetProperties();
 
@@ -66,10 +68,11 @@ namespace LibForm
                 // это не свойство формы
                 if (!CheckPropertyIsFormField(propName, props)) continue;
 
-                // Если есть, добавляем коллекцию в структуру
+                var value = (string)prop.GetValue(this)!;
+
                 formFieldInfoList.Add(new FormFieldItem {
                     Name = prop.Name,
-                    Value = ""
+                    Value = value ?? string.Empty,
                 });
             }
 

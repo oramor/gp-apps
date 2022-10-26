@@ -1,4 +1,5 @@
 ﻿using LibCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LibForm.Commands
@@ -19,9 +20,11 @@ namespace LibForm.Commands
                 _context.TopErrorMessage = string.Empty;
             }
 
+            List<IFormFieldInfo> formFields = _context.GetFormFields();
+
             _context.IsLoading = true;
-            await Task.Delay(1000);
-            _context.TopErrorMessage = "Ошибка подключения: в данный момент сервис проверки учетных данных не доступен. Попробуйте повторить попытку позже.";
+            await Task.Delay(500);
+            //_context.TopErrorMessage = "Ошибка подключения: в данный момент сервис проверки учетных данных не доступен. Попробуйте повторить попытку позже.";
             _context.IsLoading = false;
         }
 
