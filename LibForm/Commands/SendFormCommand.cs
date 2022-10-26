@@ -12,7 +12,6 @@ namespace LibForm.Commands
         {
             _context = ctx;
         }
-        public override bool CanExecute(object? parameter) => true;
 
         public async override void Execute(object? formContext)
         {

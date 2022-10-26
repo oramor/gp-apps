@@ -11,9 +11,10 @@ namespace LibCore
         }
 
         /// <summary>
-        /// Проверяет, должна ли команда выполняться
+        /// Проверяет, должна ли команда выполняться. По умолчанию
+        /// все команды сразу доступны для выполнения
         /// </summary>
-        public abstract bool CanExecute(object? parameter);
+        public virtual bool CanExecute(object? parameter) => true;
 
         /// <summary>
         /// Собственно, сама команда
