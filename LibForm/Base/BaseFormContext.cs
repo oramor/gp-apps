@@ -1,5 +1,4 @@
 ﻿using LibCore;
-using LibForm.Commands;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
@@ -107,7 +106,7 @@ namespace LibForm
             set { Set(ref _isLoading, value); }
         }
 
-        public ICommand SendFormCommand => new SendFormCommand(this);
+        public ICommand SendFormCommand => new TestSendCommand();
 
         /// <summary>
         /// Вызывается в конструкторе. Обходит children-элементы, извлекая данные

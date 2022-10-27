@@ -1,15 +1,9 @@
 ﻿using LibCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Text.Json;
 
-namespace LibForm.Test
+namespace LibForm
 {
     internal class TestSendCommand : BaseCommand
     {
@@ -21,17 +15,22 @@ namespace LibForm.Test
         public async override void Execute(object? parameter)
         {
             using (var client = new HttpClient())
-            using (var content = new MultipartFormDataContent())
-            {
+            using (var content = new MultipartFormDataContent()) {
                 client.DefaultRequestHeaders.Add("Authorization", "ssdsd");
-                var field = JsonContent.Create(new Test { Name = "dfdf"});
-                content.Add(field);
+                //var field = JsonContent.Create(new Test { Name = "dfdf" });
+                var fieldValue = new StringContent("fgff");
+                var fieldName = JsonNamingPolicy.CamelCase.ConvertName("Login");
+                var fieldValue2 = new StringContent("sssdddds");
+                var fieldName2 = JsonNamingPolicy.CamelCase.ConvertName("Password");
+                content.Add(fieldValue, fieldName);
+                content.Add(fieldValue2, fieldName2);
 
-                HttpResponseMessage rs = await client.PostAsync("localhost", content);
+                var endpoint = new Uri("http://localhost/api/v1/subjects/login");
+                HttpResponseMessage rs = await client.PostAsync(endpoint, content);
                 var a = rs.Content;
             };
 
-            
+
         }
 
         //private static HttpStringContent MakeStringContent()
