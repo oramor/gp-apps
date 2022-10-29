@@ -7,23 +7,26 @@ namespace LibForm
 {
     internal class TestSendCommand : BaseCommand
     {
-        class ServerResponse
-        {
-            public string Handler { get; set; } = string.Empty;
-            public FormResult Dto { get; set; } = new FormResult();
-        }
-
-        class FormResult
-        {
-            public string FormState { get; set; } = string.Empty;
-            public FormResultDTO FormDto { get; set; } = new FormResultDTO();
-
-        }
-
         class FieldErrorInfo
         {
             public string Name { get; set; } = string.Empty;
             public string Message { get; set; } = string.Empty;
+        }
+
+        class InvalidFormDTO
+        {
+            /// <summary>
+            /// Ошибка, которая должна отображаться в верхней части формы.
+            /// Есть предложение удалить это поле (см. сервер).
+            /// Относится к InvalidFormDTO
+            /// </summary>
+            public string? TopError { get; set; }
+
+            /// <summary>
+            /// Список полей, в которых обнаружена ошибка
+            /// Относится к InvalidFormDTO
+            /// </summary>
+            public FieldErrorInfo[]? Fields { get; set; }
         }
 
         class FormResultDTO
@@ -68,15 +71,18 @@ namespace LibForm
 
                 var endpoint = new Uri("http://localhost/api/v1/subjects/login");
                 HttpResponseMessage rs = await client.PostAsync(endpoint, content);
-                var handlerCode = rs.Headers.GetValues("x-handler-code");
+                var handlerCode = rs.Headers.GetValues("x-nervus-base-handler");
                 var httpContent = rs.Content;
                 string json = await httpContent.ReadAsStringAsync();
 
                 var options = new JsonSerializerOptions {
+                    // Обеспечивает сопоставление camelCase названий полей в исходном
+                    // JSON с PascalCase свойствами классов, которые должны быть
+                    // получены в результате десериализации
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 };
-                ServerResponse formResult = JsonSerializer.Deserialize<ServerResponse>(json, options)!;
-                string formState = formResult.Dto.FormState;
+                InvalidFormDTO invalidForm = JsonSerializer.Deserialize<InvalidFormDTO>(json, options)!;
+                string topError = invalidForm.TopError ?? string.Empty;
             };
 
 
