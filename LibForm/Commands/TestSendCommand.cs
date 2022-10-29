@@ -59,8 +59,9 @@ namespace LibForm
 
         public async override void Execute(object? parameter)
         {
-            using (var client = new HttpClient())
-            using (var content = new MultipartFormDataContent()) {
+            using var client = new HttpClient();
+            using (var content = new MultipartFormDataContent())
+            {
                 client.DefaultRequestHeaders.Add("Authorization", "ssdsd");
                 var fieldValue = new StringContent("fgff");
                 var fieldName = JsonNamingPolicy.CamelCase.ConvertName("Login");

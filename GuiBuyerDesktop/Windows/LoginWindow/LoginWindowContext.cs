@@ -1,13 +1,20 @@
 ﻿using LibForm;
+using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {
     internal class LoginWindowContext : BaseFormContext
     {
+        private static readonly string _endpoint = "http://localhost/api/v1/subjects/login";
         private string _login = string.Empty;
         private string _loginError = string.Empty;
         private string _password = string.Empty;
         private string _passwordError = string.Empty;
+
+        public override Uri Endpoint
+        {
+            get => new(_endpoint);
+        }
 
         public override bool IsFormReadyToSend
         {

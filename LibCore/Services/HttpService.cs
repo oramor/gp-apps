@@ -39,7 +39,7 @@ namespace LibCore
         /// <summary>
         /// Универсальный метод для сериализации полученных с сервера DTO
         /// </summary>
-        public async Task<T> SerializeDto<T>(HttpContent content)
+        public static async Task<T> SerializeDto<T>(HttpContent content)
         {
             string json = await content.ReadAsStringAsync();
 
@@ -53,7 +53,11 @@ namespace LibCore
             return dto;
         }
 
-        public async Task<FormResult> SendFormData(MultipartFormDataContent formData, Uri endpoint)
+        /// <summary>
+        /// Метод для отправки данных формы. Ожидает, что вызывающий код самостоятельно
+        /// завернет данные в формат Multipart
+        /// </summary>
+        public async Task<FormResult> SendMultipartForm(MultipartFormDataContent formData, Uri endpoint)
         {
             DataResult dataResult = await Send(formData, endpoint);
 

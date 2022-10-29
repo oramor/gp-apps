@@ -1,6 +1,7 @@
 ﻿using LibCore;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace LibForm.Commands
 {
@@ -13,23 +14,31 @@ namespace LibForm.Commands
             _context = ctx;
         }
 
-        public async override void Execute(object? formContext)
+        public async override void Execute(object? obj)
         {
-            if (_context.TopErrorMessage != string.Empty) {
+            _context.IsLoading = true;
+
+            if (_context.TopErrorMessage != string.Empty)
+            {
                 _context.TopErrorMessage = string.Empty;
             }
 
             List<IFormFieldInfo> formFields = _context.GetFormFields();
 
-            _context.IsLoading = true;
-            await Task.Delay(500);
-            //_context.TopErrorMessage = "Ошибка подключения: в данный момент сервис проверки учетных данных не доступен. Попробуйте повторить попытку позже.";
+            using var content = new MultipartFormDataContent();
+            foreach (var field in formFields)
+            {
+                var fieldName = JsonNamingPolicy.CamelCase.ConvertName(field.Name);
+                var fieldValue = new StringContent(field.Value);
+
+                content.Add(fieldValue, fieldName);
+            }
+
+            var client = new HttpService();
+            FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
+            var formHandler = formResult.FormHandler;
+
             _context.IsLoading = false;
         }
-
-        //private Task SendHandle()
-        //{
-
-        //}
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LibCore;
+using LibForm.Commands;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Reflection;
 using System.Windows.Input;
 
@@ -14,10 +15,12 @@ namespace LibForm
 
         public BaseFormContext()
         {
-            // Не просто собираем данные со вложенных полей формы,
-            // а упаковываем их в формат multipart/form-data
-            MultipartFormDataContent _formData = null;
         }
+
+        /// <summary>
+        /// Содержит ссылку, по которой форма должна отправлять запрос к API
+        /// </summary>
+        public abstract Uri Endpoint { get; }
 
         readonly struct FormFieldItem : IFormFieldInfo
         {
@@ -31,16 +34,20 @@ namespace LibForm
         /// </summary>
         private static bool CheckPropertyIsFormField(string fieldName, PropertyInfo[] props)
         {
-            foreach (PropertyInfo prop in props) {
+            foreach (PropertyInfo prop in props)
+            {
                 string propName = prop.Name;
 
                 string s = string.Concat(fieldName, "Error");
 
                 // Поле считается подходящим, если удастся найти
                 // для него пару с постфиксом Error
-                if (propName.Equals(s)) {
+                if (propName.Equals(s))
+                {
                     return true;
-                } else {
+                }
+                else
+                {
                     continue;
                 }
             }
@@ -57,7 +64,8 @@ namespace LibForm
 
             var props = this.GetType().GetProperties();
 
-            foreach (PropertyInfo prop in props) {
+            foreach (PropertyInfo prop in props)
+            {
                 string propName = prop.Name;
 
                 // Пропускаем, если это свойство ошибки (содержит Error)
@@ -106,7 +114,7 @@ namespace LibForm
             set { Set(ref _isLoading, value); }
         }
 
-        public ICommand SendFormCommand => new TestSendCommand();
+        public ICommand SendFormCommand => new SendFormCommand(this);
 
         /// <summary>
         /// Вызывается в конструкторе. Обходит children-элементы, извлекая данные
