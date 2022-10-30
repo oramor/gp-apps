@@ -22,6 +22,21 @@ namespace LibForm
         /// </summary>
         public abstract Uri Endpoint { get; }
 
+        /// <summary>
+        /// Каждая форма должна реализовать метод, который вызывается в случае
+        /// получения от сервера ответа с кодом formSuccess. Например, может
+        /// происходить переход на другую страницу, либо открытие нового окна
+        /// </summary>
+        public abstract void SuccessHandler();
+
+        /// <summary>
+        /// Помечает на форме поля, которые не прошли серверную валидацию
+        /// </summary>
+        public void MarkInvalidFields()
+        {
+
+        }
+
         readonly struct FormFieldItem : IFormFieldInfo
         {
             public readonly string Name { get; init; }

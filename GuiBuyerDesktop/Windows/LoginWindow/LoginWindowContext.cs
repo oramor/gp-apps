@@ -26,6 +26,11 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             }
         }
 
+        public override void SuccessHandler()
+        {
+            Console.WriteLine("Success");
+        }
+
         #region Login
 
         public string Login

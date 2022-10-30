@@ -1,4 +1,5 @@
 ﻿using LibCore;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
@@ -37,6 +38,28 @@ namespace LibForm.Commands
             var client = new HttpService();
             FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
             var formHandler = formResult.FormHandler;
+
+            switch (formHandler)
+            {
+                case "formSuccess":
+                    {
+                        _context.SuccessHandler();
+                        break;
+                    }
+                case "formError":
+                    {
+                        HttpContent dto = formResult.FormDto;
+                        ErrorFormDTO errorFormDTO = await HttpService.SerializeDto<ErrorFormDTO>(dto);
+                        break;
+                    }
+                case "formInvalid":
+                    {
+                        _context.MarkInvalidFields();
+                        break;
+                    }
+                default:
+                    throw new NotImplementedException($"Not supported formHandler [{formHandler}]");
+            }
 
             _context.IsLoading = false;
         }
