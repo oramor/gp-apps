@@ -15,7 +15,6 @@ namespace LibForm
         }
 
         #region IsLoading
-
         /// <summary>
         /// Указывает, находится ли форма в состоянии отправки данных на сервер.
         /// От этого поля зависит контент кнопки в шаблоне Form.xaml
@@ -31,7 +30,6 @@ namespace LibForm
             typeof(bool),
             typeof(Form),
             new PropertyMetadata(false));
-
         #endregion
 
         #region IsFormReadyToSend
@@ -55,8 +53,27 @@ namespace LibForm
 
         #endregion
 
-        #region TopErrorMessage
+        #region TopMessage
+        /// <summary>
+        /// Сообщение, которое может выводиться на форме в случае ее успешной отправки. Управляющий код
+        /// (вьюмодель формы) должен позаботиться о предварительной очистке сообщения об ошибке
+        /// </summary>
+        public string TopMessage
+        {
+            get { return (string)GetValue(TopMessageProperty); }
+            set { SetValue(TopMessageProperty, value); }
+        }
 
+        public static readonly DependencyProperty TopMessageProperty = DependencyProperty.Register(
+            nameof(TopMessage),
+            typeof(string),
+            typeof(Form),
+            new FrameworkPropertyMetadata(string.Empty) {
+                BindsTwoWayByDefault = true
+            });
+        #endregion
+
+        #region TopErrorMessage
         /// <summary>
         /// Содержит текст ошибки, которая не привязана к конкретному полю
         /// на форме. Пустая строка означает, что блок не будет показан
@@ -77,7 +94,6 @@ namespace LibForm
         #endregion
 
         #region SendButtonText
-
         /// <summary>
         /// Определяет текст в кнопке, по команде которой данные отправляются на сервер
         /// </summary>
@@ -92,11 +108,9 @@ namespace LibForm
             typeof(string),
             typeof(Form),
             new PropertyMetadata("Send"));
-
         #endregion
 
         #region SendCommand
-
         /// <summary>
         /// Получает ссылку на команду, по которой данные отправляются на сервер. Назначается кнопке
         /// </summary>
@@ -111,7 +125,6 @@ namespace LibForm
             typeof(ICommand),
             typeof(Form),
             new PropertyMetadata(null));
-
         #endregion
     }
 }

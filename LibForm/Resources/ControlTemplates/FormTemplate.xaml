@@ -11,7 +11,8 @@
                             <ResourceDictionary>
                                 <ResourceDictionary.MergedDictionaries>
                                     <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/SendButtonStyle.xaml"/>
-                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopErrorStyle.xaml"/>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopMessageStyle.xaml"/>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopErrorMessageStyle.xaml"/>
                                     <ResourceDictionary>
                                         <Style x:Key="formItemsMarginStyle" TargetType="{x:Type Control}">
                                             <Setter Property="Margin" Value="0,15,0,0"/>
@@ -20,11 +21,19 @@
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </StackPanel.Resources>
+                        <Border x:Name="topMessageContainer"
+                                Style="{StaticResource topMessageStyle_Border}"
+                                Margin="0,0,0,10">
+                            <TextBlock Text="{TemplateBinding TopMessage}"
+                                       Style="{StaticResource topMessageStyle_TextBlock}"
+                                       Visibility="Visible"
+                                       Margin="5"/>
+                        </Border>
                         <Border x:Name="topErrorMessageContainer"
-                                Style="{StaticResource topErrorStyle_Border}"
+                                Style="{StaticResource topErrorMessageStyle_Border}"
                                 Margin="0,0,0,10">
                             <TextBlock Text="{TemplateBinding TopErrorMessage}"
-                                       Style="{StaticResource topErrorStyle_TextBlock}"
+                                       Style="{StaticResource topErrorMessageStyle_TextBlock}"
                                        Visibility="Visible"
                                        Margin="5"/>
                         </Border>
@@ -35,6 +44,9 @@
                             Command="{TemplateBinding SendCommand}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="TopMessage" Value="">
+                            <Setter TargetName="topMessageContainer" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
                         <Trigger Property="TopErrorMessage" Value="">
                             <Setter TargetName="topErrorMessageContainer" Property="Visibility" Value="Collapsed"/>
                         </Trigger>

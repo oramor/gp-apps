@@ -1,5 +1,6 @@
 ﻿using LibCore;
 using LibForm.Commands;
+using LibForm.Dto;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,12 +8,17 @@ using System.Windows.Input;
 
 namespace LibForm
 {
+    public enum FormStateEnum
+    {
+        NotSended,
+        InProgress,
+        Success,
+        Invalid,
+        Error,
+    }
+
     public abstract class BaseFormContext : BaseContext
     {
-        private bool _isFormReadyToSend = true;
-        private bool _isLoading = false;
-        private string _topErrorMessage = string.Empty;
-
         public BaseFormContext()
         {
         }
@@ -22,21 +28,61 @@ namespace LibForm
         /// </summary>
         public abstract Uri Endpoint { get; }
 
+        #region State
+        /// <summary>
+        /// Внешний код может менять статус формы только через методы
+        /// обработки формы
+        /// </summary>
+        private FormStateEnum _state = FormStateEnum.NotSended;
+        public FormStateEnum State { get => _state; }
+        #endregion
+
+        #region SuccessHandler
         /// <summary>
         /// Каждая форма должна реализовать метод, который вызывается в случае
-        /// получения от сервера ответа с кодом formSuccess. Например, может
-        /// происходить переход на другую страницу, либо открытие нового окна
+        /// получения от сервера ответа с кодом formSuccess. Может выполняться
+        /// переход на другую страницу, загрузка нового окна, вывод TopMessage
         /// </summary>
-        public abstract void SuccessHandler();
+        public virtual void SuccessHandler(SuccessFormDto dto)
+        {
+            var message = "Форма успешно отправлена";
+            SuccessHandler(message);
+        }
 
+        /// <summary>
+        /// Перегруженный вариант для тех случаев, когда достаточно отобразить
+        /// сообщение об успешной отправке формы
+        /// </summary>
+        public void SuccessHandler(string message)
+        {
+            TopMessage = message;
+        }
+        #endregion
+
+        #region InvalidHandler
         /// <summary>
         /// Помечает на форме поля, которые не прошли серверную валидацию
         /// </summary>
-        public void MarkInvalidFields()
+        public void InvalidHandler(InvalidFormDto dto)
         {
-
+            _state = FormStateEnum.Invalid;
         }
+        #endregion
 
+        #region ErrorHandler
+        /// <summary>
+        /// Помечает на форме поля, которые не прошли серверную валидацию
+        /// </summary>
+        public void ErrorHandler(ErrorFormDto dto)
+        {
+            _state = FormStateEnum.Invalid;
+            TopErrorMessage = dto.Message;
+        }
+        #endregion
+
+        //ResetState
+
+        #region Getting values from fields
         readonly struct FormFieldItem : IFormFieldInfo
         {
             public readonly string Name { get; init; }
@@ -100,58 +146,69 @@ namespace LibForm
 
             return formFieldInfoList;
         }
+        #endregion
 
+        #region TopMessage
+        private string _topMessage = string.Empty;
         /// <summary>
-        /// The method determines the possibilities to send Form.
-        /// If false, SendButton will be disabled
+        /// Сообщение, которое может выводиться пользователю после успешной отправки
+        /// формы. Например, в тех случаях, когда не требуется переход на другую форму,
+        /// но уведомить пользователя об успешной отправке все равно нужно
         /// </summary>
-        /// TODO Эта реализация нарушает ППБЛ
-        public virtual bool IsFormReadyToSend
+        public string TopMessage
         {
-            get => _isFormReadyToSend;
-            set { _isFormReadyToSend = value; }
+            get => _topMessage;
+            set { Set(ref _topMessage, value); }
         }
+        #endregion
 
+        #region TopErrorMessage
+        /// <summary>
+        /// Блок с сообщением, в котором выводится информация об ошибке, относящейся
+        /// к обработчику формы на сервере (значение message из ErrorFormDto)
+        /// </summary>
+        private string _topErrorMessage = string.Empty;
         public string TopErrorMessage
         {
             get => _topErrorMessage;
-            set { Set(ref _topErrorMessage, value); }
+            set {
+                _state = FormStateEnum.Error;
+                Set(ref _topErrorMessage, value);
+            }
         }
+        #endregion
 
+        #region IsLoading
         /// <summary>
         /// Указывает, что форма находится в статусе отправки данных на сервер.
         /// Во время отправки кнопка меняет свой дизайн, а к полям применяется
         /// стиль FormFieldDisableStyle
         /// </summary>
+        private bool _isLoading = false;
         public bool IsLoading
         {
             get => _isLoading;
-            set { Set(ref _isLoading, value); }
+            set {
+                _state = FormStateEnum.InProgress;
+                Set(ref _isLoading, value);
+            }
         }
+        #endregion
+
+        #region IsFormReadyToSend
+        /// <summary>
+        /// The method determines the possibilities to send Form.
+        /// If false, SendButton will be disabled
+        /// </summary>
+        /// TODO Эта реализация нарушает ППБЛ
+        private bool _isFormReadyToSend = true;
+        public virtual bool IsFormReadyToSend
+        {
+            get => _isFormReadyToSend;
+            set { _isFormReadyToSend = value; }
+        }
+        #endregion
 
         public ICommand SendFormCommand => new SendFormCommand(this);
-
-        /// <summary>
-        /// Вызывается в конструкторе. Обходит children-элементы, извлекая данные
-        /// из тех объектов, которые соответствуют критерию поля формы
-        /// </summary>
-        //void MakeFormData() { throw new NotFiniteNumberException(); }
-
-        /// <summary>
-        /// Отправляет данные на сервер и получает json. При наличии в ответе
-        /// ноды с ошибками, отправляет из в SetFieldsErrors()
-        /// </summary>
-        //async void SendForm() { throw new NotImplementedException(); }
-
-        /// <summary>
-        /// В цикле применяет к каждому элементу из children ошибку
-        /// </summary>
-        //void SetFieldErrors() { throw new NotImplementedException(); }
-
-        /// <summary>
-        /// Устанавливает одиночную ошибку для формы при наличии
-        /// соответствующей ноды в ответе сервера
-        /// </summary>
-        //void SetFormError() { throw new NotImplementedException(); }
     }
 }

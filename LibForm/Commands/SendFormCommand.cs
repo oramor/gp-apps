@@ -1,4 +1,5 @@
 ﻿using LibCore;
+using LibForm.Dto;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -15,6 +16,11 @@ namespace LibForm.Commands
             _context = ctx;
         }
 
+        /// <summary>
+        /// Команда запрашивает значения полей с формы, выполняет их упаковку в формат Multipart,
+        /// отправляет данные на сервер, парсит Dto и вызывает соответствующие методы их обработки
+        /// на форме
+        /// </summary>
         public async override void Execute(object? obj)
         {
             _context.IsLoading = true;
@@ -39,22 +45,31 @@ namespace LibForm.Commands
             FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
             var formHandler = formResult.FormHandler;
 
+            HttpContent? preDto = formResult.FormDto;
+            if (preDto == null)
+            {
+                throw new ApplicationException("FromDTO is required, but null");
+            }
+
+            // На основе метки из formHandler определяем, в какой объект нужно упаковать результат
             switch (formHandler)
             {
                 case "formSuccess":
                     {
-                        _context.SuccessHandler();
+                        SuccessFormDto dto = await HttpService.SerializeDto<SuccessFormDto>(preDto);
+                        _context.SuccessHandler(dto);
                         break;
                     }
                 case "formError":
                     {
-                        HttpContent dto = formResult.FormDto;
-                        ErrorFormDTO errorFormDTO = await HttpService.SerializeDto<ErrorFormDTO>(dto);
+                        ErrorFormDto dto = await HttpService.SerializeDto<ErrorFormDto>(preDto);
+                        _context.ErrorHandler(dto);
                         break;
                     }
                 case "formInvalid":
                     {
-                        _context.MarkInvalidFields();
+                        InvalidFormDto dto = await HttpService.SerializeDto<InvalidFormDto>(preDto);
+                        _context.InvalidHandler(dto);
                         break;
                     }
                 default:

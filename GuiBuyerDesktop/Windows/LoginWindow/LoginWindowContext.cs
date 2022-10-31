@@ -1,4 +1,5 @@
 ﻿using LibForm;
+using LibForm.Dto;
 using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
@@ -26,9 +27,9 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             }
         }
 
-        public override void SuccessHandler()
+        public override void SuccessHandler(SuccessFormDto dto)
         {
-            Console.WriteLine("Success");
+            TopMessage = "Вы авторизованы!";
         }
 
         #region Login
