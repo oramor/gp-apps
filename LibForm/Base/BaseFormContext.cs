@@ -10,7 +10,7 @@ namespace LibForm
 {
     public enum FormStateEnum
     {
-        NotSended,
+        Virgin,
         InProgress,
         Success,
         Invalid,
@@ -19,6 +19,15 @@ namespace LibForm
 
     public abstract class BaseFormContext : BaseContext
     {
+        /// <summary>
+        /// Список свойств класса (не путать с полями формы!), которые хранят
+        /// сообщение об ошибке. Заполняется в методе SetFieldError и таким образом
+        /// содержит актуальный список полей для текущей итерации формы. Как только
+        /// будет получен новый ответ, состояние формы будет сброшено через метод
+        /// ResetState(), в том числе очищены поля с ошибками.
+        /// </summary>
+        private readonly List<PropertyInfo> _errorFieldsList = new();
+
         public BaseFormContext()
         {
         }
@@ -33,7 +42,7 @@ namespace LibForm
         /// Внешний код может менять статус формы только через методы
         /// обработки формы
         /// </summary>
-        private FormStateEnum _state = FormStateEnum.NotSended;
+        private FormStateEnum _state = FormStateEnum.Virgin;
         public FormStateEnum State { get => _state; }
         #endregion
 
@@ -45,17 +54,12 @@ namespace LibForm
         /// </summary>
         public virtual void SuccessHandler(SuccessFormDto dto)
         {
-            var message = "Форма успешно отправлена";
-            SuccessHandler(message);
-        }
+            ResetState();
 
-        /// <summary>
-        /// Перегруженный вариант для тех случаев, когда достаточно отобразить
-        /// сообщение об успешной отправке формы
-        /// </summary>
-        public void SuccessHandler(string message)
-        {
-            TopMessage = message;
+            if (dto.Message != null)
+            {
+                TopMessage = dto.Message;
+            }
         }
         #endregion
 
@@ -65,7 +69,39 @@ namespace LibForm
         /// </summary>
         public void InvalidHandler(InvalidFormDto dto)
         {
+            ResetState();
             _state = FormStateEnum.Invalid;
+
+            InvalidFormFieldItem[]? invalidFields = dto.Fields;
+
+            if (invalidFields == null)
+            {
+                throw new ArgumentNullException(nameof(invalidFields));
+            }
+
+            foreach (InvalidFormFieldItem field in invalidFields)
+            {
+                SetFieldError(field.Name, field.Message);
+            }
+        }
+
+        /// <summary>
+        /// У каждого свойства, которое соотносится с полем формы должна быть
+        /// error-пара (например, Name + NameError). Указанный метод пробует
+        /// получить error-свойство и передает в него текст ошибки
+        /// </summary>
+        private void SetFieldError(string fieldName, string errorMessage)
+        {
+            string errorPropName = fieldName + "Error";
+
+            var errorProp = this.GetType().GetProperty(errorPropName);
+            if (errorProp == null)
+            {
+                throw new ApplicationException($"Не удалось установить текст ошибки для {fieldName}, т.к. свойство {errorPropName} не обнаружено");
+            }
+
+            errorProp.SetValue(null, errorMessage);
+            _errorFieldsList.Add(errorProp);
         }
         #endregion
 
@@ -75,12 +111,38 @@ namespace LibForm
         /// </summary>
         public void ErrorHandler(ErrorFormDto dto)
         {
+            ResetState();
             _state = FormStateEnum.Invalid;
             TopErrorMessage = dto.Message;
         }
         #endregion
 
-        //ResetState
+        #region ResetState
+        public void ResetState()
+        {
+            _state = FormStateEnum.Virgin;
+
+            if (TopMessage != string.Empty)
+            {
+                TopMessage = string.Empty;
+            }
+
+            if (TopErrorMessage != string.Empty)
+            {
+                TopErrorMessage = string.Empty;
+            }
+
+            if (_errorFieldsList.Count > 0)
+            {
+                foreach (var field in _errorFieldsList)
+                {
+                    field.SetValue(null, string.Empty);
+                }
+
+                _errorFieldsList.Clear();
+            }
+        }
+        #endregion
 
         #region Getting values from fields
         readonly struct FormFieldItem : IFormFieldInfo

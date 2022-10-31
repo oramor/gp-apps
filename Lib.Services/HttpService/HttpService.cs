@@ -1,7 +1,6 @@
-﻿using System.Net.Http;
-using System.Text.Json;
+﻿using System.Text.Json;
 
-namespace LibCore
+namespace Lib.Services
 {
     public class HttpService
     {

@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace LibCore
+﻿namespace Lib.Services
 {
     public class DataResult
     {

@@ -29,11 +29,11 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
 
         public override void SuccessHandler(SuccessFormDto dto)
         {
+            ResetState();
             TopMessage = "Вы авторизованы!";
         }
 
         #region Login
-
         public string Login
         {
             get => _login;
@@ -48,11 +48,9 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             get => _loginError;
             set => Set(ref _loginError, value);
         }
-
         #endregion
 
         #region Password
-
         public string Password
         {
             get => _password;
@@ -67,7 +65,6 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             get => _passwordError;
             set => Set(ref _passwordError, value);
         }
-
         #endregion
     }
 }
