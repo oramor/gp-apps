@@ -9,15 +9,17 @@
     <UserControl.Resources>
         <Style TargetType="{x:Type local:FieldText}">
             <Style.Triggers>
-                <Trigger Property="ErrorMessage" Value="">
+                <!--<Trigger Property="ErrorMessage" Value="">
                     <Setter Property="Visibility" Value="Collapsed"/>
-                </Trigger>
+                </Trigger>-->
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-            <StackPanel>
-        <c:TextBoxPlaceholder/>
-        <local:FieldErrorMessage x:Name="fieldErrorBlock"
+    <StackPanel>
+        <c:TextBoxPlaceholder x:Name="textBoxPlaceholder"
+                              DefaultText="{Binding PlaceholderText, ElementName=fieldText}"
+                              Text="{Binding Text, ElementName=fieldText, Mode=TwoWay}"/>
+        <local:FieldErrorMessage x:Name="fieldErrorMessage"
             Visibility="Visible"
             Text="{Binding ErrorMessage, ElementName=fieldText}"/>
     </StackPanel>

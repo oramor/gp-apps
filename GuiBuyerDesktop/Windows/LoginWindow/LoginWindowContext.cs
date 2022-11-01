@@ -38,6 +38,7 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
         {
             get => _login;
             set {
+                //MessageBox.Show("ddfdf");
                 Set(ref _login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
