@@ -32,18 +32,11 @@
             IsLoading="{Binding IsLoading}"
             SendButtonText="Вход"
             Margin="20">
-            <!--<f:FieldText/>
-            <f:FieldText />-->
-            <f:FieldText 
+            <f:FieldText
                 PlaceholderText="Логин"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Text="{Binding Path=Login}"
                 ErrorMessage="{Binding Path=LoginError}"
                 Margin="0,0,0,10"/>
-            <!--<c:TextBoxPlaceholder
-                DefaultText="Логин"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                Margin="0,0,0,10"
-                />-->
             <c:TextBoxPlaceholderPassword
                 DefaultText="Пароль"
                 Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

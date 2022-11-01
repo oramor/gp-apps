@@ -26,7 +26,10 @@ namespace LibForm
                 typeof(FieldText),
                 new FrameworkPropertyMetadata(String.Empty) {
                     BindsTwoWayByDefault = true,
-                    //CoerceValueCallback = (_, value) => value ?? string.Empty
+                    CoerceValueCallback = (_, value) => value ?? string.Empty,
+                    // Фиксирует, что текстовое свойство будет обнвляться при каждом изменении значения,
+                    // а не при потере фокуса. Позволяет не указывать UpdateSourceTrigger в биндинге
+                    DefaultUpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged
                 });
         #endregion
 
@@ -60,8 +63,10 @@ namespace LibForm
                 "ErrorMessage",
                 typeof(string),
                 typeof(FieldText),
-                new PropertyMetadata(String.Empty)
-                );
+                new FrameworkPropertyMetadata(String.Empty) {
+                    BindsTwoWayByDefault = true,
+                    CoerceValueCallback = (_, value) => value ?? string.Empty
+                });
         #endregion
     }
 }

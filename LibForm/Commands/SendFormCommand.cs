@@ -1,8 +1,7 @@
-﻿using LibCore;
+﻿using Lib.Services;
+using LibCore;
 using LibForm.Dto;
-using Lib.Services;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 
@@ -31,7 +30,7 @@ namespace LibForm.Commands
                 _context.TopErrorMessage = string.Empty;
             }
 
-            List<IFormFieldInfo> formFields = _context.GetFormFields();
+            var formFields = _context.GetFormFields();
 
             using var content = new MultipartFormDataContent();
             foreach (var field in formFields)

@@ -6,21 +6,32 @@
              xmlns:c="clr-namespace:LibControls;assembly=LibControls"
              xmlns:local="clr-namespace:LibForm"
              mc:Ignorable="d">
+    
     <UserControl.Resources>
-        <Style TargetType="{x:Type local:FieldText}">
+        <!--<Style TargetType="{x:Type local:FieldErrorMessage}">
+            <Setter Property="Background" Value="Aqua"/>
             <Style.Triggers>
-                <!--<Trigger Property="ErrorMessage" Value="">
+                <Trigger Property="Text" Value="ttt">
                     <Setter Property="Visibility" Value="Collapsed"/>
-                </Trigger>-->
+                </Trigger>
+                <DataTrigger Binding="{Binding ErrorMessage, ElementName=fieldText}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/FieldErrorStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
+
     <StackPanel>
         <c:TextBoxPlaceholder x:Name="textBoxPlaceholder"
                               DefaultText="{Binding PlaceholderText, ElementName=fieldText}"
-                              Text="{Binding Text, ElementName=fieldText, Mode=TwoWay}"/>
-        <local:FieldErrorMessage x:Name="fieldErrorMessage"
-            Visibility="Visible"
-            Text="{Binding ErrorMessage, ElementName=fieldText}"/>
+                              Text="{Binding Text, ElementName=fieldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock x:Name="fieldErrorMessage"
+                   Style="{StaticResource underFieldErrorBlock}"
+                   Text="{Binding ErrorMessage, ElementName=fieldText}"/>
     </StackPanel>
 </UserControl>
