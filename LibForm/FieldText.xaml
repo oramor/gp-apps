@@ -4,21 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:c="clr-namespace:LibControls;assembly=LibControls"
-             xmlns:local="clr-namespace:LibForm"
              mc:Ignorable="d">
     
     <UserControl.Resources>
-        <!--<Style TargetType="{x:Type local:FieldErrorMessage}">
-            <Setter Property="Background" Value="Aqua"/>
-            <Style.Triggers>
-                <Trigger Property="Text" Value="ttt">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </Trigger>
-                <DataTrigger Binding="{Binding ErrorMessage, ElementName=fieldText}" Value="">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/FieldErrorStyle.xaml"/>

@@ -56,19 +56,19 @@ namespace LibForm.Commands
             {
                 case "formSuccess":
                     {
-                        SuccessFormDto dto = await HttpService.SerializeDto<SuccessFormDto>(preDto);
+                        SuccessFormDto dto = await HttpService.DeserializeDto<SuccessFormDto>(preDto);
                         _context.SuccessHandler(dto);
                         break;
                     }
                 case "formError":
                     {
-                        ErrorFormDto dto = await HttpService.SerializeDto<ErrorFormDto>(preDto);
+                        ErrorFormDto dto = await HttpService.DeserializeDto<ErrorFormDto>(preDto);
                         _context.ErrorHandler(dto);
                         break;
                     }
                 case "formInvalid":
                     {
-                        InvalidFormDto dto = await HttpService.SerializeDto<InvalidFormDto>(preDto);
+                        InvalidFormDto dto = await HttpService.DeserializeDto<InvalidFormDto>(preDto);
                         _context.InvalidHandler(dto);
                         break;
                     }

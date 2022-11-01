@@ -81,7 +81,10 @@ namespace LibForm
 
             foreach (InvalidFormFieldItem field in invalidFields)
             {
-                SetFieldError(field.Name, field.Message);
+                // Conver to PascalCase
+                var fieldName = Char.ToUpperInvariant(field.Name[0]) + field.Name[1..];
+
+                SetFieldError(fieldName, field.Message);
             }
         }
 
@@ -100,7 +103,7 @@ namespace LibForm
                 throw new ApplicationException($"Не удалось установить текст ошибки для {fieldName}, т.к. свойство {errorPropName} не обнаружено");
             }
 
-            errorProp.SetValue(null, errorMessage);
+            errorProp.SetValue(this, errorMessage);
             _errorFieldsList.Add(errorProp);
         }
         #endregion

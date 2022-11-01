@@ -38,7 +38,7 @@ namespace Lib.Services
         /// <summary>
         /// Универсальный метод для сериализации полученных с сервера DTO
         /// </summary>
-        public static async Task<T> SerializeDto<T>(HttpContent content)
+        public static async Task<T> DeserializeDto<T>(HttpContent content)
         {
             string json = await content.ReadAsStringAsync();
 
