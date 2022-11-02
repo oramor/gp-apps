@@ -46,13 +46,13 @@ namespace LibForm
         public FormStateEnum State { get => _state; }
         #endregion
 
-        #region SuccessHandler
+        #region Success Handler
         /// <summary>
         /// Каждая форма должна реализовать метод, который вызывается в случае
         /// получения от сервера ответа с кодом formSuccess. Может выполняться
         /// переход на другую страницу, загрузка нового окна, вывод TopMessage
         /// </summary>
-        public virtual void SuccessHandler(SuccessFormDto dto)
+        public virtual void HandleSuccess(SuccessFormDto dto)
         {
             ResetState();
 
@@ -63,11 +63,11 @@ namespace LibForm
         }
         #endregion
 
-        #region InvalidHandler
+        #region Invalid Handler
         /// <summary>
         /// Помечает на форме поля, которые не прошли серверную валидацию
         /// </summary>
-        public void InvalidHandler(InvalidFormDto dto)
+        public void HandleInvalid(InvalidFormDto dto)
         {
             ResetState();
             _state = FormStateEnum.Invalid;
@@ -108,11 +108,11 @@ namespace LibForm
         }
         #endregion
 
-        #region ErrorHandler
+        #region Error Handler
         /// <summary>
         /// Помечает на форме поля, которые не прошли серверную валидацию
         /// </summary>
-        public void ErrorHandler(ErrorFormDto dto)
+        public void HandleError(ErrorFormDto dto)
         {
             ResetState();
             _state = FormStateEnum.Invalid;
@@ -139,7 +139,7 @@ namespace LibForm
             {
                 foreach (var field in _errorFieldsList)
                 {
-                    field.SetValue(null, string.Empty);
+                    field.SetValue(this, string.Empty);
                 }
 
                 _errorFieldsList.Clear();

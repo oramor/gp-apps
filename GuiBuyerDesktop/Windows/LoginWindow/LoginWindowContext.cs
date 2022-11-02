@@ -27,7 +27,7 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             }
         }
 
-        public override void SuccessHandler(SuccessFormDto dto)
+        public override void HandleSuccess(SuccessFormDto dto)
         {
             ResetState();
             TopMessage = "Вы авторизованы!";

@@ -28,11 +28,13 @@ namespace Lib.Services
                 throw new ArgumentException($"BaseHandler is required but empty");
             }
 
-            return new DataResult() {
+            var dataResult = new DataResult() {
                 BaseHandler = baseHandler,
                 FormHandler = formHandler,
                 Dto = result.Content
             };
+
+            return dataResult;
         }
 
         /// <summary>
@@ -65,10 +67,17 @@ namespace Lib.Services
                 throw new ArgumentException("FormHandler is required but empty");
             }
 
-            return new FormResult() {
+            // В случае в веб-клиентом мы просто передали бы полученный от сервера dto,
+            // который уже содержит метку formHandler. Однако здесь, чтобы выполнять
+            // десериализацию в SendFormCommand, мы просто делаем переупаковку.
+            // Иначе пришлось бы парсить форму прямо в Http-клиенте и тем самым
+            // рассказывать ему обо всех Dto форм
+            var formResult = new FormResult() {
                 FormHandler = dataResult.FormHandler,
                 FormDto = dataResult.Dto
             };
+
+            return formResult;
         }
     }
 }
