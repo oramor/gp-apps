@@ -27,6 +27,7 @@
         </TextBlock>
         <f:Form
             IsFormReadyToSend="{Binding IsFormReadyToSend}"
+            TopMessage="{Binding TopMessage}"
             TopErrorMessage="{Binding TopErrorMessage}"
             SendCommand="{Binding SendFormCommand}"
             IsLoading="{Binding IsLoading}"

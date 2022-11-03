@@ -214,12 +214,12 @@ namespace LibForm
         #endregion
 
         #region TopMessage
-        private string _topMessage = string.Empty;
         /// <summary>
         /// Сообщение, которое может выводиться пользователю после успешной отправки
         /// формы. Например, в тех случаях, когда не требуется переход на другую форму,
         /// но уведомить пользователя об успешной отправке все равно нужно
         /// </summary>
+        private string _topMessage = string.Empty;
         public string TopMessage
         {
             get => _topMessage;
