@@ -23,6 +23,10 @@ namespace LibForm.Commands
         /// </summary>
         public async override void Execute(object? obj)
         {
+            // Ничего не делаем, если форма еще не готова к отправке.
+            // Актуально для отслеживания нажатия клавиши Enter
+            if (!_context.IsFormReadyToSend) return;
+
             _context.IsLoading = true;
 
             if (_context.TopErrorMessage != string.Empty)

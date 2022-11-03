@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LibForm.Commands;
 
 namespace LibForm
 {
@@ -14,13 +15,33 @@ namespace LibForm
                 );
         }
 
-        protected override void OnKeyUp(KeyEventArgs e)
+        public Form()
         {
-            if (e.Key == Key.Enter)
-            {
-                MessageBox.Show("Close?");
-            }
+            this.Loaded += new RoutedEventHandler(AddKey);
         }
+
+        private void AddKey(object sender, RoutedEventArgs e)
+        {
+            KeyGesture enterKeyGesture = new(Key.Enter);
+
+            
+            var d = this.DataContext;
+            ICommand cmd = new SendFormCommand(DataContext as BaseFormContext);
+
+            KeyBinding enterKeyGestureCmd = new(
+                cmd,
+                enterKeyGesture);
+
+            this.InputBindings.Add(enterKeyGestureCmd);
+        }
+
+        //protected override void OnKeyUp(KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        MessageBox.Show("Close?");
+        //    }
+        //}
 
         #region IsLoading
         /// <summary>
@@ -122,9 +143,9 @@ namespace LibForm
         /// <summary>
         /// Получает ссылку на команду, по которой данные отправляются на сервер. Назначается кнопке
         /// </summary>
-        public string SendCommand
+        public ICommand SendCommand
         {
-            get { return (string)GetValue(SendCommandProperty); }
+            get { return (ICommand)GetValue(SendCommandProperty); }
             set { SetValue(SendCommandProperty, value); }
         }
 

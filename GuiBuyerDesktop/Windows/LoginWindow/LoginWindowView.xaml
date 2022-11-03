@@ -43,6 +43,9 @@
                                           DefaultText="Пароль"
                                           Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
+            <f:Form.DataContext>
+                <ctx:LoginWindowContext/>
+            </f:Form.DataContext>
         </f:Form>
     </StackPanel>
 </Window>
