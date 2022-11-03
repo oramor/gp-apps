@@ -5,11 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:c="clr-namespace:LibControls;assembly=LibControls"
              mc:Ignorable="d">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/FieldErrorStyle.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="c:TextBoxPlaceholder">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=fieldText}">
+                                <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=textBoxPlaceholder}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

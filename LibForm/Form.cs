@@ -14,6 +14,14 @@ namespace LibForm
                 );
         }
 
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                MessageBox.Show("Close?");
+            }
+        }
+
         #region IsLoading
         /// <summary>
         /// Указывает, находится ли форма в состоянии отправки данных на сервер.
