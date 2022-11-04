@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibGuiBlocks", "LibGuiBlock
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibModels", "LibModels\LibModels.csproj", "{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Wpf.Controls", "Lib.Wpf.Controls\Lib.Wpf.Controls.csproj", "{A6473B77-E866-4220-AAA7-33FF14A29804}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6473B77-E866-4220-AAA7-33FF14A29804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6473B77-E866-4220-AAA7-33FF14A29804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6473B77-E866-4220-AAA7-33FF14A29804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6473B77-E866-4220-AAA7-33FF14A29804}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
