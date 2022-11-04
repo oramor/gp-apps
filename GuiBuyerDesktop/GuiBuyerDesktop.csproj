@@ -22,7 +22,6 @@
     <ProjectReference Include="..\LibControls\LibControls.csproj" />
     <ProjectReference Include="..\LibCore\LibCore.csproj" />
     <ProjectReference Include="..\LibForm\LibForm.csproj" />
-    <ProjectReference Include="..\LibModels\LibModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
