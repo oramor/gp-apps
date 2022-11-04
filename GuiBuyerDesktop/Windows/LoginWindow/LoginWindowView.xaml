@@ -13,9 +13,9 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         FocusManager.FocusedElement="{Binding ElementName=loginField}">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <ctx:LoginWindowContext/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <StackPanel>
         <TextBlock x:Name="logoBlock"
             Background="#fcec5e" 
@@ -27,13 +27,12 @@
             Главпоставка
         </TextBlock>
         <f:Form x:Name="loginForm"
-                IsFormReadyToSend="{Binding IsFormReadyToSend}"
-                TopMessage="{Binding TopMessage}"
-                TopErrorMessage="{Binding TopErrorMessage}"
-                SendCommand="{Binding SendFormCommand}"
-                IsLoading="{Binding IsLoading}"
                 SendButtonText="Вход"
+                IsLoading="{Binding Path=IsLoading}"
                 Margin="20">
+            <f:Form.DataContext>
+                <ctx:LoginWindowContext/>
+            </f:Form.DataContext>
             <f:FieldText x:Name="loginField"
                          PlaceholderText="Логин"
                          Text="{Binding Path=Login}"
@@ -43,9 +42,6 @@
                                           DefaultText="Пароль"
                                           Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
-            <f:Form.DataContext>
-                <ctx:LoginWindowContext/>
-            </f:Form.DataContext>
         </f:Form>
     </StackPanel>
 </Window>

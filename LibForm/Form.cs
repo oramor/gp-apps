@@ -1,7 +1,7 @@
-﻿using System.Windows;
+﻿using LibForm.Commands;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using LibForm.Commands;
 
 namespace LibForm
 {
@@ -17,15 +17,14 @@ namespace LibForm
 
         public Form()
         {
-            this.Loaded += new RoutedEventHandler(AddKey);
+            this.Loaded += new RoutedEventHandler(OnLoaded);
         }
 
-        private void AddKey(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             KeyGesture enterKeyGesture = new(Key.Enter);
 
-            
-            var d = this.DataContext;
+
             ICommand cmd = new SendFormCommand(DataContext as BaseFormContext);
 
             KeyBinding enterKeyGestureCmd = new(
@@ -34,14 +33,6 @@ namespace LibForm
 
             this.InputBindings.Add(enterKeyGestureCmd);
         }
-
-        //protected override void OnKeyUp(KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        MessageBox.Show("Close?");
-        //    }
-        //}
 
         #region IsLoading
         /// <summary>

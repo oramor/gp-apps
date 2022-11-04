@@ -18,7 +18,7 @@ namespace Lib.Services
         /// </summary>
         private async Task<DataResult> Send(HttpContent content, Uri endpoint)
         {
-            using HttpResponseMessage result = await client.PostAsync(endpoint, content);
+            HttpResponseMessage result = await client.PostAsync(endpoint, content);
 
             var baseHandler = result.Headers.GetValues("x-nervus-base-handler").First();
             var formHandler = result.Headers.GetValues("x-nervus-form-handler").First();
