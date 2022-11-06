@@ -1,0 +1,59 @@
+﻿<Window x:Class="Gui.BuyerDesktop.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctx="clr-namespace:Gui.BuyerDesktop.Contexts"
+        xmlns:ff="clr-namespace:Lib.Wpf.Controls.Form;assembly=Lib.Wpf.Controls.Form"
+        xmlns:c="clr-namespace:Lib.Wpf.Controls;assembly=Lib.Wpf.Controls"
+        mc:Ignorable="d"
+        Title="Вход"
+        Width="350"
+        SizeToContent="Height"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        FocusManager.FocusedElement="{Binding ElementName=loginField}">
+    <StackPanel>
+        <TextBlock x:Name="logoBlock"
+            Background="#fcec5e" 
+            Height="65" 
+            FontFamily="{StaticResource AR}" 
+            FontSize="45" 
+            TextAlignment="Center" 
+            Padding="0,2,0,0">
+            Главпоставка
+        </TextBlock>
+        <ff:Form x:Name="loginForm"
+                SendButtonText="Вход"
+                IsLoading="{Binding Path=IsLoading}"
+                Margin="20">
+            <ff:Form.DataContext>
+                <ctx:LoginWindowContext/>
+            </ff:Form.DataContext>
+            <ff:FieldText x:Name="loginField"
+                         PlaceholderText="Логин"
+                         Text="{Binding Path=Login}"
+                         ErrorMessage="{Binding Path=LoginError}"
+                         Margin="0,0,0,10"/>
+            <c:PasswordTextBox x:Name="passwordField"
+                               DefaultText="Пароль"
+                               Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </ff:Form>
+        <!--<f:Form x:Name="loginForm"
+                SendButtonText="Вход"
+                IsLoading="{Binding Path=IsLoading}"
+                Margin="20">
+            <f:Form.DataContext>
+                <ctx:LoginWindowContext/>
+            </f:Form.DataContext>
+            <f:FieldText x:Name="loginField"
+                         PlaceholderText="Логин"
+                         Text="{Binding Path=Login}"
+                         ErrorMessage="{Binding Path=LoginError}"
+                         Margin="0,0,0,10"/>
+            <c:PasswordTextBox x:Name="passwordField"
+                               DefaultText="Пароль"
+                               Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        </f:Form>-->
+    </StackPanel>
+</Window>
