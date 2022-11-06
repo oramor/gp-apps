@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctx="clr-namespace:GuiBuyerDesktop.Windows.LoginWindow"
-        xmlns:c="clr-namespace:LibControls;assembly=LibControls"
         xmlns:f="clr-namespace:LibForm;assembly=LibForm"
+        xmlns:c="clr-namespace:Lib.Wpf.Controls;assembly=Lib.Wpf.Controls"
         mc:Ignorable="d"
         Title="Вход"
         Width="350"
@@ -13,9 +13,6 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         FocusManager.FocusedElement="{Binding ElementName=loginField}">
-    <!--<Window.DataContext>
-        <ctx:LoginWindowContext/>
-    </Window.DataContext>-->
     <StackPanel>
         <TextBlock x:Name="logoBlock"
             Background="#fcec5e" 
@@ -38,10 +35,9 @@
                          Text="{Binding Path=Login}"
                          ErrorMessage="{Binding Path=LoginError}"
                          Margin="0,0,0,10"/>
-            <c:TextBoxPlaceholderPassword x:Name="passwordField"
-                                          DefaultText="Пароль"
-                                          Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                />
+            <c:PasswordTextBox x:Name="passwordField"
+                               DefaultText="Пароль"
+                               Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         </f:Form>
     </StackPanel>
 </Window>

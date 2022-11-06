@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:c="clr-namespace:LibControls;assembly=LibControls"
+             xmlns:c="clr-namespace:Lib.Wpf.Controls;assembly=Lib.Wpf.Controls"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -11,7 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/FieldErrorStyle.xaml"/>
                 <ResourceDictionary>
-                    <Style TargetType="c:TextBoxPlaceholder">
+                    <Style TargetType="c:PlaceholderTextBox">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=fieldText}">
                                 <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=textBoxPlaceholder}"/>
@@ -24,7 +24,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <c:TextBoxPlaceholder x:Name="textBoxPlaceholder"
+        <c:PlaceholderTextBox x:Name="textBoxPlaceholder"
                               DefaultText="{Binding PlaceholderText, ElementName=fieldText}"
                               Text="{Binding Text, ElementName=fieldText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock x:Name="fieldErrorMessage"
