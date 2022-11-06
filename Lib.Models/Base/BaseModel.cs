@@ -1,4 +1,4 @@
-﻿namespace LibCore
+﻿namespace Lib.Models.Base
 {
 
     public abstract class BaseModel

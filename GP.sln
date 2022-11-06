@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibForm", "LibForm\LibForm.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibGuiBlocks", "LibGuiBlocks\LibGuiBlocks.csproj", "{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibModels", "LibModels\LibModels.csproj", "{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Models", "Lib.Models\Lib.Models.csproj", "{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,14 +43,14 @@ Global
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BEAE01-A8A1-45CE-83A0-A77FD4F4FFA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C2EACF7-F1A3-417E-B6AC-32C391A2F86E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
