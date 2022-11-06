@@ -1,4 +1,4 @@
-﻿using LibCore;
+﻿using Lib.Wpf.Core;
 using LibForm.Commands;
 using LibForm.Dto;
 using System;

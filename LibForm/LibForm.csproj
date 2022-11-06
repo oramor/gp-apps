@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lib.Services\Lib.Services.csproj" />
+    <ProjectReference Include="..\Lib.Wpf.Core\Lib.Wpf.Core.csproj" />
     <ProjectReference Include="..\LibControls\LibControls.csproj" />
-    <ProjectReference Include="..\LibCore\LibCore.csproj" />
   </ItemGroup>
 
 </Project>

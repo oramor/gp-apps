@@ -1,5 +1,5 @@
 ﻿using Lib.Services;
-using LibCore;
+using Lib.Wpf.Core;
 using LibForm.Dto;
 using System;
 using System.Net.Http;

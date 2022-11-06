@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Lib.Wpf.Core\Lib.Wpf.Core.csproj" />
     <ProjectReference Include="..\LibControls\LibControls.csproj" />
-    <ProjectReference Include="..\LibCore\LibCore.csproj" />
     <ProjectReference Include="..\LibForm\LibForm.csproj" />
   </ItemGroup>
 
