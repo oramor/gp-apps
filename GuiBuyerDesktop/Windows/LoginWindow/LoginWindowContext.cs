@@ -1,5 +1,4 @@
-﻿using LibForm;
-using LibForm.Dto;
+﻿using Lib.Wpf.Controls.Form;
 using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
