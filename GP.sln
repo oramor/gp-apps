@@ -5,8 +5,6 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiBuyerDesktop", "GuiBuyerDesktop\GuiBuyerDesktop.csproj", "{886150FD-448D-44BD-B86E-2F34DF22CEAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibForm", "LibForm\LibForm.csproj", "{DD939B68-202F-4881-A6FB-CC0A58458BEE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Models", "Lib.Models\Lib.Models.csproj", "{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}"
@@ -27,10 +25,6 @@ Global
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{886150FD-448D-44BD-B86E-2F34DF22CEAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD939B68-202F-4881-A6FB-CC0A58458BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD939B68-202F-4881-A6FB-CC0A58458BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD939B68-202F-4881-A6FB-CC0A58458BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD939B68-202F-4881-A6FB-CC0A58458BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
