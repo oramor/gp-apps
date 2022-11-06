@@ -1,6 +1,9 @@
-﻿using LibCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Lib.Services;
+using LibCore;
+using LibForm.Dto;
+using System;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace LibForm.Commands
 {
@@ -12,25 +15,72 @@ namespace LibForm.Commands
         {
             _context = ctx;
         }
-        public override bool CanExecute(object? parameter) => true;
 
-        public async override void Execute(object? formContext)
+        /// <summary>
+        /// Команда запрашивает значения полей с формы, выполняет их упаковку в формат Multipart,
+        /// отправляет данные на сервер, парсит Dto и вызывает соответствующие методы их обработки
+        /// на форме
+        /// </summary>
+        public async override void Execute(object? obj)
         {
-            if (_context.TopErrorMessage != string.Empty) {
+            // Ничего не делаем, если форма еще не готова к отправке.
+            // Актуально для отслеживания нажатия клавиши Enter
+            if (!_context.IsFormReadyToSend) return;
+
+            _context.IsLoading = true;
+
+            if (_context.TopErrorMessage != string.Empty)
+            {
                 _context.TopErrorMessage = string.Empty;
             }
 
-            List<IFormFieldInfo> formFields = _context.GetFormFields();
+            var formFields = _context.GetFormFields();
 
-            _context.IsLoading = true;
-            await Task.Delay(500);
-            //_context.TopErrorMessage = "Ошибка подключения: в данный момент сервис проверки учетных данных не доступен. Попробуйте повторить попытку позже.";
+            using var content = new MultipartFormDataContent();
+            foreach (var field in formFields)
+            {
+                var fieldName = JsonNamingPolicy.CamelCase.ConvertName(field.Name);
+                var fieldValue = new StringContent(field.Value);
+
+                content.Add(fieldValue, fieldName);
+            }
+
+            var client = new HttpService();
+            FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
+            var formHandler = formResult.FormHandler;
+
+            HttpContent? preDto = formResult.FormDto;
+            if (preDto == null)
+            {
+                throw new ApplicationException("FromDTO is required, but null");
+            }
+
+            // На основе метки из formHandler определяем, в какой объект нужно упаковать результат
+            switch (formHandler)
+            {
+                case "formSuccess":
+                    {
+                        SuccessFormDto dto = await HttpService.DeserializeDto<SuccessFormDto>(preDto);
+                        _context.HandleSuccess(dto);
+                        break;
+                    }
+                case "formError":
+                    {
+                        ErrorFormDto dto = await HttpService.DeserializeDto<ErrorFormDto>(preDto);
+                        _context.HandleError(dto);
+                        break;
+                    }
+                case "formInvalid":
+                    {
+                        InvalidFormDto dto = await HttpService.DeserializeDto<InvalidFormDto>(preDto);
+                        _context.HandleInvalid(dto);
+                        break;
+                    }
+                default:
+                    throw new NotImplementedException($"Not supported formHandler [{formHandler}]");
+            }
+
             _context.IsLoading = false;
         }
-
-        //private Task SendHandle()
-        //{
-
-        //}
     }
 }

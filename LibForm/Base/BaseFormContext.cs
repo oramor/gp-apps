@@ -1,25 +1,153 @@
 ﻿using LibCore;
 using LibForm.Commands;
+using LibForm.Dto;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Reflection;
 using System.Windows.Input;
 
 namespace LibForm
 {
+    public enum FormStateEnum
+    {
+        Virgin,
+        InProgress,
+        Success,
+        Invalid,
+        Error,
+    }
+
     public abstract class BaseFormContext : BaseContext
     {
-        private bool _isFormReadyToSend = true;
-        private bool _isLoading = false;
-        private string _topErrorMessage = string.Empty;
+        /// <summary>
+        /// Список свойств класса (не путать с полями формы!), которые хранят
+        /// сообщение об ошибке. Заполняется в методе SetFieldError и таким образом
+        /// содержит актуальный список полей для текущей итерации формы. Как только
+        /// будет получен новый ответ, состояние формы будет сброшено через метод
+        /// ResetState(), в том числе очищены поля с ошибками.
+        /// </summary>
+        private readonly List<PropertyInfo> _errorFieldsList = new();
 
         public BaseFormContext()
         {
-            // Не просто собираем данные со вложенных полей формы,
-            // а упаковываем их в формат multipart/form-data
-            MultipartFormDataContent _formData = null;
         }
 
+        /// <summary>
+        /// Содержит ссылку, по которой форма должна отправлять запрос к API
+        /// </summary>
+        public abstract Uri Endpoint { get; }
+
+        #region State
+        /// <summary>
+        /// Внешний код может менять статус формы только через методы
+        /// обработки формы
+        /// </summary>
+        private FormStateEnum _state = FormStateEnum.Virgin;
+        public FormStateEnum State { get => _state; }
+        #endregion
+
+        #region Success Handler
+        /// <summary>
+        /// Каждая форма должна реализовать метод, который вызывается в случае
+        /// получения от сервера ответа с кодом formSuccess. Может выполняться
+        /// переход на другую страницу, загрузка нового окна, вывод TopMessage
+        /// </summary>
+        public virtual void HandleSuccess(SuccessFormDto dto)
+        {
+            ResetState();
+
+            if (dto.Message != null)
+            {
+                TopMessage = dto.Message;
+            }
+        }
+        #endregion
+
+        #region Invalid Handler
+        /// <summary>
+        /// Помечает на форме поля, которые не прошли серверную валидацию
+        /// </summary>
+        public void HandleInvalid(InvalidFormDto dto)
+        {
+            ResetState();
+            _state = FormStateEnum.Invalid;
+
+            InvalidFormFieldItem[]? invalidFields = dto.Fields;
+
+            if (invalidFields == null)
+            {
+                throw new ArgumentNullException(nameof(invalidFields));
+            }
+
+            foreach (InvalidFormFieldItem field in invalidFields)
+            {
+                // Conver to PascalCase
+                var fieldName = Char.ToUpperInvariant(field.Name[0]) + field.Name[1..];
+
+                SetFieldError(fieldName, field.Message);
+            }
+        }
+
+        /// <summary>
+        /// У каждого свойства, которое соотносится с полем формы должна быть
+        /// error-пара (например, Name + NameError). Указанный метод пробует
+        /// получить error-свойство и передает в него текст ошибки
+        /// </summary>
+        private void SetFieldError(string fieldName, string errorMessage)
+        {
+            string errorPropName = fieldName + "Error";
+
+            var errorProp = this.GetType().GetProperty(errorPropName);
+            if (errorProp == null)
+            {
+                throw new ApplicationException($"Не удалось установить текст ошибки для {fieldName}, т.к. свойство {errorPropName} не обнаружено");
+            }
+
+            errorProp.SetValue(this, errorMessage);
+            _errorFieldsList.Add(errorProp);
+        }
+        #endregion
+
+        #region Error Handler
+        /// <summary>
+        /// Помечает на форме поля, которые не прошли серверную валидацию
+        /// </summary>
+        public void HandleError(ErrorFormDto dto)
+        {
+            ResetState();
+            _state = FormStateEnum.Invalid;
+            TopErrorMessage = dto.Message;
+        }
+        #endregion
+
+        #region ResetState
+        public void ResetState()
+        {
+            _state = FormStateEnum.Virgin;
+
+            if (TopMessage != string.Empty)
+            {
+                TopMessage = string.Empty;
+            }
+
+            if (TopErrorMessage != string.Empty)
+            {
+                TopErrorMessage = string.Empty;
+            }
+
+            if (_errorFieldsList.Count > 0)
+            {
+                foreach (var field in _errorFieldsList)
+                {
+                    field.SetValue(this, string.Empty);
+                }
+
+                _errorFieldsList.Clear();
+            }
+        }
+        #endregion
+
+        #region Getting values from fields
         readonly struct FormFieldItem : IFormFieldInfo
         {
             public readonly string Name { get; init; }
@@ -32,16 +160,20 @@ namespace LibForm
         /// </summary>
         private static bool CheckPropertyIsFormField(string fieldName, PropertyInfo[] props)
         {
-            foreach (PropertyInfo prop in props) {
+            foreach (PropertyInfo prop in props)
+            {
                 string propName = prop.Name;
 
                 string s = string.Concat(fieldName, "Error");
 
                 // Поле считается подходящим, если удастся найти
                 // для него пару с постфиксом Error
-                if (propName.Equals(s)) {
+                if (propName.Equals(s))
+                {
                     return true;
-                } else {
+                }
+                else
+                {
                     continue;
                 }
             }
@@ -58,7 +190,8 @@ namespace LibForm
 
             var props = this.GetType().GetProperties();
 
-            foreach (PropertyInfo prop in props) {
+            foreach (PropertyInfo prop in props)
+            {
                 string propName = prop.Name;
 
                 // Пропускаем, если это свойство ошибки (содержит Error)
@@ -78,58 +211,69 @@ namespace LibForm
 
             return formFieldInfoList;
         }
+        #endregion
 
+        #region TopMessage
         /// <summary>
-        /// The method determines the possibilities to send Form.
-        /// If false, SendButton will be disabled
+        /// Сообщение, которое может выводиться пользователю после успешной отправки
+        /// формы. Например, в тех случаях, когда не требуется переход на другую форму,
+        /// но уведомить пользователя об успешной отправке все равно нужно
         /// </summary>
-        /// TODO Эта реализация нарушает ППБЛ
-        public virtual bool IsFormReadyToSend
+        private string _topMessage = string.Empty;
+        public string TopMessage
         {
-            get => _isFormReadyToSend;
-            set { _isFormReadyToSend = value; }
+            get => _topMessage;
+            set { Set(ref _topMessage, value); }
         }
+        #endregion
 
+        #region TopErrorMessage
+        /// <summary>
+        /// Блок с сообщением, в котором выводится информация об ошибке, относящейся
+        /// к обработчику формы на сервере (значение message из ErrorFormDto)
+        /// </summary>
+        private string _topErrorMessage = string.Empty;
         public string TopErrorMessage
         {
             get => _topErrorMessage;
-            set { Set(ref _topErrorMessage, value); }
+            set {
+                _state = FormStateEnum.Error;
+                Set(ref _topErrorMessage, value);
+            }
         }
+        #endregion
 
+        #region IsLoading
         /// <summary>
         /// Указывает, что форма находится в статусе отправки данных на сервер.
         /// Во время отправки кнопка меняет свой дизайн, а к полям применяется
         /// стиль FormFieldDisableStyle
         /// </summary>
+        private bool _isLoading = false;
         public bool IsLoading
         {
             get => _isLoading;
-            set { Set(ref _isLoading, value); }
+            set {
+                _state = FormStateEnum.InProgress;
+                Set(ref _isLoading, value);
+            }
         }
+        #endregion
+
+        #region IsFormReadyToSend
+        /// <summary>
+        /// The method determines the possibilities to send Form.
+        /// If false, SendButton will be disabled
+        /// </summary>
+        /// TODO Эта реализация нарушает ППБЛ
+        private bool _isFormReadyToSend = true;
+        public virtual bool IsFormReadyToSend
+        {
+            get => _isFormReadyToSend;
+            set { _isFormReadyToSend = value; }
+        }
+        #endregion
 
         public ICommand SendFormCommand => new SendFormCommand(this);
-
-        /// <summary>
-        /// Вызывается в конструкторе. Обходит children-элементы, извлекая данные
-        /// из тех объектов, которые соответствуют критерию поля формы
-        /// </summary>
-        //void MakeFormData() { throw new NotFiniteNumberException(); }
-
-        /// <summary>
-        /// Отправляет данные на сервер и получает json. При наличии в ответе
-        /// ноды с ошибками, отправляет из в SetFieldsErrors()
-        /// </summary>
-        //async void SendForm() { throw new NotImplementedException(); }
-
-        /// <summary>
-        /// В цикле применяет к каждому элементу из children ошибку
-        /// </summary>
-        //void SetFieldErrors() { throw new NotImplementedException(); }
-
-        /// <summary>
-        /// Устанавливает одиночную ошибку для формы при наличии
-        /// соответствующей ноды в ответе сервера
-        /// </summary>
-        //void SetFormError() { throw new NotImplementedException(); }
     }
 }

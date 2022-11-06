@@ -11,7 +11,8 @@
                             <ResourceDictionary>
                                 <ResourceDictionary.MergedDictionaries>
                                     <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/SendButtonStyle.xaml"/>
-                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopErrorStyle.xaml"/>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopMessageStyle.xaml"/>
+                                    <ResourceDictionary Source="/LibForm;component/Resources/ControlStyles/TopErrorMessageStyle.xaml"/>
                                     <ResourceDictionary>
                                         <Style x:Key="formItemsMarginStyle" TargetType="{x:Type Control}">
                                             <Setter Property="Margin" Value="0,15,0,0"/>
@@ -20,24 +21,47 @@
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </StackPanel.Resources>
-                        <Border x:Name="topErrorMessageContainer"
-                                Style="{StaticResource topErrorStyle_Border}"
+                        <Border x:Name="topMessageContainer"
+                                Style="{StaticResource topMessageStyle_Border}"
                                 Margin="0,0,0,10">
-                            <TextBlock Text="{TemplateBinding TopErrorMessage}"
-                                       Style="{StaticResource topErrorStyle_TextBlock}"
+                            <TextBlock x:Name="topMessage_TextBlock"
+                                Text="{Binding TopMessage}"
+                                       Style="{StaticResource topMessageStyle_TextBlock}"
+                                       Visibility="Visible"
+                                       Margin="5"/>
+                        </Border>
+                        <Border x:Name="topErrorMessageContainer"
+                                Style="{StaticResource topErrorMessageStyle_Border}"
+                                Margin="0,0,0,10">
+                            <TextBlock x:Name="topErrorMessageStyle_TextBlock"
+                                Text="{Binding TopErrorMessage}"
+                                       Style="{StaticResource topErrorMessageStyle_TextBlock}"
                                        Visibility="Visible"
                                        Margin="5"/>
                         </Border>
                         <ItemsPresenter/>
                         <Button x:Name="sendButton"
                             Content="{TemplateBinding SendButtonText}" 
-                            IsEnabled="{TemplateBinding IsFormReadyToSend}"
-                            Command="{TemplateBinding SendCommand}"/>
+                            IsEnabled="{Binding IsFormReadyToSend}"
+                            Command="{Binding SendFormCommand}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=topMessage_TextBlock}" Value="">
+                            <Setter TargetName="topMessageContainer" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Text, ElementName=topErrorMessageStyle_TextBlock}" Value="">
+                            <Setter TargetName="topErrorMessageContainer" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                        <!--<DataTrigger Binding="{Binding Path=IsLoading, ElementName=local:Form}" Value="true">
+                            <Setter TargetName="sendButton" Property="Content" Value="..."/>
+                            <Setter TargetName="sendButton" Property="FontSize" Value="25"/>
+                        </DataTrigger>-->
+                        <!--<Trigger Property="TopMessage" Value="">
+                            <Setter TargetName="topMessageContainer" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
                         <Trigger Property="TopErrorMessage" Value="">
                             <Setter TargetName="topErrorMessageContainer" Property="Visibility" Value="Collapsed"/>
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="IsLoading" Value="True">
                             <Setter TargetName="sendButton" Property="Content" Value="..."/>
                             <Setter TargetName="sendButton" Property="FontSize" Value="25"/>

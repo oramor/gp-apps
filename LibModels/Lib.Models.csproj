@@ -4,12 +4,9 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lib.Services\Lib.Services.csproj" />
-    <ProjectReference Include="..\LibControls\LibControls.csproj" />
     <ProjectReference Include="..\LibCore\LibCore.csproj" />
   </ItemGroup>
 

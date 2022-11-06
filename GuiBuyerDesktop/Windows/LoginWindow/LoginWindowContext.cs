@@ -1,13 +1,21 @@
 ﻿using LibForm;
+using LibForm.Dto;
+using System;
 
 namespace GuiBuyerDesktop.Windows.LoginWindow
 {
     internal class LoginWindowContext : BaseFormContext
     {
+        private static readonly string _endpoint = "http://localhost/api/v1/subjects/login";
         private string _login = string.Empty;
         private string _loginError = string.Empty;
         private string _password = string.Empty;
         private string _passwordError = string.Empty;
+
+        public override Uri Endpoint
+        {
+            get => new(_endpoint);
+        }
 
         public override bool IsFormReadyToSend
         {
@@ -19,12 +27,18 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             }
         }
 
-        #region Login
+        public override void HandleSuccess(SuccessFormDto dto)
+        {
+            ResetState();
+            TopMessage = "Вы авторизованы!";
+        }
 
+        #region Login
         public string Login
         {
             get => _login;
             set {
+                //MessageBox.Show("ddfdf");
                 Set(ref _login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
@@ -35,11 +49,9 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             get => _loginError;
             set => Set(ref _loginError, value);
         }
-
         #endregion
 
         #region Password
-
         public string Password
         {
             get => _password;
@@ -54,7 +66,6 @@ namespace GuiBuyerDesktop.Windows.LoginWindow
             get => _passwordError;
             set => Set(ref _passwordError, value);
         }
-
         #endregion
     }
 }

@@ -11,12 +11,13 @@
         Width="350"
         SizeToContent="Height"
         ResizeMode="CanMinimize"
-        WindowStartupLocation="CenterScreen">
-    <Window.DataContext>
+        WindowStartupLocation="CenterScreen"
+        FocusManager.FocusedElement="{Binding ElementName=loginField}">
+    <!--<Window.DataContext>
         <ctx:LoginWindowContext/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <StackPanel>
-        <TextBlock 
+        <TextBlock x:Name="logoBlock"
             Background="#fcec5e" 
             Height="65" 
             FontFamily="{StaticResource AR}" 
@@ -25,21 +26,21 @@
             Padding="0,2,0,0">
             Главпоставка
         </TextBlock>
-        <f:Form
-            IsFormReadyToSend="{Binding IsFormReadyToSend}"
-            TopErrorMessage="{Binding TopErrorMessage}"
-            SendCommand="{Binding SendFormCommand}"
-            IsLoading="{Binding IsLoading}"
-            SendButtonText="Вход"
-            Margin="20">
-            <c:TextBoxPlaceholder
-                DefaultText="Логин"
-                Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                Margin="0,0,0,10"
-                />
-            <c:TextBoxPlaceholderPassword
-                DefaultText="Пароль"
-                Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <f:Form x:Name="loginForm"
+                SendButtonText="Вход"
+                IsLoading="{Binding Path=IsLoading}"
+                Margin="20">
+            <f:Form.DataContext>
+                <ctx:LoginWindowContext/>
+            </f:Form.DataContext>
+            <f:FieldText x:Name="loginField"
+                         PlaceholderText="Логин"
+                         Text="{Binding Path=Login}"
+                         ErrorMessage="{Binding Path=LoginError}"
+                         Margin="0,0,0,10"/>
+            <c:TextBoxPlaceholderPassword x:Name="passwordField"
+                                          DefaultText="Пароль"
+                                          Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 />
         </f:Form>
     </StackPanel>
