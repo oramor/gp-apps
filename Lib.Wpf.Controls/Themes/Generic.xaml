@@ -7,8 +7,8 @@
     <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Lib.Wpf.Controls;component/TextBoxPlaceholder.xaml"/>
-        <ResourceDictionary Source="/Lib.Wpf.Controls;component/PasswordTextBox.xaml"/>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/PlaceholderTextBox.xaml"/>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/PasswordTextBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
   
 </ResourceDictionary>

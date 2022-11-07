@@ -17,9 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="PlaceholderTextBox.xaml">
+    <Page Update="Templates\PlaceholderTextBox.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Templates\PasswordTextBox.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
     <Page Update="Themes\Generic.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>

@@ -5,17 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <StartupObject>GuiBuyerDesktop.Programm</StartupObject>
-    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <StartupObject>Gui.BuyerDesktop.Program</StartupObject>
+    <ApplicationIcon>Favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Montserrat-Medium.ttf" />
-    <None Remove="Resources\OverpassMono-Medium.ttf" />
+    <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\OverpassMono-Medium.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="AppIcon.ico" />
+    <Content Include="Favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,18 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ResourceFiles.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ResourceFiles.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="ResourceFiles.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceFiles.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Page Update="Windows\MainWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lib.Services\Lib.Services.csproj" />
-    <ProjectReference Include="..\LibControls\LibControls.csproj" />
-    <ProjectReference Include="..\LibCore\LibCore.csproj" />
+    <ProjectReference Include="..\Lib.Wpf.Controls\Lib.Wpf.Controls.csproj" />
+    <ProjectReference Include="..\Lib.Wpf.Core\Lib.Wpf.Core.csproj" />
   </ItemGroup>
 
 </Project>

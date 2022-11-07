@@ -1,7 +1,7 @@
 ﻿using Lib.Wpf.Controls.Form;
 using System;
 
-namespace GuiBuyerDesktop.Windows.LoginWindow
+namespace Gui.BuyerDesktop.Contexts
 {
     internal class LoginWindowContext : BaseFormContext
     {

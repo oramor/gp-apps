@@ -5,17 +5,12 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <StartupObject>GuiBuyerDesktop.Programm</StartupObject>
-    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <StartupObject>Gui.BuyerDesktop.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Montserrat-Medium.ttf" />
-    <None Remove="Resources\OverpassMono-Medium.ttf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="AppIcon.ico" />
+    <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
+    <None Remove="Resources\Fonts\OverpassMono-Medium.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,18 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ResourceFiles.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ResourceFiles.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="ResourceFiles.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceFiles.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="Windows\LoginWindow\" />
   </ItemGroup>
 
 </Project>

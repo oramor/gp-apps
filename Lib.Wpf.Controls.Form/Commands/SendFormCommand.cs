@@ -1,18 +1,10 @@
-﻿using Lib.Models.Dto.Form;
-using Lib.Services;
-using Lib.Wpf.Controls.Form.Base;
-using Lib.Wpf.Core;
-using System;
-using System.Net.Http;
-using System.Text.Json;
-
-namespace Lib.Wpf.Controls.Form.Commands
+﻿namespace Lib.Wpf.Controls.Form
 {
-    internal class SendFormCommand : CommandBase
+    internal class SendFormCommand : BaseCommand
     {
-        private readonly FormContextBase _context;
+        private readonly BaseFormContext _context;
 
-        public SendFormCommand(FormContextBase ctx)
+        public SendFormCommand(BaseFormContext ctx)
         {
             _context = ctx;
         }

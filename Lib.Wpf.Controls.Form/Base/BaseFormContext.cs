@@ -1,12 +1,10 @@
 ﻿using Lib.Wpf.Core;
-using LibForm.Commands;
-using LibForm.Dto;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Input;
 
-namespace LibForm
+namespace Lib.Wpf.Controls.Form
 {
     public enum FormStateEnum
     {
