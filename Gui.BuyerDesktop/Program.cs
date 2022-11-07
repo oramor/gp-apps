@@ -14,15 +14,15 @@ namespace Gui.BuyerDesktop
             app.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
+        public static IHostBuilder CreateHostBuilder()
         {
-            var builder = Host.CreateDefaultBuilder(args);
+            var builder = Host.CreateDefaultBuilder();
 
-            builder.UseContentRoot(Environment.CurrentDirectory);
-            builder.ConfigureAppConfiguration((host, cfg) => {
-                cfg.SetBasePath(Environment.CurrentDirectory);
-                cfg.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-            });
+            builder.UseContentRoot(App.CurrentDirectory);
+            builder.ConfigureAppConfiguration((host, cfg) => cfg
+                .SetBasePath(App.CurrentDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            );
 
             builder.ConfigureServices(App.ConfigureServices);
 

@@ -2,7 +2,7 @@
 
 namespace Lib.Services
 {
-    public class HttpService
+    public class HttpService : IHttpService
     {
         private readonly HttpClient client;
 
