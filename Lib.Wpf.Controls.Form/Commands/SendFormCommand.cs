@@ -1,4 +1,9 @@
-﻿namespace Lib.Wpf.Controls.Form
+﻿using Lib.Services;
+using Lib.Wpf.Core;
+using System.Net.Http;
+using System.Text.Json;
+
+namespace Lib.Wpf.Controls.Form
 {
     internal class SendFormCommand : BaseCommand
     {

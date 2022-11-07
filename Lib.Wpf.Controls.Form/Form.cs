@@ -1,3 +1,7 @@
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+
 namespace Lib.Wpf.Controls.Form
 {
     public class Form : ItemsControl

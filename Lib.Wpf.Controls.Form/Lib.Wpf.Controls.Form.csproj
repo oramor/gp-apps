@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
         <OutputType>Library</OutputType>    
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lib.Models.Dto\Lib.Models.Dto.csproj" />
     <ProjectReference Include="..\Lib.Services\Lib.Services.csproj" />
     <ProjectReference Include="..\Lib.Wpf.Controls\Lib.Wpf.Controls.csproj" />
     <ProjectReference Include="..\Lib.Wpf.Core\Lib.Wpf.Core.csproj" />
