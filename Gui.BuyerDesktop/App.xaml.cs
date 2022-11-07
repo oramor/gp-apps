@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Windows;
 
 namespace Gui.BuyerDesktop
 {
@@ -20,6 +22,21 @@ namespace Gui.BuyerDesktop
             {
                 e.Handled = true;
             }
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+
+        }
+
+        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
+        {
+
         }
     }
 }

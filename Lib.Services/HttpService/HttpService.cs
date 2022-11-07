@@ -4,7 +4,7 @@ namespace Lib.Services
 {
     public class HttpService
     {
-        private HttpClient client;
+        private readonly HttpClient client;
 
         public HttpService()
         {

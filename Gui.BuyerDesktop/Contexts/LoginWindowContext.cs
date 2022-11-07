@@ -28,8 +28,13 @@ namespace Gui.BuyerDesktop.Contexts
 
         public override void HandleSuccess(SuccessFormDto dto)
         {
+            if (dto.SessionToken == string.Empty)
+            {
+                throw new ApplicationException("Ваши учетные данные верны, но аутентификация не может быть завершена, т.к. сервер не предоставил SessionToken. Обратитесь к администратору.");
+            }
+
             ResetState();
-            TopMessage = "Вы авторизованы!";
+            TopMessage = $"Вы авторизованы с токеном {dto.SessionToken}";
         }
 
         #region Login
