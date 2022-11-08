@@ -1,7 +1,7 @@
-﻿namespace Lib.Models.Base
+﻿namespace Lib.Models
 {
 
-    public abstract class ModelBase
+    public abstract class BaseModel
     {
         //public abstract class Item { }
 

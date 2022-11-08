@@ -1,6 +1,6 @@
 ﻿namespace Lib.Services
 {
-    public class FormResult
+    public class FormResult : IHttpService_FormResult
     {
         /// <summary>
         /// Метка извлекается из заголовка 'nervus-form-handler'

@@ -58,7 +58,7 @@ namespace Lib.Services
         /// Метод для отправки данных формы. Ожидает, что вызывающий код самостоятельно
         /// завернет данные в формат Multipart
         /// </summary>
-        public async Task<FormResult> SendMultipartForm(MultipartFormDataContent formData, Uri endpoint)
+        public async Task<IHttpService_FormResult> SendMultipartForm(MultipartFormDataContent formData, Uri endpoint)
         {
             DataResult dataResult = await Send(formData, endpoint);
 

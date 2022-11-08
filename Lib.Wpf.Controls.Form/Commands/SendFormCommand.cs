@@ -44,7 +44,7 @@ namespace Lib.Wpf.Controls.Form
             }
 
             var client = new HttpService();
-            FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
+            IHttpService_FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
             var formHandler = formResult.FormHandler;
 
             HttpContent? preDto = formResult.FormDto;
