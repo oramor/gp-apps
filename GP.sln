@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gui.BuyerDesktop", "Gui.Buy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services.Http", "Lib.Services.Http\Lib.Services.Http.csproj", "{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services.Print", "Lib.Services.Print\Lib.Services.Print.csproj", "{5F8D1CB6-0276-454D-A78B-74468A196321}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F8D1CB6-0276-454D-A78B-74468A196321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F8D1CB6-0276-454D-A78B-74468A196321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F8D1CB6-0276-454D-A78B-74468A196321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F8D1CB6-0276-454D-A78B-74468A196321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
