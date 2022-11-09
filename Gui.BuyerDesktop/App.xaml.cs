@@ -22,8 +22,10 @@ namespace Gui.BuyerDesktop
         public static bool IsDesignMode { get; private set; } = true;  
 
         #region Host
+
         private static IHost? _host;
         public static IHost Host => _host ??= Program.CreateHostBuilder().Build();
+        
         #endregion
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

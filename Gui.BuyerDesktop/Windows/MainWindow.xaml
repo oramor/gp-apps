@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Менеджер маркировки v.1.0" Height="500" Width="900" MinHeight="500" MinWidth="600">
+        Title="Менеджер маркировки v.1.0" Height="500" Width="900" MinHeight="500" MinWidth="600"
+        WindowStartupLocation="CenterScreen">
     <DockPanel x:Name="MainPanel"  LastChildFill="True">
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
@@ -25,7 +26,7 @@
                         <TextDecorationCollection>
                             <TextDecoration Location="Underline" PenOffset="6">
                                 <TextDecoration.Pen>
-                                    <Pen Thickness="3">
+                                    <Pen Thickness="2.5">
                                         <Pen.Brush>
                                             <SolidColorBrush Color="#d4b2ff" />
                                         </Pen.Brush>
@@ -43,7 +44,7 @@
                         <TextDecorationCollection>
                             <TextDecoration Location="Underline" PenOffset="6">
                                 <TextDecoration.Pen>
-                                    <Pen Thickness="3">
+                                    <Pen Thickness="2.5">
                                         <Pen.Brush>
                                             <SolidColorBrush Color="#d4b2ff" />
                                         </Pen.Brush>
@@ -69,7 +70,7 @@
                     BorderBrush="Black" 
                     BorderThickness="2" 
                     Margin="0,0,0,20"
-                    FontFamily="{StaticResource AR}" 
+                    FontFamily="{StaticResource BR}" 
                     FontSize="22">
                 Тестовая печать этикетки</Button>
             <GroupBox Header="Лог тестовой печати">

@@ -1,5 +1,7 @@
-﻿using Lib.Wpf.Controls.Form;
+﻿using Gui.BuyerDesktop.Windows;
+using Lib.Wpf.Controls.Form;
 using System;
+using System.Windows;
 
 namespace Gui.BuyerDesktop.Contexts
 {
@@ -35,6 +37,11 @@ namespace Gui.BuyerDesktop.Contexts
 
             ResetState();
             TopMessage = $"Вы авторизованы с токеном {dto.SessionToken}";
+            var loginWindow = Application.Current.Windows[0];
+            var mainWindow = new MainWindow();
+            Application.Current.MainWindow = mainWindow;
+            loginWindow.Close();
+            mainWindow.Show();
         }
 
         #region Login
