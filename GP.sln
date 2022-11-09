@@ -5,9 +5,17 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gui.BuyerDesktop", "Gui.BuyerDesktop\Gui.BuyerDesktop.csproj", "{35085556-1B1C-4C9D-9925-11CFDBB07749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services.Http", "Lib.Services.Http\Lib.Services.Http.csproj", "{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services.Http", "Lib.Services.Http\Lib.Services.Http.csproj", "{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services.Print", "Lib.Services.Print\Lib.Services.Print.csproj", "{5F8D1CB6-0276-454D-A78B-74468A196321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services.Print", "Lib.Services.Print\Lib.Services.Print.csproj", "{5F8D1CB6-0276-454D-A78B-74468A196321}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Models", "Lib.Models\Lib.Models.csproj", "{5ED0A0F8-204C-4143-BCA9-B776FEE96D8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Controls", "Lib.Wpf.Controls\Lib.Wpf.Controls.csproj", "{9B03D10A-8F61-4670-BED9-EBCB00F96C28}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Controls.Form", "Lib.Wpf.Controls.Form\Lib.Wpf.Controls.Form.csproj", "{D1F36665-1546-46EB-B87C-63EB2EF9549B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Core", "Lib.Wpf.Core\Lib.Wpf.Core.csproj", "{79E079E9-C358-4726-913F-200C59012BCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,22 @@ Global
 		{5F8D1CB6-0276-454D-A78B-74468A196321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F8D1CB6-0276-454D-A78B-74468A196321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F8D1CB6-0276-454D-A78B-74468A196321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ED0A0F8-204C-4143-BCA9-B776FEE96D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED0A0F8-204C-4143-BCA9-B776FEE96D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED0A0F8-204C-4143-BCA9-B776FEE96D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ED0A0F8-204C-4143-BCA9-B776FEE96D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B03D10A-8F61-4670-BED9-EBCB00F96C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B03D10A-8F61-4670-BED9-EBCB00F96C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B03D10A-8F61-4670-BED9-EBCB00F96C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B03D10A-8F61-4670-BED9-EBCB00F96C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F36665-1546-46EB-B87C-63EB2EF9549B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F36665-1546-46EB-B87C-63EB2EF9549B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F36665-1546-46EB-B87C-63EB2EF9549B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F36665-1546-46EB-B87C-63EB2EF9549B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E079E9-C358-4726-913F-200C59012BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E079E9-C358-4726-913F-200C59012BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E079E9-C358-4726-913F-200C59012BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E079E9-C358-4726-913F-200C59012BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
