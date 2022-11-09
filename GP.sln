@@ -3,16 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Services", "Lib.Services\Lib.Services.csproj", "{0FA78979-8F00-438F-8920-E1FCC1F314A0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Models", "Lib.Models\Lib.Models.csproj", "{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Core", "Lib.Wpf.Core\Lib.Wpf.Core.csproj", "{6A377445-46AC-43BD-ACB8-B41D39F932F7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Controls", "Lib.Wpf.Controls\Lib.Wpf.Controls.csproj", "{BD83814D-C934-4A97-A8B2-1EA974582DAD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib.Wpf.Controls.Form", "Lib.Wpf.Controls.Form\Lib.Wpf.Controls.Form.csproj", "{13A244B7-9A56-42DB-9E1F-005C4D912DCA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gui.BuyerDesktop", "Gui.BuyerDesktop\Gui.BuyerDesktop.csproj", "{35085556-1B1C-4C9D-9925-11CFDBB07749}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Services.Http", "Lib.Services.Http\Lib.Services.Http.csproj", "{90B48C05-0E4E-4A43-B785-DB1B2BF13B89}"
@@ -25,26 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FA78979-8F00-438F-8920-E1FCC1F314A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87CA3FDC-AA7A-416C-98EA-7425ACA0C87E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A377445-46AC-43BD-ACB8-B41D39F932F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A377445-46AC-43BD-ACB8-B41D39F932F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A377445-46AC-43BD-ACB8-B41D39F932F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A377445-46AC-43BD-ACB8-B41D39F932F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD83814D-C934-4A97-A8B2-1EA974582DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD83814D-C934-4A97-A8B2-1EA974582DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD83814D-C934-4A97-A8B2-1EA974582DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD83814D-C934-4A97-A8B2-1EA974582DAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13A244B7-9A56-42DB-9E1F-005C4D912DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13A244B7-9A56-42DB-9E1F-005C4D912DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13A244B7-9A56-42DB-9E1F-005C4D912DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13A244B7-9A56-42DB-9E1F-005C4D912DCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{35085556-1B1C-4C9D-9925-11CFDBB07749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35085556-1B1C-4C9D-9925-11CFDBB07749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35085556-1B1C-4C9D-9925-11CFDBB07749}.Release|Any CPU.ActiveCfg = Release|Any CPU

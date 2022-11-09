@@ -7,11 +7,13 @@
     <UseWPF>true</UseWPF>
     <StartupObject>Gui.BuyerDesktop.Program</StartupObject>
     <ApplicationIcon>Favicon.ico</ApplicationIcon>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
     <None Remove="Resources\Fonts\OverpassMono-Medium.ttf" />
+    <None Remove="TSCLIB.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,9 @@
   <ItemGroup>
     <Resource Include="Resources\Fonts\Montserrat-Medium.ttf" />
     <Resource Include="Resources\Fonts\OverpassMono-Medium.ttf" />
+    <EmbeddedResource Include="TSCLIB.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

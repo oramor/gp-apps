@@ -71,7 +71,8 @@
                     BorderThickness="2" 
                     Margin="0,0,0,20"
                     FontFamily="{StaticResource BR}" 
-                    FontSize="22">
+                    FontSize="22"
+                Click="Button_Click">
                 Тестовая печать этикетки</Button>
             <GroupBox Header="Лог тестовой печати">
                 <TextBlock Margin="5,0,0,0" Foreground="#FF3551C1">
