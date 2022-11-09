@@ -101,6 +101,7 @@ namespace Gui.BuyerDesktop.Windows
         BlackMarkSensor
     }
 
+    // Label43x25ForTsc
     public class StandardLabelTask
     {
         // Setup
