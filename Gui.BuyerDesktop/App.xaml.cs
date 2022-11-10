@@ -4,6 +4,8 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using Lib.Services.Print;
+using Lib.Services;
 
 namespace Gui.BuyerDesktop
 {
@@ -23,6 +25,9 @@ namespace Gui.BuyerDesktop
 
         #region Host
 
+        /// <summary>
+        /// Таким образом, хост будет создан единожды при первом обращении к нему.
+        /// </summary>
         private static IHost? _host;
         public static IHost Host => _host ??= Program.CreateHostBuilder().Build();
         
@@ -30,10 +35,7 @@ namespace Gui.BuyerDesktop
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Произошла неизвестная ошибка: " + e.Exception.Message,
-                "Ошибка",
-                MessageBoxButton.OK,
-            MessageBoxImage.Error);
+            MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
 
             if (IsProductionMode)
             {
@@ -60,9 +62,18 @@ namespace Gui.BuyerDesktop
         }
         #endregion
 
+        /// <summary>
+        /// Метод добавляет сервисы во "встроенный" DI-контейнер. Вызывается при сборке
+        /// хоста приложения. Важно обратить внимание, что все добавленные сервисы будут
+        /// доступны сторорнним приложениям, взаимодействующим с текущей программой
+        /// через интерфейс IHost. 
+        /// </summary>
         public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
-
+            /// По запросу для типа IPrintService будет возвращаться
+            /// инстанс PrintService, что позволит ограничиться только
+            /// указанием интерфейсов в вызывающем коде
+            services.AddSingleton<IPrintService, PrintService>();
         }
 
         /// <summary>

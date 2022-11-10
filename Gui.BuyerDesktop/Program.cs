@@ -24,6 +24,8 @@ namespace Gui.BuyerDesktop
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             );
 
+            /// App.ConfigureServices передается в виде коллбека, который, при вызове
+            /// получит два параметра: host и 
             builder.ConfigureServices(App.ConfigureServices);
 
             return builder;

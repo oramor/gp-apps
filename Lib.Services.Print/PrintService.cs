@@ -2,9 +2,9 @@
 
 namespace Lib.Services
 {
-    public class PrintService
+    public class PrintService : IPrintService
     {
-        public void PrintIncomeProductLabel()
+        public void PrintLabel<T>(T labelParams) where T : IPrintService_AbstractLabelParams
         {
             IncomeProductLabel.PrintWithTscLib("TSC TTP-225", 100, 500, 1);
         }

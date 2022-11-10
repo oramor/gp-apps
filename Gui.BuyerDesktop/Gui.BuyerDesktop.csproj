@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lib.Services.Print\Lib.Services.Print.csproj" />
     <ProjectReference Include="..\Lib.Wpf.Controls.Form\Lib.Wpf.Controls.Form.csproj" />
     <ProjectReference Include="..\Lib.Wpf.Controls\Lib.Wpf.Controls.csproj" />
     <ProjectReference Include="..\Lib.Wpf.Core\Lib.Wpf.Core.csproj" />
