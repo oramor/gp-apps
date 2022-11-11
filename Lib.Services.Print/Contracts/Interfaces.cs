@@ -11,16 +11,36 @@
         /// </summary>
         public void PrintLabel(IProductLabelTask labelTask);
         public void PrintLabel(ITestLabelTask labelTask);
+
+        /// <summary>
+        /// Сервис опрашивает все классы, которые реализуют интерфейс ILabelSender,
+        /// чтобы сформировать список этикеток в разрезе размеров и поддерживаемых
+        /// устройств. Пользователь приложения выбирает из этого списка, чтобы
+        /// сформировать коллекцию, в которой этикетка сопоставлена с драйвером
+        /// принтера.
+        /// </summary>
+        public IReadOnlyCollection<ILabel> SupportedLabels { get; }
     }
 
     /// <summary>
-    /// Класс каждой этикетки дожен реализовать метод, при помощи которого
-    /// PrintService будет заполнять коллекцию поддерживаемых типов этикетки
-    /// (одна этикетка может поддерживаться с разными размерами)
+    /// Это статические классы, на уровне которых определяются методы,
+    /// реализующие печать этикетки на разных платформах и для разных
+    /// размеров. Для потребителей этот класс интересен тем, что предоставляет
+    /// коллекцию, которая содержит все поддерживаемые этикетки, а так же
+    /// делегаты с методами печати этих этикеток
     /// </summary>
+    public interface ILabelSender
+    {
+        public IReadOnlyCollection<ILabel> GetLabels();
+    }
+
     public interface ILabel
     {
-        public void AddToSupportedLabelCollection();
+        public string Name { get; init; }
+        public string Description { get; init; }
+        public SupportedLabelSizeEnum Size { get; init; }
+        public SupportedPrinterAdapterEnum DriverAdapter { get; init; }
+        public void Print<T>(T labelTask) where T : IBaseLabelTask;
     }
 
     /// <summary>
@@ -28,9 +48,24 @@
     /// </summary>
     public interface ICanPrintLabels
     {
-        public ILabelSetup DefaultLabelSetup { get; set; }
-        public ISystemPrinterInfo[] GetSystemPrinters();
-        public ICollection<ILabelSetup> GetLabelSetupList();
+        /// <summary>
+        /// Список системных принтеров используется для опредления порта драйвера,
+        /// на который нужно отправлять этикетку.
+        /// </summary>
+        public IReadOnlyCollection<ISystemPrinterInfo> GetSystemPrinters();
+        /// <summary>
+        /// Коллекция сетапов пользователя программы. То есть связи абстрактных
+        /// этикеток с конкретными устройствами печати. Важно, что эта коллекция
+        /// является модифицируемой, т.к. пользователь может добавлять и удалять
+        /// сетапы.
+        /// 
+        /// Если будет поддержано хранение сетапов в файле, то при загрузке
+        /// приложения они будут считываться и пополнять коллекцию. Однако это уже
+        /// детали рализации. По умолчанию коллекцию придется заполнять заново
+        /// при каждом новом пуске программы.
+        /// </summary>
+        public IEnumerable<ILabelSetup> LabelSetupList { get; set; }
+        // Эти методы должны быть реализованы сервисом
         public string[] GetSupportedLabels();
         public string[] GetSupportedDrivers();
         public string[] GetSupportedSizes();
@@ -48,17 +83,14 @@
     }
 
     /// <summary>
-    /// Приложение поддерживает печать не только с разными типами этикеток,
-    /// но и с принтерами разных производителей. Соответственно, пользователь
-    /// может создать несколько сетапов для разных категорий этикеток
+    /// Сетап просто связывает абстрактную этикетку, которая поддерживается
+    /// сервисом, с конкретным принтером пользователя
     /// </summary>
-    public interface ILabelSetup
+    public interface ILabelSetup : ILabel
     {
-        public string Name { get; set; }
-        public string PrinterName { get; set; }
-        public string DriverName { get; set; }
-        public SupportedPrinterAdapterEnum DriverAdapter { get; set; }
-        public SupportedLabelSizeEnum LabelSize { get; set; }
+        public string PrinterName { get; init; }
+        public string DriverName { get; init; }
+        public string PortName { get; init; }
     }
 
     public interface ISystemPrinterInfo

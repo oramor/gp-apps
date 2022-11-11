@@ -1,4 +1,5 @@
 ﻿using Lib.Services.Print.Adapters;
+using Lib.Services.Print;
 using System;
 using System.Collections.Generic;
 using System.Linq;
