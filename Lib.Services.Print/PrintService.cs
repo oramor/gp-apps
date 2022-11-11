@@ -1,13 +1,17 @@
-﻿using Lib.Services.Print;
-using Lib.Services.Print.Labels;
+﻿using Lib.Services.Print.Labels;
 
-namespace Lib.Services
+namespace Lib.Services.Print
 {
     public class PrintService : IPrintService
     {
-        public void PrintIcomeProductLabel(IIncomeProductLabelTask labelTask)
+        public void PrintLabel(IProductLabelTask labelTask)
         {
-            IncomeProductLabel.TscLib_W43_H25("TSC TTP-225", 100, 500, 1);
+            ProductLabel.TscLib_W43_H25("TSC TTP-225", 100, 500, 1);
+        }
+
+        public void PrintLabel(ITestLabelTask labelTask)
+        {
+            throw new NotImplementedException();
         }
     }
 }

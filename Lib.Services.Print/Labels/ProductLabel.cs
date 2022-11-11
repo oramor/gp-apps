@@ -2,7 +2,7 @@
 
 namespace Lib.Services.Print.Labels
 {
-    public static class IncomeProductLabel
+    public static class ProductLabel
     {
         public static void TscLib_W43_H25(string printerName, int productId, int sku, int? copy)
         {

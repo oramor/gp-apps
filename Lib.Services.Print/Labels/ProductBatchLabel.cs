@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Services.Print
+namespace Lib.Services.Print.Labels
 {
-    public enum SupportedLabelSizeEnum
+    internal class ProductBatchLabel
     {
-        W43_H25
     }
 }

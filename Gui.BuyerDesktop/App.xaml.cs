@@ -1,5 +1,4 @@
-﻿using Lib.Services;
-using Lib.Services.Print;
+﻿using Lib.Services.Print;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
