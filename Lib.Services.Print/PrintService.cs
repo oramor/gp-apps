@@ -1,12 +1,13 @@
-﻿using Lib.Services.Print.Labels;
+﻿using Lib.Services.Print;
+using Lib.Services.Print.Labels;
 
 namespace Lib.Services
 {
     public class PrintService : IPrintService
     {
-        public void PrintLabel<T>(T labelParams) where T : IPrintService_AbstractLabelParams
+        public void PrintIcomeProductLabel(IIncomeProductLabelTask labelTask)
         {
-            IncomeProductLabel.PrintWithTscLib("TSC TTP-225", 100, 500, 1);
+            IncomeProductLabel.TscLib_W43_H25("TSC TTP-225", 100, 500, 1);
         }
     }
 }

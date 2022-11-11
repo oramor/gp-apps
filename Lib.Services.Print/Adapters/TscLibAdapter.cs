@@ -26,11 +26,6 @@ namespace Lib.Services.Print.Adapters
         BoldItalic
     }
 
-    public enum LabelSizeEnum
-    {
-        size43x25mm
-    }
-
     public static class TscLibAdapter
     {
         #region Inner Methods
@@ -106,10 +101,10 @@ namespace Lib.Services.Print.Adapters
             _ = closeport();
         }
 
-        public static void SetLabelSize(LabelSizeEnum size)
+        public static void SetLabelSize(SupportedLabelSizeEnum size)
         {
             _ = size switch {
-                LabelSizeEnum.size43x25mm => sendcommand("SIZE 43 mm, 25 mm"),
+                SupportedLabelSizeEnum.W43_H25 => sendcommand("SIZE 43 mm, 25 mm"),
                 _ => throw new ArgumentException($"Unsupported label size code {size}"),
             };
         }

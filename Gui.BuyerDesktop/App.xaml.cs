@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Lib.Services;
+using Lib.Services.Print;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Linq;
+using System.Printing;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using Lib.Services.Print;
-using Lib.Services;
-using System.Printing;
-using System.Linq;
 
 namespace Gui.BuyerDesktop
 {
@@ -23,7 +23,7 @@ namespace Gui.BuyerDesktop
         /// Дизайнер не вызывает метод OnStartup, поэтому данное поле
         /// в нем получает значение false
         /// </summary>
-        public static bool IsDesignMode { get; private set; } = true;  
+        public static bool IsDesignMode { get; private set; } = true;
 
         #region Host
 
@@ -32,7 +32,7 @@ namespace Gui.BuyerDesktop
         /// </summary>
         private static IHost? _host;
         public static IHost Host => _host ??= Program.CreateHostBuilder().Build();
-        
+
         #endregion
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
@@ -54,7 +54,7 @@ namespace Gui.BuyerDesktop
             base.OnStartup(e);
             await host.StartAsync().ConfigureAwait(false);
 
-            GetListOfInstalledPrinters();
+            var printers = GetSystemPrinters();
         }
 
         protected async override void OnExit(ExitEventArgs e)
@@ -99,12 +99,38 @@ namespace Gui.BuyerDesktop
 
         #region ICanPrintLabels implements
 
-        public void GetListOfInstalledPrinters()
+        public System.Collections.Generic.IEnumerable<ISystemPrinterInfo> GetSystemPrinters()
         {
-            var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => v.QueueDriver);
+            var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => {
+                var printerInfo = new SystemPrinterInfo() {
+                    Name = v.Name,
+                    DriverName = v.QueueDriver.Name,
+                    PrintPortName = v.QueuePort.Name,
+                    Priority = v.Priority
+                };
+
+                return printerInfo;
+            });
+
+            //var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => v);
+
+            return printersColl;
         }
 
 
         #endregion
+    }
+
+    public class SystemPrinterInfo : ISystemPrinterInfo
+    {
+        public string Name { get; init; } = String.Empty;
+        public string DriverName { get; init; } = String.Empty;
+        public string PrintPortName { get; init; } = String.Empty;
+        //public bool IsOffline { get; init; }
+        //public bool IsNotAvailable { get; init; }
+        //public PrintQueueStatus Status { get; init; }
+        //public bool IsHidden { get; init; }
+        //public bool IsRawOnlyEnabled { get; init; }
+        public int Priority { get; init; }
     }
 }
