@@ -14,12 +14,24 @@
     }
 
     /// <summary>
+    /// Класс каждой этикетки дожен реализовать метод, при помощи которого
+    /// PrintService будет заполнять коллекцию поддерживаемых типов этикетки
+    /// (одна этикетка может поддерживаться с разными размерами)
+    /// </summary>
+    public interface ILabel
+    {
+        public void AddToSupportedLabelCollection();
+    }
+
+    /// <summary>
     /// Этот интерфейс долен быть реализован на уровне класса приложения
     /// </summary>
     public interface ICanPrintLabels
     {
         public ILabelSetup DefaultLabelSetup { get; set; }
         public ISystemPrinterInfo[] GetSystemPrinters();
+        public ICollection<ILabelSetup> GetLabelSetupList();
+        public string[] GetSupportedLabels();
         public string[] GetSupportedDrivers();
         public string[] GetSupportedSizes();
     }
