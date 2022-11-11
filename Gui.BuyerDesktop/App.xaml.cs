@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Lib.Services.Print;
 using Lib.Services;
+using System.Printing;
+using System.Linq;
 
 namespace Gui.BuyerDesktop
 {
@@ -51,6 +53,8 @@ namespace Gui.BuyerDesktop
             var host = Host;
             base.OnStartup(e);
             await host.StartAsync().ConfigureAwait(false);
+
+            GetListOfInstalledPrinters();
         }
 
         protected async override void OnExit(ExitEventArgs e)
@@ -61,6 +65,8 @@ namespace Gui.BuyerDesktop
             _host = null;
         }
         #endregion
+
+        #region Host infrastructure
 
         /// <summary>
         /// Метод добавляет сервисы во "встроенный" DI-контейнер. Вызывается при сборке
@@ -88,5 +94,17 @@ namespace Gui.BuyerDesktop
         /// Этот метод позволяет определить, путь к файлу в зависимости от его вызова
         /// </summary>
         private static string GetSourceCodePath([CallerFilePath] string path = null) => path;
+
+        #endregion
+
+        #region ICanPrintLabels implements
+
+        public void GetListOfInstalledPrinters()
+        {
+            var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => v.QueueDriver);
+        }
+
+
+        #endregion
     }
 }
