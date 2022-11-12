@@ -2,6 +2,12 @@
 
 namespace Lib.Services.Print.Labels
 {
+    public interface IProductLabelData
+    {
+        public int ProductId { get; set; }
+        public int Sku { get; set; }
+    }
+
     class ProductLabel_TscLib_W43_H25 : ILabel, ICanPrint<IProductLabelTask>
     {
         private static readonly SupportedLabelSizeEnum _size = SupportedLabelSizeEnum.W43_H25;

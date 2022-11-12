@@ -1,4 +1,6 @@
-﻿namespace Lib.Services.Print
+﻿using Lib.Services.Print.Labels;
+
+namespace Lib.Services.Print
 {
     #region Basic infrastructure
 
@@ -34,23 +36,15 @@
         public IReadOnlyCollection<ILabel> GetLabels();
     }
 
-    public interface ILabel
-    {
-        public string Name { get; }
-        public string Description { get; }
-        public SupportedLabelSizeEnum Size { get; }
-        public SupportedPrinterAdapterEnum DriverAdapter { get; }
-        //public void PrintLabel(IProductLabelTask labelTask);
-        //public void PrintLabel(ITestLabelTask labelTask);
-    }
-
     public interface ICanPrint<T>
     {
         public void PrintLabel(T labelTask);
     }
 
     /// <summary>
-    /// Этот интерфейс долен быть реализован на уровне класса приложения
+    /// Этот интерфейс долен быть реализован на уровне класса приложения, либо
+    /// класса главной вьюмодели (AppContext, App.ctx), от которой наследуются
+    /// все конкретные вьюмодели
     /// </summary>
     public interface ICanPrintLabels
     {
@@ -78,14 +72,28 @@
     }
 
     /// <summary>
-    /// Любое задание на печати этикетки должно включать ссылку
-    /// на заранее созданный сетап, по которому программа определит
-    /// принтер и формат для выбранного типа этикетки
+    /// Данный интерфейс должен быть реализован вьюмоделью, которая отвечает
+    /// за форму добавления нового сетапа
     /// </summary>
-    public interface IBaseLabelTask
+    public interface IAddLabelSetupForm
     {
-        public ILabelSetup LabelSetup { get; init; }
-        public int Copy { get; init; }
+
+    }
+
+    public interface ISystemPrinterInfo
+    {
+        public string Name { get; init; }
+        public string DriverName { get; init; }
+        public string PrintPortName { get; init; }
+        public int Priority { get; init; }
+    }
+
+    public interface ILabel
+    {
+        public string Name { get; }
+        public string Description { get; }
+        public SupportedLabelSizeEnum Size { get; }
+        public SupportedPrinterAdapterEnum DriverAdapter { get; }
     }
 
     /// <summary>
@@ -99,12 +107,15 @@
         public string PortName { get; init; }
     }
 
-    public interface ISystemPrinterInfo
+    /// <summary>
+    /// Любое задание на печати этикетки должно включать ссылку
+    /// на заранее созданный сетап, по которому программа определит
+    /// принтер и формат для выбранного типа этикетки
+    /// </summary>
+    public interface IBaseLabelTask
     {
-        public string Name { get; init; }
-        public string DriverName { get; init; }
-        public string PrintPortName { get; init; }
-        public int Priority { get; init; }
+        public ILabelSetup LabelSetup { get; init; }
+        public int Copy { get; init; }
     }
 
     #endregion
@@ -114,20 +125,16 @@
     /// <summary>
     /// Задание на печать тестовой этикетки
     /// </summary>
-    public interface ITestLabelTask : IBaseLabelTask
+    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
     {
-        public string Text { get; init; }
-        public int Barcode { get; init; }
     }
 
     /// <summary>
     /// Интерфейс определяет класс или структуру, которая будет
     /// выдавать задание на печать этикетки оприходуемого товара
     /// </summary>
-    public interface IProductLabelTask : IBaseLabelTask
+    public interface IProductLabelTask : IBaseLabelTask, IProductLabelData
     {
-        public int ProductId { get; init; }
-        public int Sku { get; init; }
     }
 
     #endregion

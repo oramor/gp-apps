@@ -8,6 +8,16 @@ using System.Threading.Tasks;
 
 namespace Lib.Services.Print.Labels
 {
+    /// <summary>
+    /// Этот интерфейс должен быть реализован вьюмоделью, которая желает
+    /// передавать команду печати данного вида этикетки
+    /// </summary>
+    public interface ITestLabelData
+    {
+        public string Text { get; set; }
+        public int Barcode { get; set; }
+    }
+
     public class TestLabel
     {
         public static void TscLib_W43_H25(string printerName, int productId, int sku, int? copy)
