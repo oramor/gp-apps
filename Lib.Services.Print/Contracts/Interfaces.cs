@@ -36,11 +36,6 @@ namespace Lib.Services.Print
         public IReadOnlyCollection<ILabel> GetLabels();
     }
 
-    public interface ICanPrint<T>
-    {
-        public void PrintLabel(T labelTask);
-    }
-
     /// <summary>
     /// Этот интерфейс долен быть реализован на уровне класса приложения, либо
     /// класса главной вьюмодели (AppContext, App.ctx), от которой наследуются
@@ -64,7 +59,7 @@ namespace Lib.Services.Print
         /// детали рализации. По умолчанию коллекцию придется заполнять заново
         /// при каждом новом пуске программы.
         /// </summary>
-        public IEnumerable<ILabelSetup> LabelSetupList { get; set; }
+        public ICollection<ILabelSetup> LabelSetupList { get; set; }
         // Эти методы должны быть реализованы сервисом
         public string[] GetSupportedLabels();
         public string[] GetSupportedDrivers();

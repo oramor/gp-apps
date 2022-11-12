@@ -8,7 +8,7 @@ namespace Lib.Services.Print
 {
     public enum SupportedLabelSizeEnum
     {
-        W43_H25
+        W43xH25
     }
 
     public enum SupportedPrinterAdapterEnum

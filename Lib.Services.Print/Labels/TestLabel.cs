@@ -20,10 +20,10 @@ namespace Lib.Services.Print.Labels
 
     public class TestLabel
     {
-        public static void TscLib_W43_H25(string printerName, int productId, int sku, int? copy)
+        public static void TscLib_W43xH25(string printerName, int productId, int sku, int? copy)
         {
             TscLibAdapter.Init(printerName);
-            TscLibAdapter.SetLabelSize(SupportedLabelSizeEnum.W43_H25);
+            TscLibAdapter.SetLabelSize(SupportedLabelSizeEnum.W43xH25);
             TscLibAdapter.TextLine(25, 25, productId.ToString());
             TscLibAdapter.Code128(25, 85, 72, sku.ToString());
             TscLibAdapter.Print(copy);

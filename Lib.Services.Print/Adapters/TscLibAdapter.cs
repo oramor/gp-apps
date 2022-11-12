@@ -104,7 +104,7 @@ namespace Lib.Services.Print.Adapters
         public static void SetLabelSize(SupportedLabelSizeEnum size)
         {
             _ = size switch {
-                SupportedLabelSizeEnum.W43_H25 => sendcommand("SIZE 43 mm, 25 mm"),
+                SupportedLabelSizeEnum.W43xH25 => sendcommand("SIZE 43 mm, 25 mm"),
                 _ => throw new ArgumentException($"Unsupported label size code {size}"),
             };
         }
