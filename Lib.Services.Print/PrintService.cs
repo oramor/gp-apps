@@ -11,6 +11,7 @@ namespace Lib.Services.Print
 
         public void PrintLabel(ITestLabelTask labelTask)
         {
+            //ProductLabel_TscLib_W43_H25.Printer.PrintLabel(labelTask)
             throw new NotImplementedException();
         }
     }

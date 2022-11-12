@@ -36,11 +36,17 @@
 
     public interface ILabel
     {
-        public string Name { get; init; }
-        public string Description { get; init; }
-        public SupportedLabelSizeEnum Size { get; init; }
-        public SupportedPrinterAdapterEnum DriverAdapter { get; init; }
-        public void Print<T>(T labelTask) where T : IBaseLabelTask;
+        public string Name { get; }
+        public string Description { get; }
+        public SupportedLabelSizeEnum Size { get; }
+        public SupportedPrinterAdapterEnum DriverAdapter { get; }
+        //public void PrintLabel(IProductLabelTask labelTask);
+        //public void PrintLabel(ITestLabelTask labelTask);
+    }
+
+    public interface ICanPrint<T>
+    {
+        public void PrintLabel(T labelTask);
     }
 
     /// <summary>
