@@ -23,7 +23,7 @@ namespace Lib.Services.Print.Labels
         public override SupportedLabelSizeEnum LabelSizeEnum => SupportedLabelSizeEnum.W43xH25;
         public override SupportedDriverAdapterEnum DriverAdapterEnum => SupportedDriverAdapterEnum.TscLib;
 
-        public static void PrintLabel(ITestLabelTask labelTask)
+        public static void ExecutePrint(ITestLabelTask labelTask)
         {
             TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
             TscLibAdapter.SetLabelSize(labelTask.LabelSetup.LabelSizeEnum);
