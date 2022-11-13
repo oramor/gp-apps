@@ -1,10 +1,5 @@
 ﻿using Lib.Services.Print.Adapters;
-using Lib.Services.Print;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Lib.Services.Print.Base;
 
 namespace Lib.Services.Print.Labels
 {
@@ -18,15 +13,23 @@ namespace Lib.Services.Print.Labels
         public int Barcode { get; set; }
     }
 
-    public class TestLabel
+    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
     {
-        public static void TscLib_W43xH25(string printerName, int productId, int sku, int? copy)
+    }
+
+    class TestLabel_W43xH25_TscLib : BaseLabel
+    {
+        public override SupportedLabelEnum LabelEnum => SupportedLabelEnum.TestLabel;
+        public override SupportedLabelSizeEnum LabelSizeEnum => SupportedLabelSizeEnum.W43xH25;
+        public override SupportedDriverAdapterEnum DriverAdapterEnum => SupportedDriverAdapterEnum.TscLib;
+
+        public static void PrintLabel(ITestLabelTask labelTask)
         {
-            TscLibAdapter.Init(printerName);
-            TscLibAdapter.SetLabelSize(SupportedLabelSizeEnum.W43xH25);
-            TscLibAdapter.TextLine(25, 25, productId.ToString());
-            TscLibAdapter.Code128(25, 85, 72, sku.ToString());
-            TscLibAdapter.Print(copy);
+            TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
+            TscLibAdapter.SetLabelSize(labelTask.LabelSetup.LabelSizeEnum);
+            TscLibAdapter.TextLine(25, 25, labelTask.Text);
+            TscLibAdapter.Code128(25, 85, 72, labelTask.Barcode.ToString());
+            TscLibAdapter.Print(labelTask.Copy);
         }
     }
 }

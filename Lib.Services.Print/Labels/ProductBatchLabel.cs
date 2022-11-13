@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib.Services.Print.Labels
+﻿namespace Lib.Services.Print.Labels
 {
-    internal class ProductBatchLabel
+    public class ProductBatchLabel_W43xH25_TscLib
     {
     }
 }

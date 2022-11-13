@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib.Services.Print
+﻿namespace Lib.Services.Print
 {
+    public enum SupportedLabelEnum
+    {
+        TestLabel,
+        ProductLabel,
+        ProductBatchLabel
+    }
+
     public enum SupportedLabelSizeEnum
     {
         W43xH25
     }
 
-    public enum SupportedPrinterAdapterEnum
+    public enum SupportedDriverAdapterEnum
     {
         TscLib
     }

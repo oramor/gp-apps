@@ -1,41 +1,35 @@
 ﻿using Lib.Services.Print.Adapters;
+using Lib.Services.Print.Base;
 
 namespace Lib.Services.Print.Labels
 {
+    /// <summary>
+    /// Должен поддерживаться вьюмоделью, которая отправляет команду
+    /// на печать этикетки данного вида
+    /// </summary>
     public interface IProductLabelData
     {
         public int ProductId { get; set; }
         public int Sku { get; set; }
     }
 
-    class ProductLabel_W43xH25_TscLib : ILabel
+    public interface IProductLabelTask : IBaseLabelTask, IProductLabelData
     {
-        private static readonly SupportedLabelSizeEnum _size = SupportedLabelSizeEnum.W43xH25;
+    }
 
-        public string Name => "Этикетка товара, 43x25 мм (драйвер TscLib)";
-        public string Description => "Описание";
-        public SupportedLabelSizeEnum Size => _size;
-        public SupportedPrinterAdapterEnum DriverAdapter => SupportedPrinterAdapterEnum.TscLib;
+    class ProductLabel_W43xH25_TscLib : BaseLabel
+    {
+        public override SupportedLabelEnum LabelEnum => SupportedLabelEnum.ProductLabel;
+        public override SupportedLabelSizeEnum LabelSizeEnum => SupportedLabelSizeEnum.W43xH25;
+        public override SupportedDriverAdapterEnum DriverAdapterEnum => SupportedDriverAdapterEnum.TscLib;
 
         public static void PrintLabel(IProductLabelTask labelTask)
         {
             TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
-            TscLibAdapter.SetLabelSize(_size);
+            TscLibAdapter.SetLabelSize(labelTask.LabelSetup.LabelSizeEnum);
             TscLibAdapter.TextLine(25, 25, labelTask.ProductId.ToString());
             TscLibAdapter.Code128(25, 85, 72, labelTask.ProductId.ToString());
             TscLibAdapter.Print(labelTask.Copy);
-        }
-    }
-
-    public static class ProductLabel
-    {
-        public static void TscLib_W43xH25(string printerName, int productId, int sku, int? copy)
-        {
-            TscLibAdapter.Init(printerName);
-            TscLibAdapter.SetLabelSize(SupportedLabelSizeEnum.W43xH25);
-            TscLibAdapter.TextLine(25, 25, productId.ToString());
-            TscLibAdapter.Code128(25, 85, 72, sku.ToString());
-            TscLibAdapter.Print(copy);
         }
     }
 }

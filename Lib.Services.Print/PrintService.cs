@@ -8,7 +8,7 @@ namespace Lib.Services.Print
 
         public void PrintLabel(IProductLabelTask labelTask)
         {
-            ProductLabel.TscLib_W43xH25("TSC TTP-225", 100, 500, 1);
+            //ProductLabel.TscLib_W43xH25("TSC TTP-225", 100, 500, 1);
         }
 
         public void PrintLabel(ITestLabelTask labelTask)

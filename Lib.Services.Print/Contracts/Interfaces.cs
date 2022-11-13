@@ -2,8 +2,6 @@
 
 namespace Lib.Services.Print
 {
-    #region Basic infrastructure
-
     public interface IPrintService
     {
         /// <summary>
@@ -66,15 +64,6 @@ namespace Lib.Services.Print
         public string[] GetSupportedSizes();
     }
 
-    /// <summary>
-    /// Данный интерфейс должен быть реализован вьюмоделью, которая отвечает
-    /// за форму добавления нового сетапа
-    /// </summary>
-    public interface IAddLabelSetupForm
-    {
-
-    }
-
     public interface ISystemPrinterInfo
     {
         public string Name { get; init; }
@@ -85,15 +74,23 @@ namespace Lib.Services.Print
 
     public interface ILabel
     {
-        public string Name { get; }
-        public string Description { get; }
-        public SupportedLabelSizeEnum Size { get; }
-        public SupportedPrinterAdapterEnum DriverAdapter { get; }
+        public string Title { get; }
+        public SupportedLabelEnum LabelEnum { get; }
+        public SupportedLabelSizeEnum LabelSizeEnum { get; }
+        public SupportedDriverAdapterEnum DriverAdapterEnum { get; }
+        public string LabelName { get; }
+        public string LabelSizeName { get; }
+        public string DriverAdapterName { get; }
     }
 
     /// <summary>
-    /// Сетап просто связывает абстрактную этикетку, которая поддерживается
-    /// сервисом, с конкретным принтером пользователя
+    /// Сетап является настройкой уровня приложения пользователя и связывает
+    /// абстрактную этикетку, которая поддерживается сервисом, с конкретным
+    /// принтером пользователя. Кроме того, данные из сетапа (SupportedLabelEnum
+    /// и другие enum) используются в качестве фильтра для выбора класса
+    /// нужной этикетки из коллекции SupportedLabels. В конечном счете,
+    /// выбранный класс этикетки позволяет обратиться к методу PrintLabel,
+    /// который и реализует отправку команды на принтер.
     /// </summary>
     public interface ILabelSetup : ILabel
     {
@@ -103,34 +100,12 @@ namespace Lib.Services.Print
     }
 
     /// <summary>
-    /// Любое задание на печати этикетки должно включать ссылку
-    /// на заранее созданный сетап, по которому программа определит
-    /// принтер и формат для выбранного типа этикетки
+    /// Любое задание на печать этикетки содержит, помимо <see cref="ILabelSetup">
+    /// сетапа</see>, количество копий, которое нужно напечатать
     /// </summary>
     public interface IBaseLabelTask
     {
         public ILabelSetup LabelSetup { get; init; }
         public int Copy { get; init; }
     }
-
-    #endregion
-
-    #region Concrete labels
-
-    /// <summary>
-    /// Задание на печать тестовой этикетки
-    /// </summary>
-    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
-    {
-    }
-
-    /// <summary>
-    /// Интерфейс определяет класс или структуру, которая будет
-    /// выдавать задание на печать этикетки оприходуемого товара
-    /// </summary>
-    public interface IProductLabelTask : IBaseLabelTask, IProductLabelData
-    {
-    }
-
-    #endregion
 }

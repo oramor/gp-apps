@@ -1,29 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib.Services.Print.Base
+﻿namespace Lib.Services.Print.Base
 {
-    public abstract class BaseLabel
+    public abstract class BaseLabel : ILabel
     {
-        abstract protected string LabelName { get; }
-        abstract public SupportedLabelSizeEnum SizeEnum { get; }
-        abstract public SupportedPrinterAdapterEnum PrinterAdapterEnum { get; }
+        abstract public SupportedLabelEnum LabelEnum { get; }
+        abstract public SupportedLabelSizeEnum LabelSizeEnum { get; }
+        abstract public SupportedDriverAdapterEnum DriverAdapterEnum { get; }
 
-        public string SizeName
+        public string Title => LabelName + ", " + LabelSizeName + " (драйвер " + DriverAdapterName + ")";
+
+        public string LabelName
         {
             get {
-                if (SizeEnum == SupportedLabelSizeEnum.W43xH25) return "43x25 mm";
+                if (LabelEnum == SupportedLabelEnum.TestLabel) return "Тестовая этикетка";
+                if (LabelEnum == SupportedLabelEnum.ProductLabel) return "Этикетка товара";
+                if (LabelEnum == SupportedLabelEnum.ProductBatchLabel) return "Этикетка партии товара";
                 return string.Empty;
             }
         }
 
-        public string PrinterAdapterName
+        public string LabelSizeName
         {
             get {
-                if (PrinterAdapterEnum == SupportedPrinterAdapterEnum.TscLib) return "TSCLib";
+                if (LabelSizeEnum == SupportedLabelSizeEnum.W43xH25) return "43x25 mm";
+                return string.Empty;
+            }
+        }
+
+        public string DriverAdapterName
+        {
+            get {
+                if (DriverAdapterEnum == SupportedDriverAdapterEnum.TscLib) return "TSCLib";
                 return string.Empty;
             }
         }
