@@ -42,8 +42,9 @@ namespace Lib.Services.Print
     public interface ICanPrintLabels
     {
         /// <summary>
-        /// Список системных принтеров используется для опредления порта драйвера,
-        /// на который нужно отправлять этикетку.
+        /// Список системных принтеров используется только для того, чтобы
+        /// помочь пользователю выбрать имя драйвера, на который нужно отправлять
+        /// задаление печати
         /// </summary>
         public IReadOnlyCollection<ISystemPrinterInfo> GetSystemPrinters();
         /// <summary>
