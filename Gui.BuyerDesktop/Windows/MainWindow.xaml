@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctx="clr-namespace:Gui.BuyerDesktop.Contexts"
         mc:Ignorable="d"
         Title="Менеджер маркировки v.1.0" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
@@ -63,8 +64,14 @@
           X2="{Binding ActualWidth, ElementName=MainPanel}"
           StrokeThickness="1" Panel.ZIndex="-1" Margin="0,-7,0,0"></Line>
         <StatusBar Height="20" Background="LightGray" DockPanel.Dock="Bottom"></StatusBar>
-        <StackPanel x:Name="TestPrinterBlock" DockPanel.Dock="Top" Width="400" Margin="0,35,0,0">
-            <Button 
+        <StackPanel x:Name="TestPrinterBlock"
+                    DockPanel.Dock="Top"
+                    Width="400"
+                    Margin="0,35,0,0">
+            <StackPanel.DataContext>
+                <ctx:TestLabelPrintContext/>
+            </StackPanel.DataContext>
+            <Button x:Name="PrintButton"
                     Height="45"
                     Background="#fcec5e" 
                     BorderBrush="Black" 
@@ -72,8 +79,8 @@
                     Margin="0,0,0,20"
                     FontFamily="{StaticResource BR}" 
                     FontSize="22"
-                Click="Button_Click">
-                Тестовая печать этикетки</Button>
+                Command="{Binding Path=PrintTestLabelCommand}"
+                Content="{Binding Path=PrintButtonTitle}"/>
             <GroupBox Header="Лог тестовой печати">
                 <TextBlock Margin="5,0,0,0" Foreground="#FF3551C1">
                     Нажмите кнопку печати или Enter...

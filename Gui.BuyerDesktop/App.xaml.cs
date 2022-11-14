@@ -53,7 +53,7 @@ namespace Gui.BuyerDesktop
             base.OnStartup(e);
             await host.StartAsync().ConfigureAwait(false);
 
-            var printers = GetSystemPrinters();
+            //var printers = GetSystemPrinters();
         }
 
         protected async override void OnExit(ExitEventArgs e)

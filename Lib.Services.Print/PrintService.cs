@@ -1,7 +1,5 @@
 ﻿using Lib.Services.Print.Labels;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Lib.Services.Print
 {
@@ -27,16 +25,16 @@ namespace Lib.Services.Print
 
         public void PrintLabel(ITestLabelTask labelTask)
         {
-            CallDriver(labelTask);            
+            CallDriver(labelTask);
         }
 
         private void CallDriver(IBaseLabelTask task)
         {
             var item = (from label in _labels
-                         where  label.LabelEnum == task.LabelSetup.LabelEnum &&
-                                label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
-                                label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum
-                         select label).FirstOrDefault();
+                        where label.LabelEnum == task.LabelSetup.LabelEnum &&
+                               label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
+                               label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum
+                        select label).FirstOrDefault();
 
             if (item == null) throw new ApplicationException("Not found label for this setup");
 
