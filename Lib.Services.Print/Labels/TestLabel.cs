@@ -12,7 +12,11 @@ namespace Lib.Services.Print.Labels
         public int Barcode { get; init; }
     }
 
-    public class TestLabelTask : BaseLabelTask, ITestLabelData
+    public interface ITestLabelTask: IBaseLabelTask, ITestLabelData
+    {
+    }
+
+    public class TestLabelTask : BaseLabelTask, ITestLabelTask
     {
         public string Text { get; init; } = string.Empty;
         public int Barcode { get; init; }

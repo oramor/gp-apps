@@ -2,20 +2,6 @@
 
 namespace Lib.Services.Print
 {
-
-
-    /// <summary>
-    /// Это статические классы, на уровне которых определяются методы,
-    /// реализующие печать этикетки на разных платформах и для разных
-    /// размеров. Для потребителей этот класс интересен тем, что предоставляет
-    /// коллекцию, которая содержит все поддерживаемые этикетки, а так же
-    /// делегаты с методами печати этих этикеток
-    /// </summary>
-    public interface ILabelSender
-    {
-        public IReadOnlyCollection<ILabel> GetLabels();
-    }
-
     /// <summary>
     /// Этот интерфейс долен быть реализован на уровне класса приложения, либо
     /// класса главной вьюмодели (AppContext, App.ctx), от которой наследуются
@@ -53,5 +39,13 @@ namespace Lib.Services.Print
         public string DriverName { get; init; }
         public string PrintPortName { get; init; }
         public int Priority { get; init; }
+    }
+
+    public interface IPrinter
+    {
+        public string Name { get; set; }
+        public string DriverName { get; set; }
+        public string PortName { get; set; }
+        public int Priority { get; set; }
     }
 }

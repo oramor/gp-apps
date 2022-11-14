@@ -30,7 +30,7 @@ namespace Lib.Services.Print
 
         private void CallDriver(IBaseLabelTask task)
         {
-            var item = (from label in _labels
+            ILabel? item = (from label in _labels
                         where label.LabelEnum == task.LabelSetup.LabelEnum &&
                                label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
                                label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum

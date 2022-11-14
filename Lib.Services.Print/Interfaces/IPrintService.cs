@@ -1,6 +1,6 @@
 ﻿using Lib.Services.Print.Labels;
 
-namespace Lib.Services.Print.Interfaces
+namespace Lib.Services.Print
 {
     public interface IPrintService
     {
