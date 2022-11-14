@@ -1,10 +1,10 @@
-﻿namespace Lib.Services.Print.Base
+﻿namespace Lib.Services.Print
 {
     public abstract class BaseLabel : ILabel
     {
-        abstract public SupportedLabelEnum LabelEnum { get; }
-        abstract public SupportedLabelSizeEnum LabelSizeEnum { get; }
-        abstract public SupportedDriverAdapterEnum DriverAdapterEnum { get; }
+        public SupportedLabelEnum LabelEnum { get; init; }
+        public SupportedLabelSizeEnum LabelSizeEnum { get; init; }
+        public SupportedDriverAdapterEnum DriverAdapterEnum { get; init; }
 
         public string Title => LabelName + ", " + LabelSizeName + " (драйвер " + DriverAdapterName + ")";
 

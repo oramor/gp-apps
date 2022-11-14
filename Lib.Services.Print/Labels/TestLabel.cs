@@ -1,5 +1,4 @@
 ﻿using Lib.Services.Print.Adapters;
-using Lib.Services.Print.Base;
 
 namespace Lib.Services.Print.Labels
 {
@@ -9,21 +8,26 @@ namespace Lib.Services.Print.Labels
     /// </summary>
     public interface ITestLabelData
     {
-        public string Text { get; set; }
-        public int Barcode { get; set; }
+        public string Text { get; init; }
+        public int Barcode { get; init; }
     }
 
-    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
+    public class TestLabelTask : BaseLabelTask, ITestLabelData
     {
+        public string Text { get; init; } = string.Empty;
+        public int Barcode { get; init; }
     }
 
     class TestLabel_W43xH25_TscLib : BaseLabel
     {
-        public override SupportedLabelEnum LabelEnum => SupportedLabelEnum.TestLabel;
-        public override SupportedLabelSizeEnum LabelSizeEnum => SupportedLabelSizeEnum.W43xH25;
-        public override SupportedDriverAdapterEnum DriverAdapterEnum => SupportedDriverAdapterEnum.TscLib;
+        public TestLabel_W43xH25_TscLib()
+        {
+            LabelEnum = SupportedLabelEnum.TestLabel;
+            LabelSizeEnum = SupportedLabelSizeEnum.W43xH25;
+            DriverAdapterEnum = SupportedDriverAdapterEnum.TscLib;
+        }
 
-        public static void ExecutePrint(ITestLabelTask labelTask)
+        public static void ExecutePrint(TestLabelTask labelTask)
         {
             TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
             TscLibAdapter.SetLabelSize(labelTask.LabelSetup.LabelSizeEnum);

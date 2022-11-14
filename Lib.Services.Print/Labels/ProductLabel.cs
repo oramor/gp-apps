@@ -1,5 +1,4 @@
 ﻿using Lib.Services.Print.Adapters;
-using Lib.Services.Print.Base;
 
 namespace Lib.Services.Print.Labels
 {
