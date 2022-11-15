@@ -82,23 +82,10 @@
                     FontSize="22"
                 Command="{Binding Path=PrintTestLabelCommand}"
                 Content="{Binding Path=PrintButtonTitle}"/>
-            <c:CustomGroupBox Header="Сетапы этикеток">
+            <c:CustomGroupBox Header="Сетапы этикеток"
+                              FontFamily="{StaticResource BR}">
                 sdsd
             </c:CustomGroupBox>
-            <GroupBox Header="Сетапы этикеток">
-                <ListBox>
-                    <ListBoxItem>
-                        <ListBoxItem.Content>
-                            54545
-                        </ListBoxItem.Content>
-                    </ListBoxItem>
-                    <ListBoxItem>
-                        <ListBoxItem.Content>
-                            54545
-                        </ListBoxItem.Content>
-                    </ListBoxItem>
-                </ListBox>
-            </GroupBox>
         </StackPanel>
         <DockPanel x:Name="OrdersBlock" Background="Aqua" DockPanel.Dock="Top" Visibility="Hidden">
             <TextBlock DockPanel.Dock="Left" Background="Bisque">5454555555555____</TextBlock>

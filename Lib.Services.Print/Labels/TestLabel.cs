@@ -35,8 +35,8 @@ namespace Lib.Services.Print.Labels
         {
             TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
             TscLibAdapter.SetLabelSize(labelTask.LabelSetup.LabelSizeEnum);
-            TscLibAdapter.TextLine(25, 25, labelTask.Text);
-            TscLibAdapter.Code128(25, 85, 72, labelTask.Barcode.ToString());
+            TscLibAdapter.TextLine(25, 15, labelTask.Text);
+            TscLibAdapter.Code128(25, 65, 72, labelTask.Barcode.ToString());
             TscLibAdapter.Print(labelTask.Copy);
         }
     }

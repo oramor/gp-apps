@@ -112,8 +112,8 @@ namespace Lib.Services.Print.Adapters
         public static void Code128(int pointX, int pointY, int height, string content)
         {
             var barcodeType = "128";
-            var textMode = BarcodeTextModeEnum.VisibleLeft.ToString();
-            var rotation = RotationModeEnum.Up.ToString();
+            var textMode = Convert.ToString((int)BarcodeTextModeEnum.VisibleLeft);
+            var rotation = Convert.ToString((int)RotationModeEnum.Up);
             var narrow = "3";
             var wide = "2";
 
@@ -122,13 +122,16 @@ namespace Lib.Services.Print.Adapters
 
         public static void Init(string printerName)
         {
-            _ = openport(printerName);
-            _ = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
-            _ = sendcommand("DENSITY 8"); // Sets the printing darkness
-            _ = sendcommand("DIRECTION 1");
+            int resultCode;
+            resultCode = openport(printerName);
+            resultCode = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
+            resultCode = sendcommand("DENSITY 8"); // Sets the printing darkness
+            resultCode = sendcommand("DIRECTION 1");
             //_ = sendcommand("SET TEAR ON");
-            _ = sendcommand("CODEPAGE UTF-8");
-            _ = clearbuffer();
+            resultCode = sendcommand("CODEPAGE UTF-8");
+            resultCode = clearbuffer();
+
+            //if (resultCode == 0) throw 
         }
 
         public static void TextLine(int pointX, int pointY, string content, int fontHeight = 40)
