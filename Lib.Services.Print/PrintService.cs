@@ -11,7 +11,7 @@ namespace Lib.Services.Print
         public PrintService()
         {
             _labels.Add(new TestLabel_W43xH25_TscLib());
-            _labels.Add(new ProductLabel_W43xH25_TscLib());
+            //_labels.Add(new ProductLabel_W43xH25_TscLib());
 
             _supportedLabels = new ReadOnlyCollection<ILabel>((IList<ILabel>)_labels);
         }
@@ -31,10 +31,10 @@ namespace Lib.Services.Print
         private void CallDriver(IBaseLabelTask task)
         {
             ILabel? item = (from label in _labels
-                        where label.LabelEnum == task.LabelSetup.LabelEnum &&
-                               label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
-                               label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum
-                        select label).FirstOrDefault();
+                            where label.LabelEnum == task.LabelSetup.LabelEnum &&
+                                   label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
+                                   label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum
+                            select label).FirstOrDefault();
 
             if (item == null) throw new ApplicationException("Not found label for this setup");
 

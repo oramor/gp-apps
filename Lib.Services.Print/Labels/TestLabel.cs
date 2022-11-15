@@ -8,18 +8,18 @@ namespace Lib.Services.Print.Labels
     /// </summary>
     public interface ITestLabelData
     {
-        public string Text { get; init; }
-        public int Barcode { get; init; }
+        public string Text { get; set; }
+        public int Barcode { get; set; }
     }
 
-    public interface ITestLabelTask: IBaseLabelTask, ITestLabelData
+    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
     {
     }
 
     public class TestLabelTask : BaseLabelTask, ITestLabelTask
     {
-        public string Text { get; init; } = string.Empty;
-        public int Barcode { get; init; }
+        public string Text { get; set; } = string.Empty;
+        public int Barcode { get; set; }
     }
 
     class TestLabel_W43xH25_TscLib : BaseLabel

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctx="clr-namespace:Gui.BuyerDesktop.Contexts"
+        xmlns:c="clr-namespace:Lib.Wpf.Controls;assembly=Lib.Wpf.Controls"
         mc:Ignorable="d"
         Title="Менеджер маркировки v.1.0" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
@@ -64,7 +65,7 @@
           X2="{Binding ActualWidth, ElementName=MainPanel}"
           StrokeThickness="1" Panel.ZIndex="-1" Margin="0,-7,0,0"></Line>
         <StatusBar Height="20" Background="LightGray" DockPanel.Dock="Bottom"></StatusBar>
-        <StackPanel x:Name="TestPrinterBlock"
+        <StackPanel x:Name="testLabelPrintBlock"
                     DockPanel.Dock="Top"
                     Width="400"
                     Margin="0,35,0,0">
@@ -81,10 +82,22 @@
                     FontSize="22"
                 Command="{Binding Path=PrintTestLabelCommand}"
                 Content="{Binding Path=PrintButtonTitle}"/>
-            <GroupBox Header="Лог тестовой печати">
-                <TextBlock Margin="5,0,0,0" Foreground="#FF3551C1">
-                    Нажмите кнопку печати или Enter...
-                </TextBlock>
+            <c:CustomGroupBox Header="Сетапы этикеток">
+                sdsd
+            </c:CustomGroupBox>
+            <GroupBox Header="Сетапы этикеток">
+                <ListBox>
+                    <ListBoxItem>
+                        <ListBoxItem.Content>
+                            54545
+                        </ListBoxItem.Content>
+                    </ListBoxItem>
+                    <ListBoxItem>
+                        <ListBoxItem.Content>
+                            54545
+                        </ListBoxItem.Content>
+                    </ListBoxItem>
+                </ListBox>
             </GroupBox>
         </StackPanel>
         <DockPanel x:Name="OrdersBlock" Background="Aqua" DockPanel.Dock="Top" Visibility="Hidden">
