@@ -1,4 +1,5 @@
-﻿using Lib.Services.Print;
+﻿using Lib.Core;
+using Lib.Services.Print;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -36,7 +37,13 @@ namespace Gui.BuyerDesktop
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (e.Exception.GetType() == typeof(LocalizedException))
+            {
+                MessageBox.Show((e.Exception as LocalizedException).GetLocalizeMessage(SupportedCulture.Ru_RU), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else
+            {
+                MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             if (IsProductionMode)
             {

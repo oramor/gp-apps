@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Lib.Core;
 
 namespace Lib.Services.Print.Adapters
 {
@@ -122,16 +123,25 @@ namespace Lib.Services.Print.Adapters
 
         public static void Init(string printerName)
         {
-            int resultCode;
-            resultCode = openport(printerName);
-            resultCode = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
-            resultCode = sendcommand("DENSITY 8"); // Sets the printing darkness
-            resultCode = sendcommand("DIRECTION 1");
-            //_ = sendcommand("SET TEAR ON");
-            resultCode = sendcommand("CODEPAGE UTF-8");
-            resultCode = clearbuffer();
+            int err;
 
-            //if (resultCode == 0) throw 
+            err = openport(printerName);
+            err = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
+            err = sendcommand("DENSITY 8"); // Sets the printing darkness
+            err = sendcommand("DIRECTION 1");
+            //_ = sendcommand("SET TEAR ON");
+            err = sendcommand("CODEPAGE UTF-8");
+            err = clearbuffer();
+
+            if (err != 0)
+            {
+                var node = new CultureNode() {
+                    Ru_RU = "Ошибка при обращении к API драйвера TSC (TscDll)",
+                    En_US = "The Error when TSC driver (TscDll) has been called"
+                };
+
+                throw new LocalizedException(node);
+            } 
         }
 
         public static void TextLine(int pointX, int pointY, string content, int fontHeight = 40)
@@ -141,7 +151,19 @@ namespace Lib.Services.Print.Adapters
             var rotation = 0;
             var fontStyle = 2; // Bold
 
-            _ = windowsfont(pointX, pointY, fontHeight, rotation, fontStyle, underlineMode, fontFace, content);
+            int err;
+
+            err = windowsfont(pointX, pointY, fontHeight, rotation, fontStyle, underlineMode, fontFace, content);
+
+            if (err != 0)
+            {
+                var node = new CultureNode() {
+                    Ru_RU = "TscDll: Ошибка при вызове команды печати текстовой строки.",
+                    En_US = "TscDll: Got error when text line command has been called."
+                };
+
+                throw new LocalizedException(node);
+            }
         }
     }
 }
