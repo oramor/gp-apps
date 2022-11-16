@@ -25,23 +25,20 @@ namespace Gui.BuyerDesktop
         /// </summary>
         public static bool IsDesignMode { get; private set; } = true;
 
-        #region Host
-
-        /// <summary>
-        /// Таким образом, хост будет создан единожды при первом обращении к нему.
-        /// </summary>
-        private static IHost? _host;
-        public static IHost Host => _host ??= Program.CreateHostBuilder().Build();
-
-        #endregion
+        #region Error Handler
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            if (e.Exception.GetType() == typeof(LocalizedException))
+            var err = e.Exception.InnerException;
+
+            if (err is LocalizedException exception)
             {
-                MessageBox.Show((e.Exception as LocalizedException).GetLocalizeMessage(SupportedCulture.Ru_RU), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            } else
+                // TODO Определять язык по контексту приложения
+                MessageBox.Show(exception.GetLocalizeMessage(SupportedCulture.Ru_RU), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
             {
+                // TODO Так же добавить выбор из дефолтного языка. Можно создать класс Culture.Translate()
                 MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
@@ -50,6 +47,8 @@ namespace Gui.BuyerDesktop
                 e.Handled = true;
             }
         }
+
+        #endregion
 
         #region Event handlers
         protected async override void OnStartup(StartupEventArgs e)
@@ -73,6 +72,12 @@ namespace Gui.BuyerDesktop
         #endregion
 
         #region Host infrastructure
+
+        /// <summary>
+        /// Таким образом, хост будет создан единожды при первом обращении к нему.
+        /// </summary>
+        private static IHost? _host;
+        public static IHost Host => _host ??= Program.CreateHostBuilder().Build();
 
         /// <summary>
         /// Метод добавляет сервисы во "встроенный" DI-контейнер. Вызывается при сборке

@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using Lib.Core;
+﻿using Lib.Core;
+using System.Runtime.InteropServices;
 
 namespace Lib.Services.Print.Adapters
 {
@@ -123,25 +123,25 @@ namespace Lib.Services.Print.Adapters
 
         public static void Init(string printerName)
         {
-            int err;
+            int err = 1;
 
-            err = openport(printerName);
-            err = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
-            err = sendcommand("DENSITY 8"); // Sets the printing darkness
-            err = sendcommand("DIRECTION 1");
-            //_ = sendcommand("SET TEAR ON");
-            err = sendcommand("CODEPAGE UTF-8");
-            err = clearbuffer();
-
+            //err = openport(printerName);
             if (err != 0)
             {
-                var node = new CultureNode() {
-                    Ru_RU = "Ошибка при обращении к API драйвера TSC (TscDll)",
-                    En_US = "The Error when TSC driver (TscDll) has been called"
+                var node = new ExeptionCultureNode() {
+                    Ru_RU = "TscDll: Не удалось выполнить команду openport.",
+                    En_US = "TscDll: Filed to complete openport command."
                 };
 
                 throw new LocalizedException(node);
-            } 
+            }
+
+            _ = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
+            _ = sendcommand("DENSITY 8"); // Sets the printing darkness
+            _ = sendcommand("DIRECTION 1");
+            //_ = sendcommand("SET TEAR ON");
+            _ = sendcommand("CODEPAGE UTF-8");
+            _ = clearbuffer();
         }
 
         public static void TextLine(int pointX, int pointY, string content, int fontHeight = 40)
@@ -157,7 +157,7 @@ namespace Lib.Services.Print.Adapters
 
             if (err != 0)
             {
-                var node = new CultureNode() {
+                var node = new ExeptionCultureNode() {
                     Ru_RU = "TscDll: Ошибка при вызове команды печати текстовой строки.",
                     En_US = "TscDll: Got error when text line command has been called."
                 };

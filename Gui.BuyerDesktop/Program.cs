@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Gui.BuyerDesktop
 {
@@ -12,7 +12,17 @@ namespace Gui.BuyerDesktop
             var app = new App();
             app.InitializeComponent();
             app.Run();
+
+            //AppDomain currentDomain = AppDomain.CurrentDomain;
+            //currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExeptionHandler);
+
         }
+
+        //static void UnhandledExeptionHandler(object sender, UnhandledExceptionEventArgs args)
+        //{
+        //    LocalizedException e = (LocalizedException)args.ExceptionObject;
+        //    MessageBox.Show(e.GetLocalizeMessage(SupportedCulture.Ru_RU));
+        //}
 
         public static IHostBuilder CreateHostBuilder()
         {
