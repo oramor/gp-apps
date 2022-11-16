@@ -6,9 +6,4 @@
         ProductLabel,
         ProductBatchLabel
     }
-
-    public enum SupportedDriverAdapterEnum
-    {
-        TscLib
-    }
 }
