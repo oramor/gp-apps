@@ -1,5 +1,4 @@
-﻿using Lib.Core;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace Lib.Services.Print.Adapters
 {
@@ -123,18 +122,18 @@ namespace Lib.Services.Print.Adapters
 
         public static void Init(string printerName)
         {
-            int err = 1;
+            int err;
 
-            //err = openport(printerName);
-            if (err != 0)
-            {
-                var node = new ExeptionCultureNode() {
-                    Ru_RU = "TscDll: Не удалось выполнить команду openport.",
-                    En_US = "TscDll: Filed to complete openport command."
-                };
+            err = openport(printerName);
+            //if (err != 0)
+            //{
+            //    var node = new ExeptionCultureNode() {
+            //        Ru_RU = "TscDll: Не удалось выполнить команду openport.",
+            //        En_US = "TscDll: Filed to complete openport command."
+            //    };
 
-                throw new LocalizedException(node);
-            }
+            //    throw new LocalizedException(node);
+            //}
 
             _ = sendcommand("SEED 4"); // For TTP225: 2 3 4 5
             _ = sendcommand("DENSITY 8"); // Sets the printing darkness
@@ -155,15 +154,15 @@ namespace Lib.Services.Print.Adapters
 
             err = windowsfont(pointX, pointY, fontHeight, rotation, fontStyle, underlineMode, fontFace, content);
 
-            if (err != 0)
-            {
-                var node = new ExeptionCultureNode() {
-                    Ru_RU = "TscDll: Ошибка при вызове команды печати текстовой строки.",
-                    En_US = "TscDll: Got error when text line command has been called."
-                };
+            //if (err != 0)
+            //{
+            //    var node = new ExeptionCultureNode() {
+            //        Ru_RU = "TscDll: Ошибка при вызове команды печати текстовой строки.",
+            //        En_US = "TscDll: Got error when text line command has been called."
+            //    };
 
-                throw new LocalizedException(node);
-            }
+            //    throw new LocalizedException(node);
+            //}
         }
     }
 }

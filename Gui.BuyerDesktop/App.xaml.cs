@@ -35,16 +35,17 @@ namespace Gui.BuyerDesktop
             {
                 // TODO Определять язык по контексту приложения
                 MessageBox.Show(exception.GetLocalizeMessage(SupportedCulture.Ru_RU), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
             }
             else
             {
                 // TODO Так же добавить выбор из дефолтного языка. Можно создать класс Culture.Translate()
                 MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
 
-            if (IsProductionMode)
-            {
-                e.Handled = true;
+                if (IsProductionMode)
+                {
+                    e.Handled = true;
+                }
             }
         }
 
@@ -110,38 +111,20 @@ namespace Gui.BuyerDesktop
 
         #region ICanPrintLabels implements
 
-        public System.Collections.Generic.IEnumerable<ISystemPrinterInfo> GetSystemPrinters()
+        public System.Collections.Generic.IEnumerable<IPrinter> GetSystemPrinters()
         {
-            var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => {
-                var printerInfo = new SystemPrinterInfo() {
+            var printers = new LocalPrintServer().GetPrintQueues().Select(v => new SystemPrinter() {
                     Name = v.Name,
                     DriverName = v.QueueDriver.Name,
-                    PrintPortName = v.QueuePort.Name,
+                    PortName = v.QueuePort.Name,
                     Priority = v.Priority
-                };
+                });
 
-                return printerInfo;
-            });
-
-            //var printersColl = new LocalPrintServer().GetPrintQueues().Select(v => v);
-
-            return printersColl;
+            return printers;
         }
-
 
         #endregion
     }
 
-    public class SystemPrinterInfo : ISystemPrinterInfo
-    {
-        public string Name { get; init; } = String.Empty;
-        public string DriverName { get; init; } = String.Empty;
-        public string PrintPortName { get; init; } = String.Empty;
-        //public bool IsOffline { get; init; }
-        //public bool IsNotAvailable { get; init; }
-        //public PrintQueueStatus Status { get; init; }
-        //public bool IsHidden { get; init; }
-        //public bool IsRawOnlyEnabled { get; init; }
-        public int Priority { get; init; }
-    }
+
 }
