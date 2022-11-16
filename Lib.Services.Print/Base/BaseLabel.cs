@@ -2,36 +2,25 @@
 {
     public abstract class BaseLabel : ILabel
     {
-        public SupportedLabelEnum LabelEnum { get; init; }
-        public SupportedLabelSizeEnum LabelSizeEnum { get; init; }
-        public SupportedDriverAdapterEnum DriverAdapterEnum { get; init; }
+        public required SupportedLabelEnum SupportedLabelKey { get; init; }
+        public required ILabelSize LabelSize { get; init; }
+        public required IDriverAdapter DriverAdapter { get; init; }
 
-        public string Title => LabelName + ", " + LabelSizeName + " (драйвер " + DriverAdapterName + ")";
-
-        public string LabelName
+        public string Title
         {
             get {
-                if (LabelEnum == SupportedLabelEnum.TestLabel) return "Тестовая этикетка";
-                if (LabelEnum == SupportedLabelEnum.ProductLabel) return "Этикетка товара";
-                if (LabelEnum == SupportedLabelEnum.ProductBatchLabel) return "Этикетка партии товара";
-                return string.Empty;
+                var labelName = GetLabelName();
+                var driver = " (драйвер " + DriverAdapter.Title + ")";
+                return labelName + ", " + LabelSize.Title + driver;
             }
         }
 
-        public string LabelSizeName
+        private string GetLabelName()
         {
-            get {
-                if (LabelSizeEnum == SupportedLabelSizeEnum.W43xH25) return "43x25 mm";
-                return string.Empty;
-            }
-        }
-
-        public string DriverAdapterName
-        {
-            get {
-                if (DriverAdapterEnum == SupportedDriverAdapterEnum.TscLib) return "TSCLib";
-                return string.Empty;
-            }
+            if (LabelId == SupportedLabelEnum.TestLabel) return "Тестовая этикетка";
+            if (LabelId == SupportedLabelEnum.ProductLabel) return "Этикетка товара";
+            if (LabelId == SupportedLabelEnum.ProductBatchLabel) return "Этикетка партии товара";
+            return "<Unsupported label>";
         }
     }
 }

@@ -3,11 +3,8 @@
     public interface ILabel
     {
         public string Title { get; }
-        public SupportedLabelEnum LabelEnum { get; init; }
-        public SupportedLabelSizeEnum LabelSizeEnum { get; init; }
-        public SupportedDriverAdapterEnum DriverAdapterEnum { get; init; }
-        public string LabelName { get; }
-        public string LabelSizeName { get; }
-        public string DriverAdapterName { get; }
+        public SupportedLabelEnum LabelId { get; init; }
+        public ILabelSize LabelSize { get; init; }
+        public IDriverAdapter DriverAdapter { get; init; }
     }
 }

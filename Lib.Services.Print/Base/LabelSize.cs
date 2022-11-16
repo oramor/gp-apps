@@ -2,10 +2,10 @@
 {
     internal class LabelSize : ILabelSize
     {
-        public string LabelSizeTitle => "W" + LabelSizeWidth.ToString() + "H" + LabelSizeHeight.ToString();
+        public string Title => "W" + Width.ToString() + "H" + Height.ToString();
 
         public SupportedLabelSizeEnum LabelSizeId { get; set; }
-        public int LabelSizeHeight { get; set; }
-        public int LabelSizeWidth { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
     }
 }

@@ -3,6 +3,6 @@
     internal class DriverAdapter : IDriverAdapter
     {
         public SupportedDriverAdapterEnum DriverAdapterId { get; set; }
-        public string DriverAdapterTitle { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }

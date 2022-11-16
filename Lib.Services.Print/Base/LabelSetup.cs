@@ -8,8 +8,9 @@ namespace Lib.Services.Print
 {
     public class LabelSetup : BaseLabel, ILabelSetup
     {
-        public string PrinterName { get; init; }
-        public string DriverName { get; init; }
-        public string PortName { get; init; }
+        public SupportedLabelEnum LabelId { get; init; }
+        public required string PrinterName { get; init; }
+        public required string DriverName { get; init; }
+        public string PortName { get; init; } = string.Empty;
     }
 }

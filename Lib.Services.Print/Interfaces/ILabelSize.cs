@@ -13,9 +13,9 @@ namespace Lib.Services.Print
 
     public interface ILabelSize
     {
-        public string LabelSizeTitle { get; } // Dynamic generation
+        public string Title { get; } // Dynamic generation
         public SupportedLabelSizeEnum LabelSizeId { get; set; }
-        public int LabelSizeHeight { get; set; }
-        public int LabelSizeWidth { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
     }
 }

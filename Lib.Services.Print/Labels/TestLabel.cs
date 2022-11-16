@@ -22,13 +22,13 @@ namespace Lib.Services.Print.Labels
         public int Barcode { get; set; }
     }
 
-    class TestLabel_W43xH25_TscLib : BaseLabel
+    class TestLabel_W43xH25_TscLib : BaseLabelImplement
     {
         public TestLabel_W43xH25_TscLib()
         {
-            LabelEnum = SupportedLabelEnum.TestLabel;
-            LabelSizeEnum = SupportedLabelSizeEnum.W43xH25;
-            DriverAdapterEnum = SupportedDriverAdapterEnum.TscLib;
+            LabelId = SupportedLabelEnum.TestLabel;
+            LabelSizeId = SupportedLabelSizeEnum.W43xH25;
+            DriverAdapterId = SupportedDriverAdapterEnum.TscLib;
         }
 
         public static void ExecutePrint(TestLabelTask labelTask)

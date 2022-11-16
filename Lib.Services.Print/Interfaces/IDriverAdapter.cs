@@ -8,6 +8,6 @@
     public interface IDriverAdapter
     {
         public SupportedDriverAdapterEnum DriverAdapterId { get; set; }
-        public string DriverAdapterTitle { get; set; }
+        public string Title { get; set; }
     }
 }
