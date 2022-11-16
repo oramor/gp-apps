@@ -8,8 +8,8 @@ namespace Lib.Services.Print
 {
     public abstract class BaseLabelImplement : ILabelImplement
     {
-        public SupportedLabelEnum LabelId { get; init; }
-        public SupportedLabelSizeEnum LabelSizeId { get; init; }
-        public SupportedDriverAdapterEnum DriverAdapterId { get; init; }
+        public CommonLabelEnum CommonLabelKey { get; init; }
+        public LabelSizeEnum LabelSizeKey { get; init; }
+        public DriverAdapterEnum DriverAdapterKey { get; init; }
     }
 }

@@ -26,9 +26,9 @@ namespace Lib.Services.Print.Labels
     {
         public TestLabel_W43xH25_TscLib()
         {
-            LabelId = SupportedLabelEnum.TestLabel;
-            LabelSizeId = SupportedLabelSizeEnum.W43xH25;
-            DriverAdapterId = SupportedDriverAdapterEnum.TscLib;
+            CommonLabelKey = CommonLabelEnum.TestLabel;
+            LabelSizeKey = LabelSizeEnum.W43xH25;
+            DriverAdapterKey = DriverAdapterEnum.TscLib;
         }
 
         public static void ExecutePrint(TestLabelTask labelTask)

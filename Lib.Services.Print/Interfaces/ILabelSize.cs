@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Lib.Services.Print
 {
-    public enum SupportedLabelSizeEnum
+    public enum LabelSizeEnum
     {
         W43xH25
     }
 
     public interface ILabelSize
     {
-        public string Title { get; } // Dynamic generation
-        public SupportedLabelSizeEnum LabelSizeId { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public string Title { get; }
+        public LabelSizeEnum Key { get; init; }
+        public int Height { get; init; }
+        public int Width { get; init; }
     }
 }

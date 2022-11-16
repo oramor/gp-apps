@@ -1,6 +1,6 @@
 ﻿namespace Lib.Services.Print
 {
-    public enum SupportedLabelEnum
+    public enum CommonLabelEnum
     {
         TestLabel,
         ProductLabel,

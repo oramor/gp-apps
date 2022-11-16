@@ -4,8 +4,8 @@
     {
         public string Title => "W" + Width.ToString() + "H" + Height.ToString();
 
-        public SupportedLabelSizeEnum LabelSizeId { get; set; }
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public required LabelSizeEnum Key { get; init; }
+        public required int Height { get; init; }
+        public required int Width { get; init; }
     }
 }

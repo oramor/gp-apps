@@ -12,8 +12,8 @@ namespace Lib.Services.Print
     /// </summary>
     public interface ILabelImplement
     {
-        public SupportedLabelEnum LabelId { get; init; }
-        public SupportedLabelSizeEnum LabelSizeId { get; init; }
-        public SupportedDriverAdapterEnum DriverAdapterId { get; init; }
+        public CommonLabelEnum LabelKey { get; init; }
+        public LabelSizeEnum LabelSizeKey { get; init; }
+        public DriverAdapterEnum DriverAdapterKey { get; init; }
     }
 }

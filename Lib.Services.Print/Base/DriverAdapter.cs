@@ -1,8 +1,15 @@
 ﻿namespace Lib.Services.Print
 {
-    internal class DriverAdapter : IDriverAdapter
+    public class DriverAdapter : IDriverAdapter
     {
-        public SupportedDriverAdapterEnum DriverAdapterId { get; set; }
-        public string Title { get; set; } = string.Empty;
+        public required DriverAdapterEnum Key { get; init; }
+        
+        public string Title
+        {
+            get {
+                if (Key == DriverAdapterEnum.TscLib) return "TSCLib";
+                return string.Empty;
+            }
+        }
     }
 }

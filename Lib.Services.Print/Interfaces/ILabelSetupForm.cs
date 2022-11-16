@@ -10,6 +10,6 @@
     {
         public string[] GetSupportedLabels();
         public string[] GetSupportedDrivers();
-        public string[] GetSupportedSizes(SupportedLabelEnum label, SupportedDriverAdapterEnum driver);
+        public string[] GetSupportedSizes(CommonLabelEnum label, DriverAdapterEnum driver);
     }
 }

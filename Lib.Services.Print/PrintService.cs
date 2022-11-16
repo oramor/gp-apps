@@ -14,10 +14,10 @@ namespace Lib.Services.Print
             _supportedLabels.Add(new TestLabel_W43xH25_TscLib());
 
             // Fill drivers 
-            _supportedDriverAdapters.Add(new DriverAdapter() { DriverAdapterId = SupportedDriverAdapterEnum.TscLib, DriverAdapterTitle = "TSC Driver" });
+            _supportedDriverAdapters.Add(new DriverAdapter() { DriverAdapterId = DriverAdapterEnum.TscLib, DriverAdapterTitle = "TSC Driver" });
 
             // Fill sizes
-            _supportedLabelSizes.Add(new LabelSize() { LabelSizeWidth = 43, LabelSizeHeight = 25, LabelSizeId = SupportedLabelSizeEnum.W43xH25 });
+            _supportedLabelSizes.Add(new LabelSize() { LabelSizeWidth = 43, LabelSizeHeight = 25, LabelSizeId = LabelSizeEnum.W43xH25 });
         }
 
         public IList<ILabel> SupportedLabels => _supportedLabels;
