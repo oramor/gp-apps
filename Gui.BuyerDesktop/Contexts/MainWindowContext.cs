@@ -45,20 +45,6 @@ namespace Gui.BuyerDesktop.Contexts
         {
             public IReadOnlyCollection<IPrinter> SystemPrinters { get; set; }
 
-            public string[] GetSupportedDrivers()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string[] GetSupportedLabels()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string[] GetSupportedSizes(SupportedLabelEnum label, SupportedDriverAdapterEnum driver)
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

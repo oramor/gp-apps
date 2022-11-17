@@ -3,8 +3,8 @@
     public abstract class BaseLabel : ILabel
     {
         public required ICommonLabel CommonLabel { get; init; }
-        public required ILabelSize LabelSize { get; init; }
-        public required IDriverAdapter DriverAdapter { get; init; }
+        public ILabelSize LabelSize { get; init; }
+        public IDriverAdapter DriverAdapter { get; init; }
 
         public string Title
         {

@@ -8,8 +8,10 @@ namespace Lib.Services.Print
 {
     public static class DriverAdapterFactory
     {
-        public static IDriverAdapter TscLib => new DriverAdapter() {
+        private static readonly IDriverAdapter _tscLib = new DriverAdapter() {
             Key = DriverAdapterEnum.TscLib
         };
+
+        public static IDriverAdapter TscLib => _tscLib;
     }
 }

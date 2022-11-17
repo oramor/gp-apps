@@ -14,8 +14,9 @@
     /// сетапов по одной этикетке, пришлось бы выводить пользователю запрос,
     /// чтобы определиться, какой метод печати следует выбрать.
     /// </summary>
-    public interface ILabelSetup : ILabel
+    public interface ILabelSetup
     {
+        public ISupportedLabel SupportedLabel { get; init; }
         public string PrinterName { get; init; }
         public string DriverName { get; init; }
         public string PortName { get; init; }

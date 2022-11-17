@@ -101,12 +101,9 @@ namespace Lib.Services.Print.Adapters
             _ = closeport();
         }
 
-        public static void SetLabelSize(LabelSizeEnum size)
+        public static void SetLabelSize(ILabelSize obj)
         {
-            _ = size switch {
-                LabelSizeEnum.W43xH25 => sendcommand("SIZE 43 mm, 25 mm"),
-                _ => throw new ArgumentException($"Unsupported label size code {size}"),
-            };
+            _ = sendcommand(obj.TsplCommand);
         }
 
         public static void Code128(int pointX, int pointY, int height, string content)

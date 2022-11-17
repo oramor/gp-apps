@@ -4,25 +4,15 @@ namespace Lib.Services.Print
 {
     public class PrintService : IPrintService
     {
-        private readonly IList<ILabel> _supportedLabels = new List<ILabel>();
-        private readonly IList<IDriverAdapter> _supportedDriverAdapters = new List<IDriverAdapter>();
-        private readonly IList<ILabelSize> _supportedLabelSizes = new List<ILabelSize>();
+        private readonly IList<ISupportedLabel> _supportedLabels = new List<ISupportedLabel>();
 
         public PrintService()
         {
             // Fill labels
             _supportedLabels.Add(new TestLabel_W43xH25_TscLib());
-
-            // Fill drivers 
-            _supportedDriverAdapters.Add(new DriverAdapter() { DriverAdapterId = DriverAdapterEnum.TscLib, DriverAdapterTitle = "TSC Driver" });
-
-            // Fill sizes
-            _supportedLabelSizes.Add(new LabelSize() { LabelSizeWidth = 43, LabelSizeHeight = 25, LabelSizeId = LabelSizeEnum.W43xH25 });
         }
 
-        public IList<ILabel> SupportedLabels => _supportedLabels;
-        public IList<ILabelSize> SupportedLabelSizes => _supportedLabelSizes;
-        public IList<IDriverAdapter> SupportedDriverAdapters => _supportedDriverAdapters;
+        public IList<ISupportedLabel> SupportedLabels => _supportedLabels;
 
         public void PrintLabel(IProductLabelTask labelTask)
         {
@@ -36,10 +26,10 @@ namespace Lib.Services.Print
 
         private void CallDriver(IBaseLabelTask task)
         {
-            ILabel? item = (from label in _supportedLabels
-                            where label.LabelEnum == task.LabelSetup.LabelEnum &&
-                                   label.LabelSizeEnum == task.LabelSetup.LabelSizeEnum &&
-                                   label.DriverAdapterEnum == task.LabelSetup.DriverAdapterEnum
+            ISupportedLabel? item = (from label in _supportedLabels
+                            where label.CommonLabel == task.LabelSetup.SupportedLabel.CommonLabel &&
+                                   label.LabelSize == task.LabelSetup.SupportedLabel.LabelSize &&
+                                   label.DriverAdapter == task.LabelSetup.SupportedLabel.DriverAdapter
                             select label).FirstOrDefault();
 
             if (item == null) throw new ApplicationException("Not found supported label for this setup");

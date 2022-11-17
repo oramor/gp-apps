@@ -8,8 +8,10 @@ namespace Lib.Services.Print
 {
     public static class CommonLabelFactory
     {
-        public static ICommonLabel TestLabel => new CommonLabel() {
+        private readonly static ICommonLabel _testLabel = new CommonLabel() {
             Key = CommonLabelEnum.TestLabel
         };
+
+        public static ICommonLabel TestLabel => _testLabel;
     }
 }

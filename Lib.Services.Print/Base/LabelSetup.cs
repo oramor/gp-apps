@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lib.Services.Print
 {
-    public class LabelSetup : BaseLabel, ILabelSetup
+    public class LabelSetup : ILabelSetup
     {
-        public CommonLabelEnum CommonLabelKey { get; init; }
+        public required ISupportedLabel SupportedLabel { get; init; }
         public required string PrinterName { get; init; }
         public required string DriverName { get; init; }
         public string PortName { get; init; } = string.Empty;

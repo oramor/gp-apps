@@ -17,5 +17,6 @@ namespace Lib.Services.Print
         public LabelSizeEnum Key { get; init; }
         public int Height { get; init; }
         public int Width { get; init; }
+        public string TsplCommand { get; init; }
     }
 }

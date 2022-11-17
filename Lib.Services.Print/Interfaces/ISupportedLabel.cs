@@ -10,10 +10,10 @@ namespace Lib.Services.Print
     /// Типизирует классы, которые непосредственно реализуют
     /// печать этикеток через взаимодействие с драйвером
     /// </summary>
-    public interface ILabelImplement
+    public interface ISupportedLabel
     {
-        public CommonLabelEnum LabelKey { get; init; }
-        public LabelSizeEnum LabelSizeKey { get; init; }
-        public DriverAdapterEnum DriverAdapterKey { get; init; }
+        public ICommonLabel CommonLabel { get; init; }
+        public ILabelSize LabelSize { get; init; }
+        public IDriverAdapter DriverAdapter { get; init; }
     }
 }

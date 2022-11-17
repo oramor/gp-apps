@@ -7,5 +7,6 @@
         public required LabelSizeEnum Key { get; init; }
         public required int Height { get; init; }
         public required int Width { get; init; }
+        public required string TsplCommand { get; init; }
     }
 }

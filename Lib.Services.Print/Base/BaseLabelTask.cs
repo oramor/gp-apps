@@ -8,7 +8,7 @@ namespace Lib.Services.Print
 {
     public abstract class BaseLabelTask : IBaseLabelTask
     {
-        public ILabelSetup LabelSetup { get; init; }
+        public required ILabelSetup LabelSetup { get; init; }
         public int Copy { get; init; } = 1;
     }
 }
