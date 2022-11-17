@@ -19,6 +19,6 @@ namespace Lib.Services.Print
         /// сформировать коллекцию, в которой этикетка сопоставлена с драйвером
         /// принтера.
         /// </summary>
-        public IReadOnlyCollection<ISupportedLabel> SupportedLabels { get; }
+        public IList<ISupportedLabel> SupportedLabels { get; }
     }
 }

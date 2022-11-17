@@ -33,5 +33,14 @@ namespace Gui.BuyerDesktop.Contexts
         #endregion
 
         public ICommand PrintTestLabelCommand => new PrintTestLabelCommand(this);
+
+        /// <summary>
+        /// Этот метод гарантирует создание контекста для формы, которая используется
+        /// для добавления/редактирования сетапа этикетки. Если в метод передается
+        /// инстанс labelSetup, форма считается открытой для редактирования. Соответственно,
+        /// конструктор обеспечит заполнение полей по умолчанию. От этого, в том числе,
+        /// может зависеть содержимое кнопки (создать/сохранить).
+        /// </summary>
+        //public void ShowLabelSetupForm(ILabelSetupForm? labelSetup);
     }
 }

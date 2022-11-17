@@ -15,10 +15,12 @@ namespace Gui.BuyerDesktop.Commands
 
         public override void Execute(object? parameter)
         {
+            var printer = App.Host.Services.GetService(typeof(IPrintService)) as IPrintService;
+
+            ISupportedLabel label = printer?.SupportedLabels[0];
+
             var labelSetup = new LabelSetup() {
-                LabelEnum = SupportedLabelEnum.TestLabel,
-                LabelSizeEnum = SupportedLabelSizeEnum.W43xH25,
-                DriverAdapterEnum = SupportedDriverAdapterEnum.TscLib,
+                SupportedLabel = label,
                 PrinterName = "TSC TTP-225",
                 DriverName = "TSC TTP-225",
                 PortName = ""
@@ -30,7 +32,7 @@ namespace Gui.BuyerDesktop.Commands
                 Barcode = _context.Barcode,
             };
 
-            var printer = App.Host.Services.GetService(typeof(IPrintService)) as IPrintService;
+
             printer?.PrintLabel(labelTask);
         }
     }

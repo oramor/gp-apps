@@ -1,4 +1,5 @@
-﻿using Lib.Core;
+﻿using Gui.BuyerDesktop.Contexts;
+using Lib.Core;
 using Lib.Services.Print;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -92,6 +93,7 @@ namespace Gui.BuyerDesktop
             /// инстанс PrintService, что позволит ограничиться только
             /// указанием интерфейсов в вызывающем коде
             services.AddSingleton<IPrintService, PrintService>();
+            services.AddSingleton<ILabelPrintContext, LabelPrintContext>();
         }
 
         /// <summary>
@@ -109,16 +111,16 @@ namespace Gui.BuyerDesktop
 
         #endregion
 
-        #region ICanPrintLabels implements
+        #region ILabelPrintContext implements
 
         public System.Collections.Generic.IEnumerable<IPrinter> GetSystemPrinters()
         {
             var printers = new LocalPrintServer().GetPrintQueues().Select(v => new SystemPrinter() {
-                    Name = v.Name,
-                    DriverName = v.QueueDriver.Name,
-                    PortName = v.QueuePort.Name,
-                    Priority = v.Priority
-                });
+                Name = v.Name,
+                DriverName = v.QueueDriver.Name,
+                PortName = v.QueuePort.Name,
+                Priority = v.Priority
+            });
 
             return printers;
         }

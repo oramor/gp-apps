@@ -1,6 +1,4 @@
-﻿using Lib.Services.Print.Labels;
-
-namespace Lib.Services.Print
+﻿namespace Lib.Services.Print
 {
     public class SupportedLabel : ISupportedLabel
     {
@@ -21,6 +19,6 @@ namespace Lib.Services.Print
             }
         }
 
-        public void ExecutePrint { get; set => ExecutePrintDelegate = value; }
+        //public void ExecutePrint { get; set => ExecutePrintDelegate = value; }
     }
 }
