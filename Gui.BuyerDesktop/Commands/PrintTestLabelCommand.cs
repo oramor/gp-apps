@@ -6,9 +6,9 @@ namespace Gui.BuyerDesktop.Commands
 {
     internal class PrintTestLabelCommand : BaseCommand
     {
-        private readonly ITestLabelData _context;
+        private readonly ITestLabelPrintContext _context;
 
-        public PrintTestLabelCommand(ITestLabelData ctx)
+        public PrintTestLabelCommand(ITestLabelPrintContext ctx)
         {
             _context = ctx;
         }

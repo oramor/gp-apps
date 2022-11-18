@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    internal class TestLabelPrintContext : BaseContext, ITestLabelData
+    internal class TestLabelPrintContext : BaseContext, ITestLabelPrintContext
     {
         private string _text = "Test";
         private int _barcode = 123456;

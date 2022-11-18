@@ -1,6 +1,7 @@
 ﻿using Gui.BuyerDesktop.Contexts;
 using Lib.Core;
 using Lib.Services.Print;
+using Lib.Services.Print.Labels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -94,6 +95,7 @@ namespace Gui.BuyerDesktop
             /// указанием интерфейсов в вызывающем коде
             services.AddSingleton<IPrintService, PrintService>();
             services.AddSingleton<ILabelPrintContext, LabelPrintContext>();
+            services.AddTransient<ITestLabelPrintContext, TestLabelPrintContext>();
         }
 
         /// <summary>

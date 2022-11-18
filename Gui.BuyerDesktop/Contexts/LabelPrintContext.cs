@@ -1,5 +1,6 @@
 ﻿using Lib.Services.Print;
 using Lib.Wpf.Core;
+using Lib.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

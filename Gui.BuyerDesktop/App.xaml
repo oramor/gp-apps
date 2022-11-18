@@ -2,10 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Gui.BuyerDesktop"
+             xmlns:ctx="clr-namespace:Gui.BuyerDesktop.Contexts.Locator"
              DispatcherUnhandledException="Application_DispatcherUnhandledException"
              StartupUri="./Windows/MainWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="AR">pack://application:,,,/Resources/Fonts/#Montserrat</FontFamily>
         <FontFamily x:Key="BR">pack://application:,,,/Resources/Fonts/#Overpass Mono Medium</FontFamily>
+        <ctx:ContextLocator x:Key="Contexts"/>
     </Application.Resources>
 </Application>

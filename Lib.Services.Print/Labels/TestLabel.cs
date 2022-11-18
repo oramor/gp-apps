@@ -6,13 +6,13 @@ namespace Lib.Services.Print.Labels
     /// Этот интерфейс должен быть реализован вьюмоделью, которая желает
     /// передавать команду печати данного вида этикетки
     /// </summary>
-    public interface ITestLabelData
+    public interface ITestLabelPrintContext
     {
         public string Text { get; set; }
         public int Barcode { get; set; }
     }
 
-    public interface ITestLabelTask : IBaseLabelTask, ITestLabelData
+    public interface ITestLabelTask : IBaseLabelTask, ITestLabelPrintContext
     {
     }
 
