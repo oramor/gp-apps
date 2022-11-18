@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:c="clr-namespace:Lib.Wpf.Controls;assembly=Lib.Wpf.Controls"
         mc:Ignorable="d"
-        Title="Менеджер маркировки v.1.0" Height="500" Width="900" MinHeight="500" MinWidth="600"
+        DataContext="{Binding MainWindowContext, Source={StaticResource Contexts}}"
+        Title="{Binding Title}" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
     <DockPanel x:Name="MainPanel"  LastChildFill="True">
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">

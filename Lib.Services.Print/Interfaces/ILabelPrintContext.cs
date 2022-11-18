@@ -5,7 +5,7 @@
     /// Можно было бы поддержать его на уровне PrintService, но разные приложения
     /// могут по-разному обеспечивать хранение сетапов
     /// </summary>
-    public interface ILabelPrintContext
+    public interface ILabelSetupContext
     {
         /// <summary>
         /// Список системных принтеров используется только для того, чтобы

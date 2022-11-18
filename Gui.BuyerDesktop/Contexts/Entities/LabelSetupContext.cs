@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Printing;
+using System;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    public class LabelPrintContext : BaseContext, ILabelPrintContext
+    public class LabelSetupContext : BaseContext, ILabelSetupContext
     {
         private readonly ICollection<ILabelSetup> _labelSetups = new Collection<ILabelSetup>();
 
@@ -27,5 +28,14 @@ namespace Gui.BuyerDesktop.Contexts
         }
 
         public ICollection<ILabelSetup> LabelSetups => _labelSetups;
+
+        public void ShowLabelSetupForm(ILabelSetupForm? labelSetup)
+        {
+            // Create LabelSetupFormContext
+            // Create LabelSetupFormWindow
+            // Set context to form
+            // Show window
+            throw new NotImplementedException();
+        }
     }
 }

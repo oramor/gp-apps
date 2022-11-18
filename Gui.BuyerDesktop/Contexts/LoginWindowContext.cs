@@ -1,17 +1,25 @@
 ﻿using Gui.BuyerDesktop.Windows;
+using Lib.Core;
 using Lib.Wpf.Controls.Form;
 using System;
 using System.Windows;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    internal class LoginWindowContext : BaseFormContext
+    internal interface ILoginWindowContext : IWindowContext
+    {
+    }
+
+    internal class LoginWindowContext : BaseFormContext, ILoginWindowContext
     {
         private static readonly string _endpoint = "http://localhost/api/v1/subjects/login";
         private string _login = string.Empty;
         private string _loginError = string.Empty;
         private string _password = string.Empty;
         private string _passwordError = string.Empty;
+
+        private string _title = "Вход";
+        public string Title { get => _title; set => Set<string>(ref _title, value); }
 
         public override Uri Endpoint
         {

@@ -94,8 +94,10 @@ namespace Gui.BuyerDesktop
             /// инстанс PrintService, что позволит ограничиться только
             /// указанием интерфейсов в вызывающем коде
             services.AddSingleton<IPrintService, PrintService>();
-            services.AddSingleton<ILabelPrintContext, LabelPrintContext>();
+            services.AddSingleton<ILabelSetupContext, LabelSetupContext>();
             services.AddTransient<ITestLabelPrintContext, TestLabelPrintContext>();
+            services.AddSingleton<IMainWindowContext, MainWindowContext>();
+            services.AddSingleton<ILoginWindowContext, LoginWindowContext>();
         }
 
         /// <summary>
@@ -113,7 +115,7 @@ namespace Gui.BuyerDesktop
 
         #endregion
 
-        #region ILabelPrintContext implements
+        #region ILabelSetupContext implements
 
         public System.Collections.Generic.IEnumerable<IPrinter> GetSystemPrinters()
         {
