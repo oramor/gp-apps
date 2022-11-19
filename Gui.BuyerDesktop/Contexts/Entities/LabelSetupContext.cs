@@ -1,16 +1,13 @@
-﻿using Lib.Services.Print;
+﻿using Gui.BuyerDesktop.Windows;
+using Lib.Services.Print;
 using Lib.Wpf.Core;
-using Lib.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Printing;
 using System.Windows.Input;
-using System;
-using Gui.BuyerDesktop.Windows;
 using System.Windows.Media.Effects;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
 
 namespace Gui.BuyerDesktop.Contexts
 {
@@ -28,7 +25,8 @@ namespace Gui.BuyerDesktop.Contexts
         {
             private readonly LabelSetupContext _parent;
 
-            public ShowLabelSetupFormCommand(LabelSetupContext parent) {
+            public ShowLabelSetupFormCommand(LabelSetupContext parent)
+            {
                 _parent = parent;
             }
 
@@ -39,9 +37,9 @@ namespace Gui.BuyerDesktop.Contexts
                     Owner = _parent._ownerWindow,
                     WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
                     DataContext = context
-            };
+                };
                 window.Owner.Effect = new BlurEffect {
-                    Radius = 3,
+                    Radius = 1,
                     KernelType = KernelType.Box
                 };
                 window.Closing += context.OnWindowClosing;
