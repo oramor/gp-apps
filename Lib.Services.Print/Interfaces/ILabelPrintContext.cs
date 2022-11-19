@@ -12,7 +12,7 @@
         /// помочь пользователю выбрать имя драйвера, на который нужно отправлять
         /// задаление печати
         /// </summary>
-        public IReadOnlyCollection<IPrinter> SystemPrinters { get; }
+        //public IReadOnlyCollection<IPrinter> SystemPrinters { get; }
 
         /// <summary>
         /// Коллекция сетапов, к которой пользователь может обратиться, чтобы добавить

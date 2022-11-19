@@ -8,7 +8,9 @@
         DataContext="{Binding MainWindowContext, Source={StaticResource Contexts}}"
         Title="{Binding Title}" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
-    <DockPanel x:Name="MainPanel"  LastChildFill="True">
+    <DockPanel x:Name="MainPanel"
+               LastChildFill="True"
+               >
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
             <Button
@@ -81,7 +83,8 @@
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
                 <StackPanel>
                     <ListBox ItemsSource="{Binding LabelSetups}"/>
-                    <Button Content="Добавить сетап"/>
+                    <Button Command="{Binding OpenLabelSetupForm}" 
+                        Content="Добавить сетап"/>
                 </StackPanel>
             </c:CustomGroupBox>
         </StackPanel>
