@@ -55,13 +55,13 @@ namespace Lib.Services.Print.Labels
                     TscLibAdapter.Print(labelTask.Copy);
                 };
 
-                var cls = new SupportedLabel(executor) {
+                var label = new SupportedLabel(executor) {
                     CommonLabel = CommonLabelFactory.TestLabel,
                     LabelSize = LabelSizeFactory.W43xH25,
                     DriverAdapter = DriverAdapterFactory.TscLib,
                 };
 
-                return cls;
+                return label;
             }
         }
     }
