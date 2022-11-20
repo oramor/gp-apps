@@ -41,28 +41,30 @@ namespace Lib.Services.Print.Labels
         }
     }
 
-    //public static class TestLabelFabric
-    //{
-    //    public static ISupportedLabel W43xH25_TscLib
-    //    {
-    //        get {
-    //            var executor = (TestLabelTask labelTask) => {
-    //                TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
-    //                TscLibAdapter.SetLabelSize(labelTask.LabelSetup.SupportedLabel.LabelSize);
-    //                TscLibAdapter.TextLine(25, 15, labelTask.Text);
-    //                TscLibAdapter.Code128(25, 65, 72, labelTask.Barcode.ToString());
-    //                TscLibAdapter.Print(labelTask.Copy);
-    //            };
+    public static class TestLabelFabric
+    {
+        public static ISupportedLabel W43xH25_TscLib
+        {
+            get {
+                // Стратегия сводится к одному методу и может быть упакована в делегат
+                var executor = (TestLabelTask labelTask) => {
+                    TscLibAdapter.Init(labelTask.LabelSetup.PrinterName);
+                    TscLibAdapter.SetLabelSize(labelTask.LabelSetup.SupportedLabel.LabelSize);
+                    TscLibAdapter.TextLine(25, 15, labelTask.Text);
+                    TscLibAdapter.Code128(25, 65, 72, labelTask.Barcode.ToString());
+                    TscLibAdapter.Print(labelTask.Copy);
+                };
 
-    //            var cls = new SupportedLabel() {
-    //                CommonLabel = CommonLabelFactory.TestLabel,
-    //                LabelSize = LabelSizeFactory.W43xH25,
-    //                DriverAdapter = DriverAdapterFactory.TscLib,
-    //                ExecutePrint = executor
-    //            };
+                var cls = new SupportedLabel() {
+                    CommonLabel = CommonLabelFactory.TestLabel,
+                    LabelSize = LabelSizeFactory.W43xH25,
+                    DriverAdapter = DriverAdapterFactory.TscLib,
+                };
 
-    //            return cls;
-    //        }
-    //    }
-    //}
+                cls.SetStrategy(executor);
+
+                return cls;
+            }
+        }
+    }
 }
