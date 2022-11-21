@@ -32,7 +32,7 @@ namespace Gui.BuyerDesktop.Contexts
 
             public override void Execute(object? parameter)
             {
-                var context = new LabelSetupItemContext(_parent);
+                var context = new LabelSetupFormContext(_parent);
                 var window = new LabelSetupForm() {
                     Owner = _parent._ownerWindow,
                     WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
@@ -47,16 +47,16 @@ namespace Gui.BuyerDesktop.Contexts
             }
         }
 
-        public interface IEntityItem
+        public interface IModalChildWindow
         {
             public void OnWindowClosing(object sender, CancelEventArgs e);
         }
 
-        private class LabelSetupItemContext : BaseContext, IEntityItem
+        private class LabelSetupFormContext : BaseContext, IModalChildWindow
         {
             private readonly LabelSetupContext _parent;
 
-            public LabelSetupItemContext(LabelSetupContext parent)
+            public LabelSetupFormContext(LabelSetupContext parent)
             {
                 _parent = parent;
             }
