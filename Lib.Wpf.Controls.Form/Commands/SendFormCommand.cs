@@ -7,9 +7,9 @@ namespace Lib.Wpf.Controls.Form
 {
     internal class SendFormCommand : BaseCommand
     {
-        private readonly BaseFormContext _context;
+        private readonly IServerHandledForm _context;
 
-        public SendFormCommand(BaseFormContext ctx)
+        public SendFormCommand(IServerHandledForm ctx)
         {
             _context = ctx;
         }

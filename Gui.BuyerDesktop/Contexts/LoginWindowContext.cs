@@ -3,16 +3,16 @@ using Lib.Core;
 using Lib.Wpf.Controls.Form;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    internal interface ILoginWindowContext : IWindowContext
+    internal interface ILoginWindowContext : IWindowContext, IServerHandledForm
     {
     }
 
     internal class LoginWindowContext : BaseFormContext, ILoginWindowContext
     {
-        private static readonly string _endpoint = "http://localhost/api/v1/subjects/login";
         private string _login = string.Empty;
         private string _loginError = string.Empty;
         private string _password = string.Empty;
@@ -21,10 +21,7 @@ namespace Gui.BuyerDesktop.Contexts
         private string _title = "Вход";
         public string Title { get => _title; set => Set<string>(ref _title, value); }
 
-        public override Uri Endpoint
-        {
-            get => new(_endpoint);
-        }
+        public Uri Endpoint => new("http://localhost/api/v1/subjects/login");
 
         public override bool IsFormReadyToSend
         {
@@ -52,7 +49,10 @@ namespace Gui.BuyerDesktop.Contexts
             mainWindow.Show();
         }
 
+        public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
+
         #region Login
+
         public string Login
         {
             get => _login;
@@ -68,9 +68,11 @@ namespace Gui.BuyerDesktop.Contexts
             get => _loginError;
             set => Set(ref _loginError, value);
         }
+
         #endregion
 
         #region Password
+
         public string Password
         {
             get => _password;
@@ -85,6 +87,7 @@ namespace Gui.BuyerDesktop.Contexts
             get => _passwordError;
             set => Set(ref _passwordError, value);
         }
+
         #endregion
     }
 }

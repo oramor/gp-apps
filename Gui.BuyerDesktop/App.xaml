@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Gui.BuyerDesktop"
              xmlns:ctx="clr-namespace:Gui.BuyerDesktop.Contexts.Locator"
              DispatcherUnhandledException="Application_DispatcherUnhandledException"
-             StartupUri="./Windows/MainWindow.xaml">
+             StartupUri="./Windows/LoginWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="AR">pack://application:,,,/Resources/Fonts/#Montserrat</FontFamily>
         <FontFamily x:Key="BR">pack://application:,,,/Resources/Fonts/#Overpass Mono Medium</FontFamily>

@@ -15,7 +15,7 @@ namespace Lib.Wpf.Controls.Form
         Error,
     }
 
-    public abstract class BaseFormContext : BaseContext
+    public abstract class BaseFormContext : BaseContext, IBaseFormContext
     {
         /// <summary>
         /// Список свойств класса (не путать с полями формы!), которые хранят
@@ -29,11 +29,6 @@ namespace Lib.Wpf.Controls.Form
         public BaseFormContext()
         {
         }
-
-        /// <summary>
-        /// Содержит ссылку, по которой форма должна отправлять запрос к API
-        /// </summary>
-        public abstract Uri Endpoint { get; }
 
         #region State
         /// <summary>
@@ -272,6 +267,11 @@ namespace Lib.Wpf.Controls.Form
         }
         #endregion
 
-        public ICommand SendFormCommand => new SendFormCommand(this);
+        /// <summary>
+        /// Метод, который возвращает команду для отправки формы зависит
+        /// от типа контекста формы (обрабатывается на сервере, локально и т.д.).
+        /// Поэтому его нельзя универсально реализовать на уровне базового класса.
+        /// </summary>
+        public abstract ICommand SendFormCommand { get; }
     }
 }

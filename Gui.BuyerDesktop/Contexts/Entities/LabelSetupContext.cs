@@ -1,5 +1,6 @@
 ﻿using Gui.BuyerDesktop.Windows;
 using Lib.Services.Print;
+using Lib.Wpf.Controls.Form;
 using Lib.Wpf.Core;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -52,7 +53,11 @@ namespace Gui.BuyerDesktop.Contexts
             public void OnWindowClosing(object sender, CancelEventArgs e);
         }
 
-        private class LabelSetupFormContext : BaseContext, IModalChildWindow
+        public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm
+        {
+        }
+
+        private class LabelSetupFormContext : BaseFormContext, IModalChildWindow, ILabelSetupFormContext
         {
             private readonly LabelSetupContext _parent;
 
@@ -73,6 +78,13 @@ namespace Gui.BuyerDesktop.Contexts
 
                     return printers;
                 }
+            }
+
+            public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
+
+            public LocalFormResult LocalHandler()
+            {
+                throw new System.NotImplementedException();
             }
 
             public void OnWindowClosing(object sender, CancelEventArgs e)
