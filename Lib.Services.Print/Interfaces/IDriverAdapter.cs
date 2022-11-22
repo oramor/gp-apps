@@ -7,7 +7,6 @@
 
     public interface IDriverAdapter
     {
-        public DriverAdapterEnum Key { get; init; }
-        public string Title { get; }
+        string Title { get; set; }
     }
 }

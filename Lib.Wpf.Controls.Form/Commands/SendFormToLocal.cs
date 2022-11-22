@@ -1,7 +1,4 @@
-﻿using Lib.Services;
-using Lib.Wpf.Core;
-using System.Net.Http;
-using System.Text.Json;
+﻿using Lib.Wpf.Core;
 
 namespace Lib.Wpf.Controls.Form
 {
@@ -14,7 +11,7 @@ namespace Lib.Wpf.Controls.Form
             _context = ctx;
         }
 
-        public async override void Execute(object? obj)
+        public override void Execute(object? obj)
         {
             if (!_context.IsFormReadyToSend) return;
 

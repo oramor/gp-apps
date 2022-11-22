@@ -23,14 +23,13 @@ namespace Lib.Wpf.Controls.Form
         {
             KeyGesture enterKeyGesture = new(Key.Enter);
 
+            //ICommand cmd = new SendFormCommand(DataContext as BaseFormContext);
 
-            ICommand cmd = new SendFormCommand(DataContext as BaseFormContext);
+            //KeyBinding enterKeyGestureCmd = new(
+            //    cmd,
+            //    enterKeyGesture);
 
-            KeyBinding enterKeyGestureCmd = new(
-                cmd,
-                enterKeyGesture);
-
-            this.InputBindings.Add(enterKeyGestureCmd);
+            //this.InputBindings.Add(enterKeyGestureCmd);
         }
 
         #region IsLoading

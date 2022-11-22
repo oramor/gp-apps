@@ -53,11 +53,15 @@ namespace Gui.BuyerDesktop.Contexts
             public void OnWindowClosing(object sender, CancelEventArgs e);
         }
 
-        public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm
+        public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm, IModalChildWindow
         {
+            IReadOnlyCollection<IPrinter> SystemPrinters { get; }
+            ICollection<ILabelSize> LabelSizes { get; }
+            ICollection<IDriverAdapter> DriverAdapters { get; }
+            ICollection<ICommonLabel> CommonLabels { get; }
         }
 
-        private class LabelSetupFormContext : BaseFormContext, IModalChildWindow, ILabelSetupFormContext
+        private class LabelSetupFormContext : BaseFormContext, ILabelSetupFormContext
         {
             private readonly LabelSetupContext _parent;
 
@@ -65,6 +69,8 @@ namespace Gui.BuyerDesktop.Contexts
             {
                 _parent = parent;
             }
+
+            #region Form Fields
 
             public IReadOnlyCollection<IPrinter> SystemPrinters
             {
@@ -79,6 +85,14 @@ namespace Gui.BuyerDesktop.Contexts
                     return printers;
                 }
             }
+
+            public ICollection<ILabelSize> LabelSizes => LabelSizeFactory.GetAll();
+
+            public ICollection<IDriverAdapter> DriverAdapters => DriverAdapterFactory.GetAll();
+
+            public ICollection<ICommonLabel> CommonLabels => CommonLabelFactory.GetAll();
+
+            #endregion
 
             public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
 

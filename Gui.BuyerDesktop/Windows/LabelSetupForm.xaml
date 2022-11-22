@@ -9,5 +9,8 @@
         Title="LabelSetupForm" Height="150" Width="400">
     <StackPanel>
         <ComboBox ItemsSource="{Binding SystemPrinters}"/>
+        <ComboBox ItemsSource="{Binding CommonLabels}" DisplayMemberPath="Title"/>
+        <ComboBox ItemsSource="{Binding LabelSizes}" DisplayMemberPath="Title"/>
+        <ComboBox ItemsSource="{Binding DriverAdapters}" DisplayMemberPath="Title"/>
     </StackPanel>
 </Window>

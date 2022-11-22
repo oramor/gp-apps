@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib.Services.Print
+﻿namespace Lib.Services.Print
 {
     public static class CommonLabelFactory
     {
-        private readonly static ICommonLabel _testLabel = new CommonLabel() {
-            Key = CommonLabelEnum.TestLabel
+        private static readonly IList<ICommonLabel> _commonLabels = new List<ICommonLabel>() {
+            new CommonLabel() { Title = "Тестовая этикетка" },
+            new CommonLabel() { Title = "Этикетка товара" },
+            new CommonLabel() { Title = "Этикетка партии товара" },
         };
 
-        public static ICommonLabel TestLabel => _testLabel;
+        public static IList<ICommonLabel> GetAll() => _commonLabels;
+
+        public static ICommonLabel TestLabel => _commonLabels[0];
+        public static ICommonLabel ProductLabel => _commonLabels[1];
+        public static ICommonLabel ProductBathLabel => _commonLabels[2];
     }
 }
