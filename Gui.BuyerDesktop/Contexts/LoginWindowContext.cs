@@ -13,11 +13,6 @@ namespace Gui.BuyerDesktop.Contexts
 
     internal class LoginWindowContext : BaseFormContext, ILoginWindowContext
     {
-        private string _login = string.Empty;
-        private string _loginError = string.Empty;
-        private string _password = string.Empty;
-        private string _passwordError = string.Empty;
-
         private string _title = "Вход";
         public string Title { get => _title; set => Set<string>(ref _title, value); }
 
@@ -53,16 +48,17 @@ namespace Gui.BuyerDesktop.Contexts
 
         #region Login
 
+        private string _login = string.Empty;
         public string Login
         {
             get => _login;
             set {
-                //MessageBox.Show("ddfdf");
                 Set(ref _login, value);
                 OnPropertyChaged(nameof(IsFormReadyToSend));
             }
         }
 
+        private string _loginError = string.Empty;
         public string LoginError
         {
             get => _loginError;
@@ -73,6 +69,7 @@ namespace Gui.BuyerDesktop.Contexts
 
         #region Password
 
+        private string _password = string.Empty;
         public string Password
         {
             get => _password;
@@ -82,6 +79,7 @@ namespace Gui.BuyerDesktop.Contexts
             }
         }
 
+        private string _passwordError = string.Empty;
         public string PasswordError
         {
             get => _passwordError;

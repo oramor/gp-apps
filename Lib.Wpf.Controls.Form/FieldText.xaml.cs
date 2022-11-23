@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace Lib.Wpf.Controls.Form
@@ -12,6 +11,7 @@ namespace Lib.Wpf.Controls.Form
         }
 
         #region Text
+
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
@@ -31,6 +31,7 @@ namespace Lib.Wpf.Controls.Form
                     // а не при потере фокуса. Позволяет не указывать UpdateSourceTrigger в биндинге
                     DefaultUpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged
                 });
+
         #endregion
 
         #region PlaceholderText
@@ -51,6 +52,7 @@ namespace Lib.Wpf.Controls.Form
         #endregion
 
         #region ErrorMessage
+
         public string ErrorMessage
         {
             get { return (string)GetValue(ErrorMessageProperty); }
@@ -67,6 +69,7 @@ namespace Lib.Wpf.Controls.Form
                     BindsTwoWayByDefault = true,
                     CoerceValueCallback = (_, value) => value ?? string.Empty
                 });
+
         #endregion
     }
 }

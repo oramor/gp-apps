@@ -2,6 +2,7 @@
 using Lib.Services.Print;
 using Lib.Wpf.Controls.Form;
 using Lib.Wpf.Core;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -70,7 +71,7 @@ namespace Gui.BuyerDesktop.Contexts
                 _parent = parent;
             }
 
-            #region Form Fields
+            #region SystemPrinter
 
             public IReadOnlyCollection<IPrinter> SystemPrinters
             {
@@ -86,11 +87,33 @@ namespace Gui.BuyerDesktop.Contexts
                 }
             }
 
+            #endregion
+
+            #region LabelSize
+
             public ICollection<ILabelSize> LabelSizes => LabelSizeFactory.GetAll();
 
-            public ICollection<IDriverAdapter> DriverAdapters => DriverAdapterFactory.GetAll();
+            private ILabelSize _labelSize;
+            public ILabelSize LabelSize
+            {
+                get => _labelSize;
+                set => Set(ref _labelSize, value);
+            }
+
+            private string _labelSizeError = string.Empty;
+            public string LabelSizeError { get => _labelSizeError; set => Set(ref _labelSizeError, value); }
+
+            #endregion
+
+            #region CommonLabel
 
             public ICollection<ICommonLabel> CommonLabels => CommonLabelFactory.GetAll();
+
+            #endregion
+
+            #region DriverAdapter
+
+            public ICollection<IDriverAdapter> DriverAdapters => DriverAdapterFactory.GetAll();
 
             #endregion
 
@@ -103,6 +126,8 @@ namespace Gui.BuyerDesktop.Contexts
 
             public void OnWindowClosing(object sender, CancelEventArgs e)
             {
+                var a = LabelSize;
+                Console.WriteLine(a.ToString());
                 _parent._ownerWindow.Effect = null;
             }
         }

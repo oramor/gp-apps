@@ -10,6 +10,7 @@
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/PlaceholderTextBox.xaml"/>
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/PasswordTextBox.xaml"/>
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/CustomGroupBox.xaml"/>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/CustomComboBox.xaml"/>
     </ResourceDictionary.MergedDictionaries>
   
 </ResourceDictionary>
