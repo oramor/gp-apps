@@ -2,7 +2,6 @@
 using Lib.Services.Print;
 using Lib.Wpf.Controls.Form;
 using Lib.Wpf.Core;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -77,7 +76,7 @@ namespace Gui.BuyerDesktop.Contexts
             {
                 get {
                     var printers = new LocalPrintServer().GetPrintQueues().Select(v => new SystemPrinter() {
-                        Name = v.Name,
+                        Title = v.Name,
                         DriverName = v.QueueDriver.Name,
                         PortName = v.QueuePort.Name,
                         Priority = v.Priority
@@ -85,6 +84,20 @@ namespace Gui.BuyerDesktop.Contexts
 
                     return printers;
                 }
+            }
+
+            private IPrinter _systemPrinter;
+            public IPrinter SystemPrinter
+            {
+                get => _systemPrinter;
+                set => Set(ref _systemPrinter, value);
+            }
+
+            private IPrinter _systemPrinterError;
+            public IPrinter SystemPrinterError
+            {
+                get => _systemPrinterError;
+                set => Set(ref _systemPrinterError, value);
             }
 
             #endregion
@@ -101,7 +114,11 @@ namespace Gui.BuyerDesktop.Contexts
             }
 
             private string _labelSizeError = string.Empty;
-            public string LabelSizeError { get => _labelSizeError; set => Set(ref _labelSizeError, value); }
+            public string LabelSizeError
+            {
+                get => _labelSizeError;
+                set => Set(ref _labelSizeError, value);
+            }
 
             #endregion
 
@@ -109,11 +126,39 @@ namespace Gui.BuyerDesktop.Contexts
 
             public ICollection<ICommonLabel> CommonLabels => CommonLabelFactory.GetAll();
 
+            private ICommonLabel _commonLabel;
+            public ICommonLabel CommonLabel
+            {
+                get => _commonLabel;
+                set => Set(ref _commonLabel, value);
+            }
+
+            private string _commonLabelError = string.Empty;
+            public string CommonLabelError
+            {
+                get => _commonLabelError;
+                set => Set(ref _commonLabelError, value);
+            }
+
             #endregion
 
             #region DriverAdapter
 
             public ICollection<IDriverAdapter> DriverAdapters => DriverAdapterFactory.GetAll();
+
+            private IDriverAdapter _driverAdapter;
+            public IDriverAdapter DriverAdadpter
+            {
+                get => _driverAdapter;
+                set => Set(ref _driverAdapter, value);
+            }
+
+            private string _driverAdapterlError = string.Empty;
+            public string DriverAdadpterError
+            {
+                get => _driverAdapterlError;
+                set => Set(ref _driverAdapterlError, value);
+            }
 
             #endregion
 
@@ -126,8 +171,8 @@ namespace Gui.BuyerDesktop.Contexts
 
             public void OnWindowClosing(object sender, CancelEventArgs e)
             {
-                var a = LabelSize;
-                Console.WriteLine(a.ToString());
+                //var a = LabelSize;
+                //Console.WriteLine(a.ToString());
                 _parent._ownerWindow.Effect = null;
             }
         }

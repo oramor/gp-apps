@@ -283,8 +283,8 @@
     </ControlTemplate>
     <Style TargetType="{x:Type local:CustomComboBox}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Background" Value="{StaticResource Inputs.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Inputs.Static.Border}"/>
+        <Setter Property="Background" Value="{DynamicResource Inputs.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource Inputs.Static.Border}"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -295,8 +295,8 @@
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
         
         <!--TODO Move to theme-->
-        <Setter Property="BorderThickness" Value="3"/>
-        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource Inputs.Border.Thickness}"/>
+        <Setter Property="Height" Value="{DynamicResource Inputs.Height}"/>
         
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">

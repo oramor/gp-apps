@@ -1,10 +1,4 @@
-﻿using Lib.Wpf.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Lib.Wpf.Controls.Form
 {
@@ -17,7 +11,7 @@ namespace Lib.Wpf.Controls.Form
 
         public static ICommand GetCommand(ILocalHandledForm ctx)
         {
-            throw new NotImplementedException();
+            return new SendFormToLocal(ctx);
         }
     }
 }

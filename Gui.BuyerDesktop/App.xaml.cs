@@ -6,8 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
-using System.Linq;
-using System.Printing;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -112,22 +110,6 @@ namespace Gui.BuyerDesktop
         /// Этот метод позволяет определить, путь к файлу в зависимости от его вызова
         /// </summary>
         private static string GetSourceCodePath([CallerFilePath] string path = null) => path;
-
-        #endregion
-
-        #region ILabelSetupContext implements
-
-        public System.Collections.Generic.IEnumerable<IPrinter> GetSystemPrinters()
-        {
-            var printers = new LocalPrintServer().GetPrintQueues().Select(v => new SystemPrinter() {
-                Name = v.Name,
-                DriverName = v.QueueDriver.Name,
-                PortName = v.QueuePort.Name,
-                Priority = v.Priority
-            });
-
-            return printers;
-        }
 
         #endregion
     }
