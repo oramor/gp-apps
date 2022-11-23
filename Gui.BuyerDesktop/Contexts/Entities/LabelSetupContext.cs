@@ -172,9 +172,6 @@ namespace Gui.BuyerDesktop.Contexts
                 var result = new LocalFormResult();
 
                 // Duplicity controller
-                //var cnt = (from labelSetup in _parent.LabelSetups
-                //           where labelSetup.SupportedLabel.CommonLabel == CommonLabel
-                //           select labelSetup).Count();
                 var cnt = _parent.LabelSetups.Select(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
                 if (cnt > 0)
                 {
