@@ -13,11 +13,6 @@
                                     <ResourceDictionary Source="/Lib.Wpf.Controls.Form;component/Styles/SendButtonStyle.xaml"/>
                                     <ResourceDictionary Source="/Lib.Wpf.Controls.Form;component/Styles/TopMessageStyle.xaml"/>
                                     <ResourceDictionary Source="/Lib.Wpf.Controls.Form;component/Styles/TopErrorMessageStyle.xaml"/>
-                                    <ResourceDictionary>
-                                        <Style x:Key="formItemsMarginStyle" TargetType="{x:Type Control}">
-                                            <Setter Property="Margin" Value="0,15,0,0"/>
-                                        </Style>
-                                    </ResourceDictionary>
                                 </ResourceDictionary.MergedDictionaries>
                             </ResourceDictionary>
                         </StackPanel.Resources>

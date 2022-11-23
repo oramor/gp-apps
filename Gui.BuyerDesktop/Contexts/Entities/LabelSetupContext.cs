@@ -2,6 +2,8 @@
 using Lib.Services.Print;
 using Lib.Wpf.Controls.Form;
 using Lib.Wpf.Core;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,7 +16,8 @@ namespace Gui.BuyerDesktop.Contexts
 {
     public class LabelSetupContext : BaseContext, ILabelSetupContext
     {
-        private readonly ICollection<ILabelSetup> _labelSetups = new Collection<ILabelSetup>();
+        // TODO move to PrintService
+        private readonly ObservableCollection<ILabelSetup> _labelSetups = new();
 
         public readonly System.Windows.Window _ownerWindow = App.Current.MainWindow;
 
@@ -147,14 +150,14 @@ namespace Gui.BuyerDesktop.Contexts
             public ICollection<IDriverAdapter> DriverAdapters => DriverAdapterFactory.GetAll();
 
             private IDriverAdapter _driverAdapter;
-            public IDriverAdapter DriverAdadpter
+            public IDriverAdapter DriverAdapter
             {
                 get => _driverAdapter;
                 set => Set(ref _driverAdapter, value);
             }
 
             private string _driverAdapterlError = string.Empty;
-            public string DriverAdadpterError
+            public string DriverAdapterError
             {
                 get => _driverAdapterlError;
                 set => Set(ref _driverAdapterlError, value);
@@ -166,7 +169,55 @@ namespace Gui.BuyerDesktop.Contexts
 
             public LocalFormResult LocalHandler()
             {
-                throw new System.NotImplementedException();
+                var result = new LocalFormResult();
+
+                // Duplicity controller
+                //var cnt = (from labelSetup in _parent.LabelSetups
+                //           where labelSetup.SupportedLabel.CommonLabel == CommonLabel
+                //           select labelSetup).Count();
+                var cnt = _parent.LabelSetups.Select(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
+                if (cnt > 0)
+                {
+                    var dto = new ErrorFormDto() {
+                        Message = "Сетап для этикетки данного типа уже создан. Сперва удалите его."
+                    };
+
+                    result.SetDto(dto);
+                    return result;
+                }
+
+                // Find supported label
+                var service = App.Host.Services.GetService<IPrintService>();
+
+                if (service == null) throw new ApplicationException("Not found printer service");
+
+                var supportedLabel = (from label in service.SupportedLabels
+                                      where label.CommonLabel == CommonLabel &&
+                                            label.LabelSize == LabelSize &&
+                                            label.DriverAdapter == DriverAdapter
+                                      select label).FirstOrDefault();
+
+                if (supportedLabel == null)
+                {
+                    var dto = new ErrorFormDto() {
+                        Message = "Этикетка с такой конфигурацией не поддерживается"
+                    };
+
+                    result.SetDto(dto);
+                    return result;
+                }
+
+
+                var labelSetup = new LabelSetup() {
+                    SupportedLabel = supportedLabel,
+                    SystemPrinter = this.SystemPrinter
+                };
+
+                _parent.LabelSetups.Add(labelSetup);
+
+                var successDto = new SuccessFormDto();
+                result.SetDto(successDto);
+                return result;
             }
 
             public void OnWindowClosing(object sender, CancelEventArgs e)

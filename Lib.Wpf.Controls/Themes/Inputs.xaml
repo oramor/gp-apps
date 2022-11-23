@@ -12,7 +12,9 @@
     <SolidColorBrush x:Key="Inputs.Pressed.Border" Color="#bea0e5"/>
     <SolidColorBrush x:Key="Inputs.Pressed.Background" Color="white"/>
 
-    <sys:String x:Key="Inputs.Height">40</sys:String>
-    <sys:String x:Key="Inputs.Border.Thickness">3</sys:String>
+    <sys:Double x:Key="Inputs.Height">40</sys:Double>
+    <sys:Double x:Key="Inputs.Border.Thickness">3</sys:Double>
+
+    <!--<Thickness x:Key="Inputs.Margin">0,0,0,15</Thickness>-->
 
 </ResourceDictionary>

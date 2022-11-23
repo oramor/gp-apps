@@ -4,12 +4,12 @@ namespace Lib.Services.Print
 {
     public class PrintService : IPrintService
     {
-        private readonly IList<ISupportedLabel> _supportedLabels = new List<ISupportedLabel>();
+        private readonly List<ISupportedLabel> _supportedLabels = new();
 
         public PrintService()
         {
             // Fill labels
-            _supportedLabels.Add(new TestLabel_W43xH25_TscLib());
+            _supportedLabels.Add(TestLabelFabric.W43xH25_TscLib);
         }
 
         public IList<ISupportedLabel> SupportedLabels => _supportedLabels;
@@ -27,10 +27,10 @@ namespace Lib.Services.Print
         private void CallDriver(IBaseLabelTask task)
         {
             ISupportedLabel? item = (from label in _supportedLabels
-                            where label.CommonLabel == task.LabelSetup.SupportedLabel.CommonLabel &&
-                                   label.LabelSize == task.LabelSetup.SupportedLabel.LabelSize &&
-                                   label.DriverAdapter == task.LabelSetup.SupportedLabel.DriverAdapter
-                            select label).FirstOrDefault();
+                                     where label.CommonLabel == task.LabelSetup.SupportedLabel.CommonLabel &&
+                                            label.LabelSize == task.LabelSetup.SupportedLabel.LabelSize &&
+                                            label.DriverAdapter == task.LabelSetup.SupportedLabel.DriverAdapter
+                                     select label).FirstOrDefault();
 
             if (item == null) throw new ApplicationException("Not found supported label for this setup");
 

@@ -295,8 +295,9 @@
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
         
         <!--TODO Move to theme-->
-        <Setter Property="BorderThickness" Value="{DynamicResource Inputs.Border.Thickness}"/>
-        <Setter Property="Height" Value="{DynamicResource Inputs.Height}"/>
+        <Setter Property="BorderThickness" Value="{Binding Source={StaticResource Inputs.Border.Thickness}}"/>
+        <!--<Setter Property="BorderThickness" Value="{DynamicResource Inputs.Border.Thickness}"/>-->
+        <Setter Property="Height" Value="{Binding Source={StaticResource Inputs.Height}}"/>
         
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">

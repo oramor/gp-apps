@@ -1,6 +1,6 @@
-﻿using Lib.Services.Print;
-using Lib.Services.Print.Labels;
+﻿using Lib.Services.Print.Labels;
 using Lib.Wpf.Core;
+//using Microsoft.Extensions.DependencyInjection;
 
 namespace Gui.BuyerDesktop.Commands
 {
@@ -15,25 +15,28 @@ namespace Gui.BuyerDesktop.Commands
 
         public override void Execute(object? parameter)
         {
-            var printer = App.Host.Services.GetService(typeof(IPrintService)) as IPrintService;
+            // Если хранить LabelSetups на стороне приложения, то будет непросто получать к ним доступ
+            // Лучше поместить в сервис.
 
-            ISupportedLabel label = printer?.SupportedLabels[0];
+            //var printer = App.Host.Services.GetService<IPrintService>();
 
-            var labelSetup = new LabelSetup() {
-                SupportedLabel = label,
-                PrinterName = "TSC TTP-225",
-                DriverName = "TSC TTP-225",
-                PortName = ""
-            };
+            //ISupportedLabel label = printer?.SupportedLabels[0];
 
-            var labelTask = new TestLabelTask() {
-                LabelSetup = labelSetup,
-                Text = _context.Text,
-                Barcode = _context.Barcode,
-            };
+            //var labelSetup = new LabelSetup() {
+            //    SupportedLabel = label,
+            //    PrinterName = "TSC TTP-225",
+            //    DriverName = "TSC TTP-225",
+            //    PortName = ""
+            //};
+
+            //var labelTask = new TestLabelTask() {
+            //    LabelSetup = labelSetup,
+            //    Text = _context.Text,
+            //    Barcode = _context.Barcode,
+            //};
 
 
-            printer?.PrintLabel(labelTask);
+            //printer?.PrintLabel(labelTask);
         }
     }
 }
