@@ -1,16 +1,19 @@
 ﻿using Lib.Services.Print.Labels;
+using System.Collections.ObjectModel;
 
 namespace Lib.Services.Print
 {
     public class PrintService : IPrintService
     {
         private readonly List<ISupportedLabel> _supportedLabels = new();
+        private readonly ObservableCollection<ILabelSetup> _labelSetups = new();
 
         public PrintService()
         {
             // Fill labels
             _supportedLabels.Add(TestLabelFabric.W43xH25_TscLib);
         }
+        public ICollection<ILabelSetup> LabelSetups => _labelSetups;
 
         public IList<ISupportedLabel> SupportedLabels => _supportedLabels;
 

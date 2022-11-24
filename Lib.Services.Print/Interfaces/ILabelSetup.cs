@@ -1,4 +1,6 @@
-﻿namespace Lib.Services.Print
+﻿using Lib.Core;
+
+namespace Lib.Services.Print
 {
     /// <summary>
     /// Сетап связывает поддерживаемую этикетку с принтером пользователя.
@@ -7,9 +9,9 @@
     /// данного вида. При этом один тип (CommonLabel) может печататься только
     /// на одном принтере.
     /// </summary>
-    public interface ILabelSetup
+    public interface ILabelSetup : IEntity
     {
-        public ISupportedLabel SupportedLabel { get; init; }
-        public IPrinter SystemPrinter { get; init; }
+        ISupportedLabel SupportedLabel { get; init; }
+        IPrinter SystemPrinter { get; init; }
     }
 }

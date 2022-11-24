@@ -3,9 +3,9 @@
     public static class CommonLabelFactory
     {
         private static readonly IList<ICommonLabel> _commonLabels = new List<ICommonLabel>() {
-            new CommonLabel() { Title = "Тестовая этикетка" },
-            new CommonLabel() { Title = "Этикетка товара" },
-            new CommonLabel() { Title = "Этикетка партии товара" },
+            new CommonLabel() { Description = "Тестовая этикетка" },
+            new CommonLabel() { Description = "Этикетка товара" },
+            new CommonLabel() { Description = "Этикетка партии товара" },
         };
 
         public static IList<ICommonLabel> GetAll() => _commonLabels;

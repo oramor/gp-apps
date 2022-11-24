@@ -1,7 +1,9 @@
-﻿namespace Lib.Services.Print
+﻿using Lib.Core;
+
+namespace Lib.Services.Print
 {
-    public interface ICommonLabel
+    public interface ICommonLabel : IEntity
     {
-        string Title { get; set; }
+        string Description { get; set; }
     }
 }

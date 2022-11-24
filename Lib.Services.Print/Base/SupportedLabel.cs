@@ -14,7 +14,11 @@ namespace Lib.Services.Print
         public required ILabelSize LabelSize { get; init; }
         public required IDriverAdapter DriverAdapter { get; init; }
 
+        #region Delegates for ExecutePrint method
+
         private readonly Action<TestLabelTask>? TestLabelTaskExecutor;
+
+        #endregion
 
         public SupportedLabel(Action<TestLabelTask> executor)
         {
@@ -23,10 +27,6 @@ namespace Lib.Services.Print
 
         public string Title => string.Format("{0}, {1} (драйвер {2})", CommonLabel.Title, LabelSize.Title, DriverAdapter.Title);
 
-        #region Delegates for ExecutePrint method
-
         public void ExecutePrint(TestLabelTask labelTask) => TestLabelTaskExecutor?.Invoke(labelTask);
-
-        #endregion
     }
 }

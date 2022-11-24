@@ -20,5 +20,11 @@ namespace Lib.Services.Print
         /// принтера.
         /// </summary>
         public IList<ISupportedLabel> SupportedLabels { get; }
+        /// <summary>
+        /// Если реализация этой коллекции будет отличаться для разных платформ
+        /// (например, хранение в файлах для Windows), то потребуется выделить
+        /// BasePrintService
+        /// </summary>
+        public ICollection<ILabelSetup> LabelSetups { get; }
     }
 }

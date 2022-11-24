@@ -2,6 +2,7 @@
 {
     public class CommonLabel : ICommonLabel
     {
-        public string Title { get; set; } = string.Empty;
+        public string Title => Description;
+        public string Description { get; set; } = string.Empty;
     }
 }

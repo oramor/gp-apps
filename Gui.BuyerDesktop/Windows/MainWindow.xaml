@@ -82,7 +82,7 @@
                               FontFamily="{StaticResource BR}"
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
                 <StackPanel>
-                    <ListBox ItemsSource="{Binding LabelSetups}"/>
+                    <ListBox ItemsSource="{Binding LabelSetups}" DisplayMemberPath="Title"/>
                     <Button Command="{Binding OpenLabelSetupForm}" 
                         Content="Добавить сетап"/>
                 </StackPanel>

@@ -5,7 +5,6 @@ using Lib.Wpf.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Printing;
@@ -16,14 +15,24 @@ namespace Gui.BuyerDesktop.Contexts
 {
     public class LabelSetupContext : BaseContext, ILabelSetupContext
     {
-        // TODO move to PrintService
-        private readonly ObservableCollection<ILabelSetup> _labelSetups = new();
+        private readonly IPrintService _printService = GetPrintService();
 
         public readonly System.Windows.Window _ownerWindow = App.Current.MainWindow;
 
-        public ICollection<ILabelSetup> LabelSetups => _labelSetups;
+        public ICollection<ILabelSetup> LabelSetups => _printService.LabelSetups;
 
         public ICommand OpenLabelSetupForm => new ShowLabelSetupFormCommand(this);
+
+        /// <summary>
+        /// Из этого метода может вызываться другой метод, который восстановит
+        /// сохраненные на компьютере сетпаы принтера
+        /// </summary>
+        private static IPrintService GetPrintService()
+        {
+            var service = App.Host.Services.GetService<IPrintService>();
+            if (service == null) throw new ApplicationException("Not found printer service");
+            return service;
+        }
 
         private class ShowLabelSetupFormCommand : BaseCommand
         {
@@ -165,7 +174,7 @@ namespace Gui.BuyerDesktop.Contexts
 
             #endregion
 
-            public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
+            #region LocalHandler
 
             public LocalFormResult LocalHandler()
             {
@@ -184,11 +193,7 @@ namespace Gui.BuyerDesktop.Contexts
                 }
 
                 // Find supported label
-                var service = App.Host.Services.GetService<IPrintService>();
-
-                if (service == null) throw new ApplicationException("Not found printer service");
-
-                var supportedLabel = (from label in service.SupportedLabels
+                var supportedLabel = (from label in _parent._printService.SupportedLabels
                                       where label.CommonLabel == CommonLabel &&
                                             label.LabelSize == LabelSize &&
                                             label.DriverAdapter == DriverAdapter
@@ -216,6 +221,10 @@ namespace Gui.BuyerDesktop.Contexts
                 result.SetDto(successDto);
                 return result;
             }
+
+            #endregion
+
+            public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
 
             public void OnWindowClosing(object sender, CancelEventArgs e)
             {
