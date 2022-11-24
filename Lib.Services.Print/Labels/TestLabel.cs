@@ -22,25 +22,6 @@ namespace Lib.Services.Print.Labels
         public int Barcode { get; set; }
     }
 
-    //class TestLabel_W43xH25_TscLib : BaseLabel, ISupportedLabel
-    //{
-    //    public TestLabel_W43xH25_TscLib()
-    //    {
-    //        CommonLabel = CommonLabelFactory.TestLabel;
-    //        LabelSize = LabelSizeFactory.W43xH25;
-    //        DriverAdapter = DriverAdapterFactory.TscLib;
-    //    }
-
-    //    public static void ExecutePrint(TestLabelTask labelTask)
-    //    {
-    //        TscLibAdapter.Init(labelTask.LabelSetup.SystemPrinter.DriverName);
-    //        TscLibAdapter.SetLabelSize(labelTask.LabelSetup.SupportedLabel.LabelSize);
-    //        TscLibAdapter.TextLine(25, 15, labelTask.Text);
-    //        TscLibAdapter.Code128(25, 65, 72, labelTask.Barcode.ToString());
-    //        TscLibAdapter.Print(labelTask.Copy);
-    //    }
-    //}
-
     public static class TestLabelFabric
     {
         public static ISupportedLabel W43xH25_TscLib

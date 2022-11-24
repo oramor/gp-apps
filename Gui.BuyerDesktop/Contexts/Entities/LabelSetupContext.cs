@@ -8,16 +8,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Printing;
+using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Effects;
+
 
 namespace Gui.BuyerDesktop.Contexts
 {
+    public interface ILabelSetupContext : IHaveParentWindow
+    {
+        ICollection<ILabelSetup> LabelSetups { get; }
+    }
+
     public class LabelSetupContext : BaseContext, ILabelSetupContext
     {
         private readonly IPrintService _printService = GetPrintService();
+        private Window? _formWindow;
 
-        public readonly System.Windows.Window _ownerWindow = App.Current.MainWindow;
+        public Window ParentWindow { get; set; } = App.Current.MainWindow;
+        public Window FormWindow
+        {
+            get {
+                return _formWindow ??= new LabelSetupForm();
+            }
+            set => _formWindow = value;
+        }
 
         public ICollection<ILabelSetup> LabelSetups => _printService.LabelSetups;
 
@@ -45,18 +59,18 @@ namespace Gui.BuyerDesktop.Contexts
 
             public override void Execute(object? parameter)
             {
-                var context = new LabelSetupFormContext(_parent);
-                var window = new LabelSetupForm() {
-                    Owner = _parent._ownerWindow,
-                    WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
-                    DataContext = context
-                };
-                window.Owner.Effect = new BlurEffect {
-                    Radius = 1,
-                    KernelType = KernelType.Box
-                };
-                window.Closing += context.OnWindowClosing;
-                window.ShowDialog();
+                _ = new LabelSetupFormContext(_parent);
+                //var window = new LabelSetupForm() {
+                //    Owner = _parent._ownerWindow,
+                //    WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
+                //    DataContext = context
+                //};
+                //window.Owner.Effect = new BlurEffect {
+                //    Radius = 1,
+                //    KernelType = KernelType.Box
+                //};
+                //window.Closing += context.OnWindowClosing;
+                //window.ShowDialog();
             }
         }
 
@@ -73,14 +87,22 @@ namespace Gui.BuyerDesktop.Contexts
             ICollection<ICommonLabel> CommonLabels { get; }
         }
 
-        private class LabelSetupFormContext : BaseFormContext, ILabelSetupFormContext
+        private class LabelSetupFormContext : BaseModalFormContext, ILabelSetupFormContext
         {
-            private readonly LabelSetupContext _parent;
+            //private readonly LabelSetupContext _parent;
 
-            public LabelSetupFormContext(LabelSetupContext parent)
+            //public LabelSetupFormContext(LabelSetupContext parent)
+            //{
+            //    _parent = parent;
+            //}
+
+            //private readonly Window _currentWindow;
+
+            public LabelSetupFormContext(IHaveParentWindow parentContext) : base(parentContext)
             {
-                _parent = parent;
+                //_currentWindow = parentContext.FormWindow;
             }
+
 
             #region SystemPrinter
 
@@ -180,8 +202,11 @@ namespace Gui.BuyerDesktop.Contexts
             {
                 var result = new LocalFormResult();
 
+                var service = App.Host.Services.GetService<IPrintService>();
+                if (service == null) throw new ApplicationException("Not found printer service");
+
                 // Duplicity controller
-                var cnt = _parent.LabelSetups.Select(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
+                var cnt = service.LabelSetups.Select(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
                 if (cnt > 0)
                 {
                     var dto = new ErrorFormDto() {
@@ -193,7 +218,7 @@ namespace Gui.BuyerDesktop.Contexts
                 }
 
                 // Find supported label
-                var supportedLabel = (from label in _parent._printService.SupportedLabels
+                var supportedLabel = (from label in service.SupportedLabels
                                       where label.CommonLabel == CommonLabel &&
                                             label.LabelSize == LabelSize &&
                                             label.DriverAdapter == DriverAdapter
@@ -215,7 +240,7 @@ namespace Gui.BuyerDesktop.Contexts
                     SystemPrinter = this.SystemPrinter
                 };
 
-                _parent.LabelSetups.Add(labelSetup);
+                service.LabelSetups.Add(labelSetup);
 
                 var successDto = new SuccessFormDto();
                 result.SetDto(successDto);
@@ -225,13 +250,6 @@ namespace Gui.BuyerDesktop.Contexts
             #endregion
 
             public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
-
-            public void OnWindowClosing(object sender, CancelEventArgs e)
-            {
-                //var a = LabelSize;
-                //Console.WriteLine(a.ToString());
-                _parent._ownerWindow.Effect = null;
-            }
         }
     }
 }

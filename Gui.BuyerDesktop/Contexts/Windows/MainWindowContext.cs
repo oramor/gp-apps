@@ -1,5 +1,4 @@
-﻿using Lib.Core;
-using Lib.Wpf.Core;
+﻿using Lib.Wpf.Core;
 
 namespace Gui.BuyerDesktop.Contexts
 {
@@ -11,6 +10,6 @@ namespace Gui.BuyerDesktop.Contexts
     {
         private string _title = "Главное окно";
 
-        public string Title { get => _title; set => Set<string>(ref _title, value); }
+        public string Title { get => _title; set => Set(ref _title, value); }
     }
 }

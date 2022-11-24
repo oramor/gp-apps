@@ -1,6 +1,6 @@
 ﻿using Gui.BuyerDesktop.Windows;
-using Lib.Core;
 using Lib.Wpf.Controls.Form;
+using Lib.Wpf.Core;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -28,6 +28,8 @@ namespace Gui.BuyerDesktop.Contexts
             }
         }
 
+        #region HandleSuccess
+
         public override void HandleSuccess(SuccessFormDto dto)
         {
             if (dto.SessionToken == string.Empty)
@@ -43,6 +45,8 @@ namespace Gui.BuyerDesktop.Contexts
             loginWindow.Close();
             mainWindow.Show();
         }
+
+        #endregion
 
         public override ICommand SendFormCommand => SendCommandFabric.GetCommand(this);
 

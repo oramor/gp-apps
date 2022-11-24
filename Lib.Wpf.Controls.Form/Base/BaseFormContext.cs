@@ -1,6 +1,4 @@
 ﻿using Lib.Wpf.Core;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Input;
 
@@ -25,10 +23,6 @@ namespace Lib.Wpf.Controls.Form
         /// ResetState(), в том числе очищены поля с ошибками.
         /// </summary>
         private readonly List<PropertyInfo> _errorFieldsList = new();
-
-        public BaseFormContext()
-        {
-        }
 
         #region State
         /// <summary>
