@@ -1,8 +1,9 @@
-﻿namespace Lib.Services.Print
+﻿using Lib.Core;
+
+namespace Lib.Services.Print
 {
-    public interface IPrinter
+    public interface IPrinter : IEntity<int>
     {
-        public string Title { get; set; }
         public string DriverName { get; init; }
         public string PortName { get; init; }
         public int Priority { get; init; }

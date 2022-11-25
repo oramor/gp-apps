@@ -9,7 +9,7 @@ namespace Lib.Services.Print
     /// данного вида. При этом один тип (CommonLabel) может печататься только
     /// на одном принтере.
     /// </summary>
-    public interface ILabelSetup : IEntity
+    public interface ILabelSetup : IEntity<string>
     {
         ISupportedLabel SupportedLabel { get; init; }
         IPrinter SystemPrinter { get; init; }

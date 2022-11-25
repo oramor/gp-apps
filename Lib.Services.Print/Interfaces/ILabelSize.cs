@@ -1,13 +1,9 @@
-﻿namespace Lib.Services.Print
-{
-    public enum LabelSizeEnum
-    {
-        W43xH25
-    }
+﻿using Lib.Core;
 
-    public interface ILabelSize
+namespace Lib.Services.Print
+{
+    public interface ILabelSize : IEntity<int>
     {
-        public string Title { get; }
         public int Height { get; init; }
         public int Width { get; init; }
         public string TsplCommand { get; init; }

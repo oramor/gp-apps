@@ -6,9 +6,9 @@ namespace Lib.Wpf.Controls.Form
 {
     public abstract class BaseModalFormContext : BaseFormContext
     {
-        private IHaveParentWindow _parentContext;
+        private IEntityPoolContext _parentContext;
 
-        public BaseModalFormContext(IHaveParentWindow parentContext)
+        public BaseModalFormContext(IEntityPoolContext parentContext)
         {
             _parentContext = parentContext;
             ShowModalForm();
@@ -30,7 +30,7 @@ namespace Lib.Wpf.Controls.Form
         public void OnWindowClosing(object sender, CancelEventArgs e)
         {
             _parentContext.FormWindow.Owner.Effect = null;
-            _parentContext.FormWindow = null;
+            _parentContext.FormWindow = null; // TODO!!!
         }
 
         #region HandleSuccess

@@ -5,7 +5,6 @@ using Lib.Wpf.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Printing;
 using System.Windows;
@@ -14,7 +13,7 @@ using System.Windows.Input;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    public interface ILabelSetupContext : IHaveParentWindow
+    public interface ILabelSetupContext : IEntityPoolContext
     {
         ICollection<ILabelSetup> LabelSetups { get; }
     }
@@ -27,15 +26,13 @@ namespace Gui.BuyerDesktop.Contexts
         public Window ParentWindow { get; set; } = App.Current.MainWindow;
         public Window FormWindow
         {
-            get {
-                return _formWindow ??= new LabelSetupForm();
-            }
+            get => _formWindow ??= new LabelSetupForm();
             set => _formWindow = value;
         }
 
         public ICollection<ILabelSetup> LabelSetups => _printService.LabelSetups;
 
-        public ICommand OpenLabelSetupForm => new ShowLabelSetupFormCommand(this);
+        public ICommand ShowCreationFormCommand => new ShowLabelSetupFormCommand(this);
 
         /// <summary>
         /// Из этого метода может вызываться другой метод, который восстановит
@@ -60,26 +57,10 @@ namespace Gui.BuyerDesktop.Contexts
             public override void Execute(object? parameter)
             {
                 _ = new LabelSetupFormContext(_parent);
-                //var window = new LabelSetupForm() {
-                //    Owner = _parent._ownerWindow,
-                //    WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner,
-                //    DataContext = context
-                //};
-                //window.Owner.Effect = new BlurEffect {
-                //    Radius = 1,
-                //    KernelType = KernelType.Box
-                //};
-                //window.Closing += context.OnWindowClosing;
-                //window.ShowDialog();
             }
         }
 
-        public interface IModalChildWindow
-        {
-            public void OnWindowClosing(object sender, CancelEventArgs e);
-        }
-
-        public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm, IModalChildWindow
+        public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm
         {
             IReadOnlyCollection<IPrinter> SystemPrinters { get; }
             ICollection<ILabelSize> LabelSizes { get; }
@@ -89,20 +70,9 @@ namespace Gui.BuyerDesktop.Contexts
 
         private class LabelSetupFormContext : BaseModalFormContext, ILabelSetupFormContext
         {
-            //private readonly LabelSetupContext _parent;
-
-            //public LabelSetupFormContext(LabelSetupContext parent)
-            //{
-            //    _parent = parent;
-            //}
-
-            //private readonly Window _currentWindow;
-
-            public LabelSetupFormContext(IHaveParentWindow parentContext) : base(parentContext)
+            public LabelSetupFormContext(IEntityPoolContext parentContext) : base(parentContext)
             {
-                //_currentWindow = parentContext.FormWindow;
             }
-
 
             #region SystemPrinter
 
@@ -110,7 +80,6 @@ namespace Gui.BuyerDesktop.Contexts
             {
                 get {
                     var printers = new LocalPrintServer().GetPrintQueues().Select(v => new SystemPrinter() {
-                        Title = v.Name,
                         DriverName = v.QueueDriver.Name,
                         PortName = v.QueuePort.Name,
                         Priority = v.Priority
@@ -206,7 +175,7 @@ namespace Gui.BuyerDesktop.Contexts
                 if (service == null) throw new ApplicationException("Not found printer service");
 
                 // Duplicity controller
-                var cnt = service.LabelSetups.Select(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
+                var cnt = service.LabelSetups.Where(v => v.SupportedLabel.CommonLabel == CommonLabel).Count();
                 if (cnt > 0)
                 {
                     var dto = new ErrorFormDto() {
@@ -233,7 +202,6 @@ namespace Gui.BuyerDesktop.Contexts
                     result.SetDto(dto);
                     return result;
                 }
-
 
                 var labelSetup = new LabelSetup() {
                     SupportedLabel = supportedLabel,

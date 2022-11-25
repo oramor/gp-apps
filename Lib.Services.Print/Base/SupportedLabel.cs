@@ -10,6 +10,8 @@ namespace Lib.Services.Print
     /// </summary>
     public class SupportedLabel : ISupportedLabel
     {
+        public int Id { get => this.GetHashCode(); init => this.GetHashCode(); }
+
         public required ICommonLabel CommonLabel { get; init; }
         public required ILabelSize LabelSize { get; init; }
         public required IDriverAdapter DriverAdapter { get; init; }

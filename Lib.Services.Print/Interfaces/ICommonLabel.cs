@@ -2,7 +2,7 @@
 
 namespace Lib.Services.Print
 {
-    public interface ICommonLabel : IEntity
+    public interface ICommonLabel : IEntity<int>
     {
         string Description { get; set; }
     }

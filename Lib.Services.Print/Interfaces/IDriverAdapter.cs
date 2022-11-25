@@ -1,12 +1,8 @@
-﻿namespace Lib.Services.Print
-{
-    public enum DriverAdapterEnum
-    {
-        TscLib
-    }
+﻿using Lib.Core;
 
-    public interface IDriverAdapter
+namespace Lib.Services.Print
+{
+    public interface IDriverAdapter : IEntity<int>
     {
-        string Title { get; set; }
     }
 }
