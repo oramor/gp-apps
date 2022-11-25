@@ -19,8 +19,10 @@
                 Веб-кабинет
             </c:CustomButton>
         </DockPanel>
-        <StackPanel x:Name="MainMenuBlock" DockPanel.Dock="Top" Orientation="Horizontal" Height="45" Margin="13,7,13,0">
-            <TextBlock FontFamily="{DynamicResource BR}" Margin="0,0,20,0">
+        <StackPanel x:Name="mainMenuBlock" DockPanel.Dock="Top" Orientation="Horizontal" Height="45" Margin="13,7,13,0">
+            <TextBlock x:Name="mainMenuBlock_TextBlock_Printers"
+                       FontFamily="{DynamicResource BR}"
+                       Margin="0,0,20,0">
                 <Hyperlink FontSize="26" Foreground="Black">
                     <Hyperlink.TextDecorations>
                         <TextDecorationCollection>
@@ -38,7 +40,8 @@
                     Принтер
                 </Hyperlink>
             </TextBlock>
-            <TextBlock FontFamily="{StaticResource BR}">
+            <TextBlock x:Name="mainMenuBlock_TextBlock_Orders"
+                       FontFamily="{StaticResource BR}">
                 <Hyperlink FontSize="26" Foreground="Black">
                     <Hyperlink.TextDecorations>
                         <TextDecorationCollection>
