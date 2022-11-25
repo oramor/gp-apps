@@ -1,5 +1,5 @@
 ﻿using Gui.BuyerDesktop.Commands;
-using Lib.Services.Print.Labels;
+using Lib.Services.Print;
 using Lib.Wpf.Core;
 using System.Windows.Input;
 

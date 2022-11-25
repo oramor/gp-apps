@@ -1,6 +1,8 @@
-﻿using Lib.Services.Print.Labels;
+﻿using Lib.Core;
+using Lib.Services.Print;
 using Lib.Wpf.Core;
-//using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace Gui.BuyerDesktop.Commands
 {
@@ -18,25 +20,30 @@ namespace Gui.BuyerDesktop.Commands
             // Если хранить LabelSetups на стороне приложения, то будет непросто получать к ним доступ
             // Лучше поместить в сервис.
 
-            //var printer = App.Host.Services.GetService<IPrintService>();
+            var printService = App.Host.Services.GetService<IPrintService>();
 
-            //ISupportedLabel label = printer?.SupportedLabels[0];
+            // Get LabelSetup by CommonLabel
+            var labelSetup = (from ls in printService?.LabelSetups
+                              where ls.SupportedLabel.CommonLabel == CommonLabelFactory.TestLabel
+                              select ls).FirstOrDefault();
 
-            //var labelSetup = new LabelSetup() {
-            //    SupportedLabel = label,
-            //    PrinterName = "TSC TTP-225",
-            //    DriverName = "TSC TTP-225",
-            //    PortName = ""
-            //};
+            if (labelSetup == null)
+            {
+                var dict = new ExeptionCultureNode {
+                    Ru_RU = "Не найден сетпа для печати тестовой этикетки",
+                    En_US = "Not found setup for print TestLabel"
+                };
 
-            //var labelTask = new TestLabelTask() {
-            //    LabelSetup = labelSetup,
-            //    Text = _context.Text,
-            //    Barcode = _context.Barcode,
-            //};
+                throw new LocalizedException(dict);
+            }
 
+            var labelTask = new TestLabelTask() {
+                LabelSetup = labelSetup,
+                Text = _context.Text,
+                Barcode = _context.Barcode,
+            };
 
-            //printer?.PrintLabel(labelTask);
+            printService?.PrintLabel(labelTask);
         }
     }
 }

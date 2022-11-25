@@ -27,23 +27,25 @@ namespace Lib.Services.Print
             CallDriver(labelTask);
         }
 
-        private void CallDriver(IBaseLabelTask task)
+        private static void CallDriver(IBaseLabelTask task)
         {
-            ISupportedLabel? item = (from label in _supportedLabels
-                                     where label.CommonLabel == task.LabelSetup.SupportedLabel.CommonLabel &&
-                                            label.LabelSize == task.LabelSetup.SupportedLabel.LabelSize &&
-                                            label.DriverAdapter == task.LabelSetup.SupportedLabel.DriverAdapter
-                                     select label).FirstOrDefault();
+            //ISupportedLabel? item = (from label in _supportedLabels
+            //                         where label.CommonLabel == task.LabelSetup.SupportedLabel.CommonLabel &&
+            //                                label.LabelSize == task.LabelSetup.SupportedLabel.LabelSize &&
+            //                                label.DriverAdapter == task.LabelSetup.SupportedLabel.DriverAdapter
+            //                         select label).FirstOrDefault();
 
-            if (item == null) throw new ApplicationException("Not found supported label for this setup");
+            //if (item == null) throw new ApplicationException("Not found supported label for this setup");
 
-            var m = item.GetType().GetMethod("ExecutePrint");
+            var m = task.LabelSetup.SupportedLabel.GetType().GetMethod("ExecutePrint");
 
-            if (m == null) throw new ApplicationException("Not found PrintLabel");
+            //var m = item.GetType().GetMethod("ExecutePrint");
+
+            if (m == null) throw new ApplicationException("Not found ExecutePrint method");
 
             var paramsArr = new object[] { task };
 
-            m.Invoke(item, paramsArr);
+            m.Invoke(task.LabelSetup.SupportedLabel, paramsArr);
         }
     }
 }

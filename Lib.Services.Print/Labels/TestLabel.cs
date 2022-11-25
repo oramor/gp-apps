@@ -1,6 +1,6 @@
 ﻿using Lib.Services.Print.Adapters;
 
-namespace Lib.Services.Print.Labels
+namespace Lib.Services.Print
 {
     /// <summary>
     /// Этот интерфейс должен быть реализован вьюмоделью, которая желает
