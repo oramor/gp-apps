@@ -11,7 +11,6 @@
         SizeToContent="Height"
         ResizeMode="NoResize"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
-
     <StackPanel>
         <f:Form x:Name="loginForm"
                 SendButtonText="Сохранить"

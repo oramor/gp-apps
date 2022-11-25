@@ -13,11 +13,11 @@
                >
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
-            <Button
+            <c:CustomButton
                 Height="20"
                 Width="100" HorizontalAlignment="Right" Margin="0,0,10,0">
                 Веб-кабинет
-            </Button>
+            </c:CustomButton>
         </DockPanel>
         <StackPanel x:Name="MainMenuBlock" DockPanel.Dock="Top" Orientation="Horizontal" Height="45" Margin="13,7,13,0">
             <TextBlock FontFamily="{DynamicResource BR}" Margin="0,0,20,0">
@@ -68,13 +68,9 @@
                     Width="400"
                     Margin="0,35,0,0"
                     DataContext="{Binding TestLabelPrintContext, Source={StaticResource Contexts}}">
-            <Button x:Name="PrintButton"
+            <c:CustomButton x:Name="PrintButton"
                     Height="45"
-                    Background="#fcec5e" 
-                    BorderBrush="Black" 
-                    BorderThickness="2" 
                     Margin="0,0,0,20"
-                    FontFamily="{StaticResource BR}" 
                     FontSize="22"
                 Command="{Binding Path=PrintTestLabelCommand}"
                 Content="{Binding Path=PrintButtonTitle}"/>
@@ -83,14 +79,12 @@
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
                 <StackPanel>
                     <ListBox ItemsSource="{Binding LabelSetups}" DisplayMemberPath="Title"/>
-                    <Button Command="{Binding ShowCreationFormCommand}" 
-                        Content="Добавить сетап"/>
+                    <c:CustomButton 
+                        Padding="0,2,0,2"
+                        Command="{Binding ShowCreationFormCommand}" 
+                        Content="Добавить сетап" FontSize="21"/>
                 </StackPanel>
             </c:CustomGroupBox>
         </StackPanel>
-        <DockPanel x:Name="OrdersBlock" Background="Aqua" DockPanel.Dock="Top" Visibility="Hidden">
-            <TextBlock DockPanel.Dock="Left" Background="Bisque">5454555555555____</TextBlock>
-            <TextBlock DockPanel.Dock="Right" Background="Brown">5555</TextBlock>
-        </DockPanel>
     </DockPanel>
 </Window>

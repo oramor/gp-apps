@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--A (Main font)-->
+    <FontFamily x:Key="Fonts.ARegular">pack://application:,,,/Lib.Wpf.Controls;component/Resources/Fonts/#Montserrat</FontFamily>
+    
+    <!--B (Second)-->
+    <FontFamily x:Key="Fonts.BRegular">pack://application:,,,/Lib.Wpf.Controls;component/Resources/Fonts/#Overpass Mono Medium</FontFamily>
+    
+</ResourceDictionary>
