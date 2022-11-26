@@ -3,6 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Lib.Wpf.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Themes/Inputs.xaml"/>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Themes/Fonts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
     <Style TargetType="{x:Type local:PlaceholderTextBox}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
@@ -25,7 +30,7 @@
                     <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
                         <Grid>
                             <TextBlock
-                                x:Name="PART_Placeholder" Text="{TemplateBinding DefaultText}" Foreground="{TemplateBinding DefaultTextBrush}" Padding="8,4,0,0" FontFamily="Segoe UI"/>
+                                x:Name="PART_Placeholder" Text="{TemplateBinding DefaultText}" Foreground="{StaticResource Inputs.Placeholder.Static}" Padding="8,4,0,0" FontFamily="Segoe UI"/>
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Grid>
                     </Border>

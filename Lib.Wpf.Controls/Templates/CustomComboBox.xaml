@@ -267,16 +267,22 @@
             <ToggleButton x:Name="toggleButton" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
             <!--Задает настройки выбранного элемента. Здесь же можно переопределить его шаблон. Св-во Margin определяет отступы внутри выбранного элемента и транслирует свойство Padding, задаваемое на уровне всего контрола-->
             <!--VerticalAlignment задает выравнивание по вертикали, так что не требуется подгонять через pdding самого шаблона-->
-            <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                <!--<ContentPresenter.Triggers>
-                    <Trigger Property="Content" SourceName="contentPresenter" Value="{x:Null}">
-                        <Setter Property="Content" TargetName="contentPresenter" Value="erer"/>
-                    </Trigger>
-                </ContentPresenter.Triggers>-->
-            </ContentPresenter>
-
+            <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            <TextBlock x:Name="placeholder" Grid.Column="0" Visibility="Hidden" IsHitTestVisible="False" VerticalAlignment="{TemplateBinding VerticalAlignment}" Margin="{TemplateBinding Padding}" Foreground="{StaticResource Inputs.Placeholder.Static}">Default value</TextBlock>
         </Grid>
         <ControlTemplate.Triggers>
+            <!--Убирает подсказку, если открыт выпадающий список-->
+            <Trigger Property="IsDropDownOpen" Value="true">
+                <Setter Property="Visibility" TargetName="placeholder" Value="Hidden"/>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsDropDownOpen" Value="false"/>
+                    <Condition Property="SelectedItem" Value="{x:Null}"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="placeholder" Value="Visible"/>
+            </MultiTrigger>
+            <!--Прочие триггеры-->
             <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
                 <Setter Property="Color" TargetName="shadow" Value="#71000000"/>
@@ -308,7 +314,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
-        
+
         <!--TODO Move to theme-->
         <Setter Property="BorderThickness" Value="{Binding Source={StaticResource Inputs.Border.Thickness}}"/>
         <!--<Setter Property="BorderThickness" Value="{DynamicResource Inputs.Border.Thickness}"/>-->
@@ -317,8 +323,9 @@
         <Setter Property="FontFamily" Value="{StaticResource Fonts.ARegular}"/>
         <!--Вертикальное выравнивание выбранного элемента (транслирует в одноименное свойство из ContentPresenter-->
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <!--Отвечает за отступы текста в выбранном элементе-->
-        <Setter Property="Padding" Value="6,10,5,3"/>
+        <!--Отвечает за отступы текста в выбранном элементе (SelectedItem)-->
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="6,0,5,0"/>
         
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
