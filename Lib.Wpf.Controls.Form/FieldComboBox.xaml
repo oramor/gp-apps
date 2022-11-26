@@ -26,7 +26,7 @@
     <StackPanel>
         <c:CustomComboBox ItemsSource="{Binding ItemsSource, ElementName=fieldComboBox}"
                           DisplayMemberPath="{Binding DisplayMemberPath, ElementName=fieldComboBox}"
-                          SelectedItem="{Binding SelectedItem, ElementName=fieldComboBox, Mode=TwoWay}"/>
+                          SelectedItem="{Binding SelectedItem, ElementName=fieldComboBox, Mode=TwoWay}" PlaceholderText="{Binding PlaceholderText, ElementName=fieldComboBox}"/>
         <TextBlock x:Name="fieldErrorMessage"
                    Style="{StaticResource underFieldErrorBlock}"
                    Text="{Binding ErrorMessage, ElementName=fieldComboBox}"/>

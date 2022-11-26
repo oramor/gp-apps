@@ -268,7 +268,7 @@
             <!--Задает настройки выбранного элемента. Здесь же можно переопределить его шаблон. Св-во Margin определяет отступы внутри выбранного элемента и транслирует свойство Padding, задаваемое на уровне всего контрола-->
             <!--VerticalAlignment задает выравнивание по вертикали, так что не требуется подгонять через pdding самого шаблона-->
             <ContentPresenter x:Name="contentPresenter" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            <TextBlock x:Name="placeholder" Grid.Column="0" Visibility="Hidden" IsHitTestVisible="False" VerticalAlignment="{TemplateBinding VerticalAlignment}" Margin="{TemplateBinding Padding}" Foreground="{StaticResource Inputs.Placeholder.Static}">Default value</TextBlock>
+            <TextBlock x:Name="placeholder" Grid.Column="0" Visibility="Hidden" IsHitTestVisible="False" VerticalAlignment="{TemplateBinding VerticalAlignment}" Margin="{TemplateBinding Padding}" Foreground="{StaticResource Inputs.Placeholder.Static}" Text="{TemplateBinding PlaceholderText}"/>
         </Grid>
         <ControlTemplate.Triggers>
             <!--Убирает подсказку, если открыт выпадающий список-->

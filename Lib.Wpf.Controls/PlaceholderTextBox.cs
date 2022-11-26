@@ -30,7 +30,7 @@ namespace Lib.Wpf.Controls
                 new PropertyMetadata(SystemColors.InactiveSelectionHighlightBrush));
 
         /// <summary>
-        /// Сам текст подсказки.
+        /// Сам текст плейсхолдера.
         /// </summary>
         public string DefaultText
         {

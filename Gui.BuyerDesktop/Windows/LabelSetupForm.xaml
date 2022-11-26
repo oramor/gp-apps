@@ -19,19 +19,23 @@
             <f:FieldComboBox x:Name="systemPrinterField"
                              ItemsSource="{Binding SystemPrinters}"
                              DisplayMemberPath="Title"
-                             SelectedItem="{Binding SystemPrinter}"/>
+                             SelectedItem="{Binding SystemPrinter}"
+                             PlaceholderText="Выберите принтер этикеток"/>
             <f:FieldComboBox x:Name="driverAdapterField"
                              ItemsSource="{Binding DriverAdapters}"
                              DisplayMemberPath="Title"
-                             SelectedItem="{Binding DriverAdapter}"/>
+                             SelectedItem="{Binding DriverAdapter}"
+                             PlaceholderText="Выберите драйвер принтера"/>
             <f:FieldComboBox x:Name="commonLabelField"
                              ItemsSource="{Binding CommonLabels}"
                              DisplayMemberPath="Title"
-                             SelectedItem="{Binding CommonLabel}"/>
+                             SelectedItem="{Binding CommonLabel}"
+                             PlaceholderText="Выберите размер стикера"/>
             <f:FieldComboBox x:Name="labelSizeField"
                              ItemsSource="{Binding LabelSizes}"
                              DisplayMemberPath="Title"
-                             SelectedItem="{Binding LabelSize}"/>
+                             SelectedItem="{Binding LabelSize}"
+                             PlaceholderText="Выберите тип этикетки"/>
         </f:Form>
     </StackPanel>
 </Window>

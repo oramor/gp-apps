@@ -14,6 +14,30 @@ namespace Lib.Wpf.Controls.Form
             InitializeComponent();
         }
 
+        #region PlaceholderText
+
+        public string PlaceholderText
+        {
+            get { return (string)GetValue(PlaceholderTextProperty); }
+            set {
+                SetValue(PlaceholderTextProperty, value);
+            }
+        }
+        public static readonly DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register(
+                "PlaceholderText",
+                typeof(string),
+                typeof(FieldComboBox),
+                new FrameworkPropertyMetadata(string.Empty) {
+                    //BindsTwoWayByDefault = true,
+                    //CoerceValueCallback = (_, value) => value ?? string.Empty,
+                    // Фиксирует, что текстовое свойство будет обнвляться при каждом изменении значения,
+                    // а не при потере фокуса. Позволяет не указывать UpdateSourceTrigger в биндинге
+                    //DefaultUpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged
+                });
+
+        #endregion
+
         #region ItemsSource
 
         public IEnumerable ItemsSource
