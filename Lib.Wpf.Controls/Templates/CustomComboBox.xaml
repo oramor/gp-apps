@@ -278,7 +278,8 @@
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsDropDownOpen" Value="false"/>
-                    <Condition Property="SelectedItem" Value="{x:Null}"/>
+                    <Condition Property="SelectedIndex" Value="-1"/>
+                    <!--<Condition Property="SelectedItem" Value="{x:Null}"/>-->
                 </MultiTrigger.Conditions>
                 <Setter Property="Visibility" TargetName="placeholder" Value="Visible"/>
             </MultiTrigger>

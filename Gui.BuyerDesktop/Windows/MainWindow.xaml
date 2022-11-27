@@ -81,7 +81,21 @@
                               FontFamily="{StaticResource BR}"
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
                 <StackPanel>
-                    <ListBox ItemsSource="{Binding LabelSetups}" DisplayMemberPath="Title"/>
+                    <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="350">
+                                    <TextBlock Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.Triggers>
+                            <Trigger Property="Width" Value="300">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ListBox.Triggers>
+                    </ListBox>
                     <c:CustomButton 
                         Padding="0,2,0,2"
                         Command="{Binding ShowCreationFormCommand}" 

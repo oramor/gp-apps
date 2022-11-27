@@ -19,6 +19,7 @@ namespace Lib.Services.Print
         #region Delegates for ExecutePrint method
 
         private readonly Action<TestLabelTask>? TestLabelTaskExecutor;
+        private readonly Action<IProductLabelTask>? ProductLabelTaskExecutor;
 
         #endregion
 
@@ -27,8 +28,15 @@ namespace Lib.Services.Print
             TestLabelTaskExecutor = executor;
         }
 
+        public SupportedLabel(Action<IProductLabelTask> executor)
+        {
+            ProductLabelTaskExecutor = executor;
+        }
+
         public string Title => string.Format("{0}, {1} (драйвер {2})", CommonLabel.Title, LabelSize.Title, DriverAdapter.Title);
 
         public void ExecutePrint(TestLabelTask labelTask) => TestLabelTaskExecutor?.Invoke(labelTask);
+
+        public void ExecutePrint(IProductLabelTask labelTask) => ProductLabelTaskExecutor?.Invoke(labelTask);
     }
 }

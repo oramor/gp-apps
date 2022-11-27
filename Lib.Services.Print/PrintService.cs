@@ -12,6 +12,7 @@ namespace Lib.Services.Print
         {
             // Fill labels
             _supportedLabels.Add(TestLabelFabric.W43xH25_TscLib);
+            _supportedLabels.Add(ProductLabelFabric.W43xH25_TscLib);
         }
         public ICollection<ILabelSetup> LabelSetups => _labelSetups;
 
