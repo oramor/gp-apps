@@ -8,6 +8,15 @@
         DataContext="{Binding MainWindowContext, Source={StaticResource Contexts}}"
         Title="{Binding Title}" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="ListBox">
+            <Style.Triggers>
+                <Trigger Property="HasItems" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <DockPanel x:Name="MainPanel"
                LastChildFill="True"
                >
@@ -81,23 +90,28 @@
                               FontFamily="{StaticResource BR}"
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
                 <StackPanel>
-                    <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}">
+                    <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}" Margin="0,0,0,10">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Width="350">
-                                    <TextBlock Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
-                                    <TextBlock Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
-                                </StackPanel>
+                                <Grid Width="360">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
+                                    <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Green" OnHoverColor="red"/>
+                                </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                        <ListBox.Triggers>
-                            <Trigger Property="Width" Value="300">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                            </Trigger>
-                        </ListBox.Triggers>
                     </ListBox>
                     <c:CustomButton 
                         Padding="0,2,0,2"
+                        Margin="0,0,0,1"
                         Command="{Binding ShowCreationFormCommand}" 
                         Content="Добавить сетап" FontSize="21"/>
                 </StackPanel>

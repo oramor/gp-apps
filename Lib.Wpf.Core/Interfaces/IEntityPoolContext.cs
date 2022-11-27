@@ -10,6 +10,11 @@ namespace Lib.Wpf.Core
     public interface IEntityPoolContext
     {
         /// <summary>
+        /// TODO нужно будет преобразовать в ноду из склонений по падежам
+        /// и числам, либо использовать Morpher
+        /// </summary>
+        string EntityName { get; }
+        /// <summary>
         /// Указывает на форму, которая является контейнером для данного списка.
         /// Используется для создания блюр-эффекта
         /// </summary>

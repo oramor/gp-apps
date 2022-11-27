@@ -14,6 +14,8 @@ namespace Lib.Wpf.Controls.Form
             ShowModalForm();
         }
 
+        public string EntityFormTitle => "Новый " + _parentContext.EntityName;
+
         public void ShowModalForm()
         {
             _parentContext.FormWindow.Owner = _parentContext.ParentWindow;

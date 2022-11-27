@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Gui.BuyerDesktop.Contexts
 {
-    public interface ILabelSetupContext : IEntityPoolContext
+    public interface ILabelSetupContext : IEntityPoolContext, ICanRemoveItems<ILabelSetup>
     {
         ICollection<ILabelSetup> LabelSetups { get; }
     }
@@ -22,6 +22,8 @@ namespace Gui.BuyerDesktop.Contexts
     {
         private readonly IPrintService _printService = GetPrintService();
         private Window? _formWindow;
+
+        public string EntityName => "Сетап";
 
         public Window ParentWindow { get; set; } = App.Current.MainWindow;
         public Window FormWindow
@@ -32,10 +34,21 @@ namespace Gui.BuyerDesktop.Contexts
 
         public ICollection<ILabelSetup> LabelSetups => _printService.LabelSetups;
 
-        public ICommand ShowCreationFormCommand => new ShowLabelSetupFormCommand(this);
+        public ICommand ShowCreationFormCommand => new ShowLabelSetupFormCmd(this);
+
+        #region ICanRemoveItems impl
+
+        public ICommand RemoveItemCommand => new RemoveItemCmd(this);
+
+        public void RemoveItem(ILabelSetup item)
+        {
+            _ = LabelSetups.Remove(item);
+        }
+
+        #endregion
 
         /// <summary>
-        /// Из этого метода может вызываться другой метод, который восстановит
+        /// Из этого метода может вызываться метод, который восстановит
         /// сохраненные на компьютере сетпаы принтера
         /// </summary>
         private static IPrintService GetPrintService()
@@ -45,11 +58,29 @@ namespace Gui.BuyerDesktop.Contexts
             return service;
         }
 
-        private class ShowLabelSetupFormCommand : BaseCommand
+        #region Command classes
+
+        private class RemoveItemCmd : BaseCommand
+        {
+            private ILabelSetupContext _ctx;
+
+            public RemoveItemCmd(ILabelSetupContext context)
+            {
+                _ctx = context;
+            }
+
+            public override void Execute(object? parameter)
+            {
+                var labelSetup = (LabelSetup)parameter;
+                _ctx.RemoveItem(labelSetup);
+            }
+        }
+
+        private class ShowLabelSetupFormCmd : BaseCommand
         {
             private readonly LabelSetupContext _parent;
 
-            public ShowLabelSetupFormCommand(LabelSetupContext parent)
+            public ShowLabelSetupFormCmd(LabelSetupContext parent)
             {
                 _parent = parent;
             }
@@ -59,6 +90,8 @@ namespace Gui.BuyerDesktop.Contexts
                 _ = new LabelSetupFormContext(_parent);
             }
         }
+
+        #endregion
 
         public interface ILabelSetupFormContext : IBaseFormContext, ILocalHandledForm
         {

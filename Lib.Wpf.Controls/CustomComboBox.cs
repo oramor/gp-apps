@@ -13,6 +13,8 @@ namespace Lib.Wpf.Controls
                 );
         }
 
+        #region PlaceholderText
+
         public string PlaceholderText
         {
             get { return (string)GetValue(PlaceholderTextProperty); }
@@ -24,5 +26,7 @@ namespace Lib.Wpf.Controls
                 typeof(string),
                 typeof(CustomComboBox),
                 new PropertyMetadata("Select value..."));
+
+        #endregion
     }
 }

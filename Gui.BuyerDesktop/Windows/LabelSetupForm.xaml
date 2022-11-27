@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Gui.BuyerDesktop.Windows"
         xmlns:f="clr-namespace:Lib.Wpf.Controls.Form;assembly=Lib.Wpf.Controls.Form"
         mc:Ignorable="d"
-        Title="LabelSetupForm" Width="400"
+        Title="{Binding EntityFormTitle}" Width="400"
         SizeToContent="Height"
         ResizeMode="NoResize"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">

@@ -8,6 +8,7 @@
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/CustomGroupBox.xaml"/>
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/CustomComboBox.xaml"/>
         <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/CustomButton.xaml"/>
+        <ResourceDictionary Source="/Lib.Wpf.Controls;component/Templates/IconButton.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
