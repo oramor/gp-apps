@@ -54,7 +54,7 @@ namespace Lib.Wpf.Controls
                 nameof(OnHoverColor),
                 typeof(Color),
                 typeof(IconButton),
-                new PropertyMetadata(null));
+                new PropertyMetadata(new Color(), null), null);
 
         #endregion
     }

@@ -65,7 +65,7 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0" From="{TemplateBinding OnHoverColor}" To="black" Storyboard.TargetName="icon" Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0" From="{StaticResource Buttons.OnHover}" To="black" Storyboard.TargetName="icon" Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>

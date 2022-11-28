@@ -22,6 +22,8 @@
 
     <sys:Double x:Key="Buttons.Border.Thickness">2</sys:Double>
 
+    <Color x:Key="Buttons.OnHover">#f51849</Color>
+
     <!--<sys:Double x:Key="Buttons.Height">40</sys:Double>
     <sys:Double x:Key="Buttons.Border.Thickness">3</sys:Double>-->
 

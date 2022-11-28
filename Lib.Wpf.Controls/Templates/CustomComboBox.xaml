@@ -103,7 +103,7 @@
                     <Border x:Name="templateRoot" Background="{StaticResource Inputs.Static.Background}" BorderBrush="{StaticResource Inputs.Static.Border}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
                             <!--Код пиктограммы и цвет (зависимость от цвета шрифта)-->
-                            <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                            <Polygon x:Name="arrow" Points="0,0 6,9, 12,0" Fill="{StaticResource ComboBox.Static.Glyph}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,3,0"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
