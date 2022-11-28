@@ -36,40 +36,19 @@
                         <!--<ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>-->
                     </Border>
                     <ControlTemplate.Triggers>
-                        <!--<Trigger Property="IsDefaulted" Value="true">
+                        <Trigger Property="IsDefaulted" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Buttons.MouseOver.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Buttons.MouseOver.Border}"/>
+                            <Setter TargetName="icon" Property="Stroke" Value="{Binding OnHoverColor, RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Buttons.Pressed.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Buttons.Pressed.Border}"/>
-                        </Trigger>-->
+                            <Setter TargetName="icon" Property="Margin" Value="1,1,0,0"/>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Buttons.Disabled.Background}"/>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Buttons.Disabled.Border}"/>
+                            <Setter TargetName="icon" Property="Stroke" Value="{StaticResource Buttons.Disabled.Border}"/>
                             <!--<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Buttons.Disabled.Foreground}"/>-->
                         </Trigger>
-                        <EventTrigger RoutedEvent="MouseEnter">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0:0:0" From="black" To="{TemplateBinding OnHoverColor}" Storyboard.TargetName="icon" Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="MouseLeave">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Duration="0:0:0" From="{StaticResource Buttons.OnHover}" To="black" Storyboard.TargetName="icon" Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

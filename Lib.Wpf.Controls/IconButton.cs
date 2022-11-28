@@ -42,19 +42,19 @@ namespace Lib.Wpf.Controls
                 nameof(BasicColor),
                 typeof(Brush),
                 typeof(IconButton),
-                new PropertyMetadata((Brush?)null));
+                new PropertyMetadata((Brush?)null), null);
 
-        public Color OnHoverColor
+        public Brush OnHoverColor
         {
-            get { return (Color)GetValue(OnHoverColorProperty); }
+            get { return (Brush)GetValue(OnHoverColorProperty); }
             set { SetValue(OnHoverColorProperty, value); }
         }
         public static readonly DependencyProperty OnHoverColorProperty =
             DependencyProperty.Register(
                 nameof(OnHoverColor),
-                typeof(Color),
+                typeof(Brush),
                 typeof(IconButton),
-                new PropertyMetadata(new Color(), null), null);
+                new PropertyMetadata((Brush?)null), null);
 
         #endregion
     }

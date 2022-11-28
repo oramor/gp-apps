@@ -104,16 +104,12 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
                                     <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
-                                    <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Green">
-                                        <!--<c:IconButton.OnHoverColor>
-                                            <Color>#FF00FF00</Color>
-                                        </c:IconButton.OnHoverColor>-->
-                                    </c:IconButton>
+                                    <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Gray" OnHoverColor="Red"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <c:CustomButton 
+                    <c:CustomButton
                         Padding="0,2,0,2"
                         Margin="0,0,0,1"
                         Command="{Binding ShowCreationFormCommand}" 
