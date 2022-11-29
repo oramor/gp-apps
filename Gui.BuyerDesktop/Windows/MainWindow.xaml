@@ -9,7 +9,11 @@
         DataContext="{Binding MainWindowContext, Source={StaticResource Contexts}}"
         Title="{Binding Title}" Height="500" Width="900" MinHeight="500" MinWidth="600"
         WindowStartupLocation="CenterScreen">
+    
     <Window.Resources>
+        
+        <!--Style ListBox-->
+        
         <Style TargetType="ListBox">
             <Style.Triggers>
                 <Trigger Property="HasItems" Value="False">
@@ -17,9 +21,12 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="{x:Type Hyperlink}">
+        
+        <!--Style HyperLinks-->
+
+        <Style TargetType="{x:Type Hyperlink}" x:Key="hyperlink_Base">
             <Setter Property="FontSize" Value="26"/>
-            <!--<Setter Property="Click" Value="{}"/>-->
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="TextDecorations">
                 <Setter.Value>
                     <TextDecorationCollection>
@@ -36,9 +43,9 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="{x:Type Hyperlink}" x:Key="hyperlink_Printers">
+        <Style TargetType="{x:Type Hyperlink}" x:Key="hyperlink_Printers" BasedOn="{StaticResource hyperlink_Base}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentTab}" Value="0">
+                <DataTrigger Binding="{Binding CurrentTab}" Value="1">
                     <Setter Property="TextDecorations">
                         <Setter.Value>
                             <TextDecorationCollection>
@@ -46,7 +53,7 @@
                                     <TextDecoration.Pen>
                                         <Pen Thickness="2.5">
                                             <Pen.Brush>
-                                                <SolidColorBrush Color="#d002ff" />
+                                                <SolidColorBrush Color="#d4b2ff" />
                                             </Pen.Brush>
                                         </Pen>
                                     </TextDecoration.Pen>
@@ -57,10 +64,64 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type Hyperlink}" x:Key="hyperlink_Orders" BasedOn="{StaticResource hyperlink_Base}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentTab}" Value="0">
+                    <Setter Property="TextDecorations">
+                        <Setter.Value>
+                            <TextDecorationCollection>
+                                <TextDecoration Location="Underline" PenOffset="6">
+                                    <TextDecoration.Pen>
+                                        <Pen Thickness="2.5">
+                                            <Pen.Brush>
+                                                <SolidColorBrush Color="#d4b2ff" />
+                                            </Pen.Brush>
+                                        </Pen>
+                                    </TextDecoration.Pen>
+                                </TextDecoration>
+                            </TextDecorationCollection>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--Style Tabs-->
+        
+        <Style TargetType="{x:Type StackPanel}" x:Key="tab_Base">
+            <!--По умолчанию все стек-панели, которые наследуют этому стилю, не видимы-->
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        
+        <Style TargetType="{x:Type StackPanel}" x:Key="tab_Printers" BasedOn="{StaticResource tab_Base}">
+            <Style.Triggers>
+                <!--Панель должна быть видна только если код табулятора=1-->
+                <DataTrigger Binding="{Binding CurrentTab}" Value="1">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="{x:Type StackPanel}" x:Key="tab_Orders" BasedOn="{StaticResource tab_Base}">
+            <Style.Triggers>
+                <!--Панель должна быть видна только если код табулятора=1-->
+                <DataTrigger Binding="{Binding CurrentTab}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+       
     </Window.Resources>
+    
+    <!--Dock-->
+    
     <DockPanel x:Name="MainPanel"
                LastChildFill="True"
                >
+        
+        <!--Logo-->
+        
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
             <c:CustomButton
@@ -69,43 +130,24 @@
                 Веб-кабинет
             </c:CustomButton>
         </DockPanel>
+        
+        <!--MainMenu-->
+
         <StackPanel x:Name="mainMenuBlock" DockPanel.Dock="Top" Orientation="Horizontal" Height="45" Margin="13,7,13,0">
             <TextBlock x:Name="mainMenuBlock_TextBlock_Printers"
                        FontFamily="{DynamicResource BR}"
                        Margin="0,0,20,0">
-                <Hyperlink x:Name="hyperlink_Printers" Foreground="Black">
-                    <!--<Hyperlink.TextDecorations>
-                        <TextDecorationCollection>
-                            <TextDecoration Location="Underline" PenOffset="6">
-                                <TextDecoration.Pen>
-                                    <Pen x:Name="penOne" Thickness="2.5">
-                                        <Pen.Brush>
-                                            <SolidColorBrush Color="#d4b2ff" />
-                                        </Pen.Brush>
-                                    </Pen>
-                                </TextDecoration.Pen>
-                            </TextDecoration>
-                        </TextDecorationCollection>
-                    </Hyperlink.TextDecorations>-->
+                <Hyperlink Style="{StaticResource hyperlink_Printers}"
+                           Command="{Binding ChangeTabCmd}"
+                           CommandParameter="1">
                     Принтер
                 </Hyperlink>
             </TextBlock>
             <TextBlock x:Name="mainMenuBlock_TextBlock_Orders"
                        FontFamily="{StaticResource BR}">
-                <Hyperlink Foreground="Black">
-                    <!--<Hyperlink.TextDecorations>
-                        <TextDecorationCollection>
-                            <TextDecoration Location="Underline" PenOffset="6">
-                                <TextDecoration.Pen>
-                                    <Pen Thickness="2.5">
-                                        <Pen.Brush>
-                                            <SolidColorBrush Color="#d4b2ff" />
-                                        </Pen.Brush>
-                                    </Pen>
-                                </TextDecoration.Pen>
-                            </TextDecoration>
-                        </TextDecorationCollection>
-                    </Hyperlink.TextDecorations>-->
+                <Hyperlink Style="{StaticResource hyperlink_Orders}"
+                           Command="{Binding ChangeTabCmd}"
+                           CommandParameter="0">
                     Заказы
                 </Hyperlink>
             </TextBlock>
@@ -115,48 +157,69 @@
           X1="0"
           X2="{Binding ActualWidth, ElementName=MainPanel}"
           StrokeThickness="1" Panel.ZIndex="-1" Margin="0,-7,0,0"></Line>
+        
+        <!--StatusBar-->
+        
         <StatusBar Height="20" Background="LightGray" DockPanel.Dock="Bottom"></StatusBar>
-        <StackPanel x:Name="testLabelPrintBlock"
-                    DockPanel.Dock="Top"
+        
+        <!--Tabs-->
+
+        <StackPanel>
+            <!--Tab Printers-->
+
+            <StackPanel Style="{StaticResource tab_Printers}" Background="Blue" Width="400" Height="200">
+
+            </StackPanel>
+
+            <!--<StackPanel Style="{StaticResource tab_Printers}"
                     Width="400"
+                        Height="500"
                     Margin="0,35,0,0"
                     DataContext="{Binding TestLabelPrintContext, Source={StaticResource Contexts}}">
-            <c:CustomButton x:Name="PrintButton"
+                <c:CustomButton x:Name="PrintButton"
                     Height="45"
                     Margin="0,0,0,20"
                     FontSize="22"
-                Command="{Binding Path=PrintTestLabelCommand}"
-                Content="{Binding Path=PrintButtonTitle}"/>
-            <c:CustomGroupBox Header="Сетапы этикеток"
+                    Command="{Binding Path=PrintTestLabelCommand}"
+                    Content="{Binding Path=PrintButtonTitle}"/>
+                <c:CustomGroupBox Header="Сетапы этикеток"
                               FontFamily="{StaticResource BR}"
                               DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
-                <StackPanel>
-                    <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}" Margin="0,0,0,10">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Width="360">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="20"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
-                                    <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Gray" OnHoverColor="Red"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                    <c:CustomButton
-                        Padding="0,2,0,2"
-                        Margin="0,0,0,1"
-                        Command="{Binding ShowCreationFormCommand}" 
-                        Content="Добавить сетап" FontSize="21"/>
-                </StackPanel>
-            </c:CustomGroupBox>
+                    <StackPanel>
+                        <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}" Margin="0,0,0,10">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="360">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
+                                        <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Gray" OnHoverColor="Red"/>
+                                    </Grid>
+                                </DataTemplate>
+                                </ListBox.ItemTemplate>
+                        </ListBox>
+                        <c:CustomButton
+                                Padding="0,2,0,2"
+                                Margin="0,0,0,1"
+                                Command="{Binding ShowCreationFormCommand}" 
+                                Content="Добавить сетап" FontSize="21"/>
+                    </StackPanel>
+                </c:CustomGroupBox>
+            </StackPanel>-->
+
+            <!--Tab Orders-->
+
+            <StackPanel Style="{StaticResource tab_Orders}" Background="Aqua" Height="50">
+
+            </StackPanel>
         </StackPanel>
+        
     </DockPanel>
 </Window>
