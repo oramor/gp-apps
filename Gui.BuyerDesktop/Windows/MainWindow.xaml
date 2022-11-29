@@ -11,7 +11,10 @@
         WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
-        
+
+        <Color x:Key="ColorViolet">#d4b2ff</Color>
+        <SolidColorBrush x:Key="BrushViolet" Color="#d4b2ff"/>
+
         <!--Style ListBox-->
         
         <Style TargetType="ListBox">
@@ -53,7 +56,7 @@
                                     <TextDecoration.Pen>
                                         <Pen Thickness="2.5">
                                             <Pen.Brush>
-                                                <SolidColorBrush Color="#d4b2ff" />
+                                                <SolidColorBrush Color="{StaticResource ColorViolet}" />
                                             </Pen.Brush>
                                         </Pen>
                                     </TextDecoration.Pen>
@@ -74,7 +77,7 @@
                                     <TextDecoration.Pen>
                                         <Pen Thickness="2.5">
                                             <Pen.Brush>
-                                                <SolidColorBrush Color="#d4b2ff" />
+                                                <SolidColorBrush Color="{StaticResource ColorViolet}" />
                                             </Pen.Brush>
                                         </Pen>
                                     </TextDecoration.Pen>
@@ -92,7 +95,7 @@
             <!--По умолчанию все стек-панели, которые наследуют этому стилю, не видимы-->
             <Setter Property="Visibility" Value="Collapsed"/>
         </Style>
-        
+
         <Style TargetType="{x:Type StackPanel}" x:Key="tab_Printers" BasedOn="{StaticResource tab_Base}">
             <Style.Triggers>
                 <!--Панель должна быть видна только если код табулятора=1-->
@@ -124,10 +127,7 @@
         
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
-            <c:CustomButton
-                Height="20"
-                Width="100" HorizontalAlignment="Right" Margin="0,0,10,0">
-                Веб-кабинет
+            <c:CustomButton BorderThickness="2" FontSize="18" Padding="5,1,5,0" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0">Веб-кабинет
             </c:CustomButton>
         </DockPanel>
         
@@ -165,10 +165,59 @@
         <!--Tabs-->
 
         <StackPanel>
+            
             <!--Tab Printers-->
 
-            <StackPanel Style="{StaticResource tab_Printers}" Background="Blue" Width="400" Height="200">
+            <StackPanel Style="{StaticResource tab_Printers}" Width="400" Margin="0,40,0,0">
+                
+                <!--TestLabelPrintContext-->
+                
+                <Grid DataContext="{Binding TestLabelPrintContext, Source={StaticResource Contexts}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <c:CustomButton x:Name="PrintButton" Grid.Row="0"
+                    Height="45"
+                    Margin="0,0,0,20"
+                    FontSize="22"
+                    Command="{Binding Path=PrintTestLabelCommand}"
+                    Content="{Binding Path=PrintButtonTitle}"/>
+                <c:CustomGroupBox Header="Сетапы этикеток" Grid.Row="1"
+                              FontFamily="{StaticResource BR}"
+                              >
+                    
+                        <!--LabelPrintContext-->
 
+                        <StackPanel DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}">
+                        <ListBox x:Name="labelSetupList" ItemsSource="{Binding LabelSetups}" Margin="0,0,0,10">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="360">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=SupportedLabel.CommonLabel.Description}" TextWrapping="Wrap"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=SystemPrinter.Title}" TextWrapping="Wrap"/>
+                                        <c:IconButton Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}}}" CommandParameter="{Binding .}" IconPathData="M0,0L16,16M16,0L0,16" BasicColor="Gray" OnHoverColor="Red"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <c:CustomButton
+                                Padding="0,2,0,2"
+                                Margin="0,0,0,1"
+                                Command="{Binding ShowCreationFormCommand}" 
+                                Content="Добавить сетап" FontSize="21"/>
+                    </StackPanel>
+                    
+                </c:CustomGroupBox>
+                </Grid>
             </StackPanel>
 
             <!--<StackPanel Style="{StaticResource tab_Printers}"
@@ -216,8 +265,10 @@
 
             <!--Tab Orders-->
 
-            <StackPanel Style="{StaticResource tab_Orders}" Background="Aqua" Height="50">
-
+            <StackPanel Style="{StaticResource tab_Orders}" Height="50" Margin="50,40,50,0">
+                <Border BorderThickness="3" BorderBrush="{StaticResource BrushViolet}">
+                    <TextBlock HorizontalAlignment="Center" FontSize="25" FontFamily="{StaticResource BR}" Margin="5">Waiting for data from API...</TextBlock>
+                </Border>
             </StackPanel>
         </StackPanel>
         
