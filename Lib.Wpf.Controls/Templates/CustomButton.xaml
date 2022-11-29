@@ -37,6 +37,7 @@
         <Setter Property="Padding" Value="1"/>
         <Setter Property="FontFamily" Value="{StaticResource Fonts.BRegular}"/>
         <Setter Property="BorderThickness" Value="{Binding Source={StaticResource Buttons.Border.Thickness}}"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:CustomButton}">
