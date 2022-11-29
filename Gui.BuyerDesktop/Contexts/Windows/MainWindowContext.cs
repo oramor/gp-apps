@@ -6,10 +6,23 @@ namespace Gui.BuyerDesktop.Contexts
     {
     }
 
+    internal enum MainWindowTabs
+    {
+        Orders,
+        Printer
+    }
+
     internal class MainWindowContext : BaseContext, IMainWindowContext
     {
         private string _title = "Главное окно";
 
-        public string Title { get => _title; set => Set(ref _title, value); }
+        public MainWindowTabs CurrentTab { get; private set; } = MainWindowTabs.Printer;
+        public bool Test { get; set; } = true;
+
+        public string Title
+        {
+            get => _title;
+            set => Set(ref _title, value);
+        }
     }
 }

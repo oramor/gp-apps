@@ -1,4 +1,5 @@
 ﻿<Window x:Class="Gui.BuyerDesktop.Windows.MainWindow"
+        x:Name="mainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,6 +15,46 @@
                 <Trigger Property="HasItems" Value="False">
                     <Setter Property="Visibility" Value="Collapsed"/>
                 </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}">
+            <Setter Property="FontSize" Value="26"/>
+            <!--<Setter Property="Click" Value="{}"/>-->
+            <Setter Property="TextDecorations">
+                <Setter.Value>
+                    <TextDecorationCollection>
+                        <TextDecoration Location="Underline" PenOffset="6">
+                            <TextDecoration.Pen>
+                                <Pen Thickness="2.5">
+                                    <Pen.Brush>
+                                        <SolidColorBrush Color="Transparent" />
+                                    </Pen.Brush>
+                                </Pen>
+                            </TextDecoration.Pen>
+                        </TextDecoration>
+                    </TextDecorationCollection>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Hyperlink}" x:Key="hyperlink_Printers">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentTab}" Value="0">
+                    <Setter Property="TextDecorations">
+                        <Setter.Value>
+                            <TextDecorationCollection>
+                                <TextDecoration Location="Underline" PenOffset="6">
+                                    <TextDecoration.Pen>
+                                        <Pen Thickness="2.5">
+                                            <Pen.Brush>
+                                                <SolidColorBrush Color="#d002ff" />
+                                            </Pen.Brush>
+                                        </Pen>
+                                    </TextDecoration.Pen>
+                                </TextDecoration>
+                            </TextDecorationCollection>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
@@ -32,12 +73,12 @@
             <TextBlock x:Name="mainMenuBlock_TextBlock_Printers"
                        FontFamily="{DynamicResource BR}"
                        Margin="0,0,20,0">
-                <Hyperlink FontSize="26" Foreground="Black">
-                    <Hyperlink.TextDecorations>
+                <Hyperlink x:Name="hyperlink_Printers" Foreground="Black">
+                    <!--<Hyperlink.TextDecorations>
                         <TextDecorationCollection>
                             <TextDecoration Location="Underline" PenOffset="6">
                                 <TextDecoration.Pen>
-                                    <Pen Thickness="2.5">
+                                    <Pen x:Name="penOne" Thickness="2.5">
                                         <Pen.Brush>
                                             <SolidColorBrush Color="#d4b2ff" />
                                         </Pen.Brush>
@@ -45,14 +86,14 @@
                                 </TextDecoration.Pen>
                             </TextDecoration>
                         </TextDecorationCollection>
-                    </Hyperlink.TextDecorations>
+                    </Hyperlink.TextDecorations>-->
                     Принтер
                 </Hyperlink>
             </TextBlock>
             <TextBlock x:Name="mainMenuBlock_TextBlock_Orders"
                        FontFamily="{StaticResource BR}">
-                <Hyperlink FontSize="26" Foreground="Black">
-                    <Hyperlink.TextDecorations>
+                <Hyperlink Foreground="Black">
+                    <!--<Hyperlink.TextDecorations>
                         <TextDecorationCollection>
                             <TextDecoration Location="Underline" PenOffset="6">
                                 <TextDecoration.Pen>
@@ -64,7 +105,7 @@
                                 </TextDecoration.Pen>
                             </TextDecoration>
                         </TextDecorationCollection>
-                    </Hyperlink.TextDecorations>
+                    </Hyperlink.TextDecorations>-->
                     Заказы
                 </Hyperlink>
             </TextBlock>
