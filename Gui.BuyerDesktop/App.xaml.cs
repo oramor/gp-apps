@@ -105,7 +105,6 @@ namespace Gui.BuyerDesktop
             services.AddSingleton<ILabelSetupContext, LabelSetupContext>();
             services.AddTransient<ITestLabelPrintContext, TestLabelPrintContext>();
             services.AddSingleton<IMainWindowContext, MainWindowContext>();
-            services.AddSingleton<ILoginWindowContext, LoginWindowContext>();
         }
 
         /// <summary>

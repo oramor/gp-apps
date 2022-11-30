@@ -1,6 +1,5 @@
 ﻿namespace Lib.Models
 {
-
     public enum SubjectStatusEnum
     {
         active

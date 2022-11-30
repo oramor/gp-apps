@@ -1,12 +1,12 @@
 ﻿namespace Lib.Core
 {
-    public interface IEntity<T>
+    public interface IEntity<T_EntityId>
     {
         /// <summary>
         /// Даже у сущностей, относящихся к БД, могут быть разные типы Id,
         /// в зависимости от длинны Int
         /// </summary>
-        T Id { get; init; }
+        T_EntityId Id { get; init; }
 
         /// <summary>
         /// Title всегда является производным значением. Хотя бы по соображениям

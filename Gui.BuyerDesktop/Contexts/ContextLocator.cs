@@ -1,12 +1,12 @@
-﻿using Lib.Services.Print;
-using Lib.Services.Print.Labels;
+﻿using Lib.Core.Interfaces;
+using Lib.Models;
+using Lib.Services.Print;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Gui.BuyerDesktop.Contexts.Locator
 {
     /// <summary>
-    /// Этот класс помещается в статические ресурсы приложения по позволяет
-    /// обращаться ко вьюмоделям по шаблону вида DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}"
+    /// Помещаются только те контексты, которые должны существовать на всем протяжении жизни приложения в единственном экземпляре. Из XAML можно обращаться по шаблону вида DataContext="{Binding LabelPrintContext, Source={StaticResource Contexts}}"
     /// </summary>
     internal class ContextLocator
     {
@@ -16,6 +16,6 @@ namespace Gui.BuyerDesktop.Contexts.Locator
 
         public static IMainWindowContext? MainWindowContext => App.Host.Services.GetService<IMainWindowContext>();
 
-        public static ILoginWindowContext? LoginWindowContext => App.Host.Services.GetService<ILoginWindowContext>();
+        public static ISessionContext<SubjectRoleId>? SessionContext => App.Host.Services.GetService<ISessionContext<SubjectRoleId>>();
     }
 }

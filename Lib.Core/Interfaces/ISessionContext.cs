@@ -5,7 +5,7 @@
     /// из любого места приложения в качестве синглтона. Интерфейс
     /// получает список ролей, специфичных для данного приложения.
     /// </summary>
-    public interface ISessionContext<TRole> where TRole : System.Enum
+    public interface ISessionContext<T_Role> where T_Role : System.Enum
     {
         /// <summary>
         /// Проксирует состояени SessionToken. Если токен в наличии
@@ -15,7 +15,7 @@
         /// <summary>
         /// Коллекция ролей текущего пользователя.
         /// </summary>
-        ICollection<TRole> Roles { get; }
+        ICollection<T_Role> Roles { get; }
         /// <summary>
         /// Обычно токен заполняется в HandleSuccess той вьюмодели,
         /// которая отвечает за LoginForm
@@ -33,7 +33,7 @@
         /// Обновляет токен сессии, дату логина и добавляет роль
         /// в коллекцию
         /// </summary>
-        void Login(string sessionToken, ICollection<TRole> roles);
+        void Login(string sessionToken, ICollection<T_Role> roles);
         /// <summary>
         /// Загрузит специфичную для платформы формы аутентификации
         /// </summary>
@@ -49,7 +49,7 @@
         /// которые даже не требуют обращения к серверу. Обрабатывает Http 403
         /// (Forbidden)
         /// </summary>
-        bool CheckPermit(TRole role);
+        bool CheckPermit(T_Role role);
         /// <summary>
         /// Просто очистит SessionToken
         /// </summary>
