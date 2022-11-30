@@ -44,6 +44,9 @@ namespace Lib.Wpf.Controls.Form
             }
 
             var client = new HttpService();
+
+            // TODO нужно обернуть в try...catch и обрабатывать возможные HttpException/UnauthException
+            // по аналогии с тем, как это делается на стороне приложения
             IHttpService_FormResult formResult = await client.SendMultipartForm(content, _context.Endpoint);
             var formHandler = formResult.FormHandler;
 

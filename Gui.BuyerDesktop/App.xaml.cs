@@ -1,7 +1,6 @@
 ﻿using Gui.BuyerDesktop.Contexts;
 using Lib.Core;
 using Lib.Services.Print;
-using Lib.Services.Print.Labels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -33,14 +32,31 @@ namespace Gui.BuyerDesktop
 
             switch (ex)
             {
-                case ISelfHandledException selfHandledException:
-                    selfHandledException.Handle();
+                case LocalizedException localizedException:
+                    HandleLocalizedExeption(localizedException);
+                    e.Handled = true;
+                    break;
+                case UnauthException unauthException:
+                    HandleUnauthException(unauthException);
                     e.Handled = true;
                     break;
                 default:
-                    MessageBox.Show("Произошла непредвиденная ошибка (приложение будет закрыто): " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Приложение будет закрыто, т.к. произошла непредвиденная ошибка: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
             }
+        }
+
+        private void HandleLocalizedExeption(LocalizedException ex)
+        {
+            // TODO
+            var locale = SupportedCulture.Ru_RU;
+            var message = ex.GetLocalizeMessage(locale);
+            MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void HandleUnauthException(UnauthException ex)
+        {
+            //
         }
 
         #endregion

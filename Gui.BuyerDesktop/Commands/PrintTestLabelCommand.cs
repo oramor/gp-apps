@@ -4,8 +4,6 @@ using Lib.Wpf.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-using System.Windows;
-using System.Windows.Documents;
 
 namespace Gui.BuyerDesktop.Commands
 {
@@ -37,7 +35,7 @@ namespace Gui.BuyerDesktop.Commands
                     En_US = "Not found setup for TestLabel printing"
                 };
 
-                throw new ApplicationException("", new WpfLocalizedException(dict));
+                throw new ApplicationException("", new LocalizedException(dict));
             }
 
             var labelTask = new TestLabelTask() {

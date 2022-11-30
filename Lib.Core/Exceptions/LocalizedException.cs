@@ -1,10 +1,10 @@
 ﻿namespace Lib.Core
 {
-    public abstract class BaseLocalizedException : ApplicationException
+    public class LocalizedException : Exception
     {
         private readonly ICultureNode _node;
 
-        public BaseLocalizedException(ICultureNode node, string message = "") : base(message)
+        public LocalizedException(ICultureNode node, string message = "") : base(message)
         {
             _node = node;
         }

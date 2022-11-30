@@ -56,7 +56,9 @@ namespace Lib.Services
 
         /// <summary>
         /// Метод для отправки данных формы. Ожидает, что вызывающий код самостоятельно
-        /// завернет данные в формат Multipart
+        /// завернет данные в формат Multipart. Более того, этот метод, в отличии
+        /// от обращений к API, должен конвертировать HttpException и UnauthException
+        /// в 
         /// </summary>
         public async Task<IHttpService_FormResult> SendMultipartForm(MultipartFormDataContent formData, Uri endpoint)
         {
