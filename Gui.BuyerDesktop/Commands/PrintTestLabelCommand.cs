@@ -30,7 +30,7 @@ namespace Gui.BuyerDesktop.Commands
             if (labelSetup == null)
             {
                 var dict = new ExeptionCultureNode {
-                    Ru_RU = "Не найден сетпа для печати тестовой этикетки",
+                    Ru_RU = "Не найден сетап для печати тестовой этикетки",
                     En_US = "Not found setup for print TestLabel"
                 };
 

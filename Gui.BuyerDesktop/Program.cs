@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Windows;
 
 namespace Gui.BuyerDesktop
 {
@@ -11,7 +12,14 @@ namespace Gui.BuyerDesktop
         {
             var app = new App();
             app.InitializeComponent();
-            app.Run();
+
+            try
+            {
+                app.Run();
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Exeption----->" + ex.ToString());
+            }
 
             //AppDomain currentDomain = AppDomain.CurrentDomain;
             //currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExeptionHandler);

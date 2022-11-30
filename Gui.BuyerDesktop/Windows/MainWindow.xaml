@@ -123,10 +123,15 @@
                LastChildFill="True"
                >
         
-        <!--Logo-->
+        <!--Header-->
         
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
-            <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
+                <Border Height="50" BorderBrush="Black" BorderThickness="2,0,0,0" Margin="10,0,0,0">
+                    <TextBlock FontSize="18" Width="100" LineStackingStrategy="BlockLineHeight" LineHeight="20" Height="40" TextWrapping="Wrap" Margin="10,0,0,0">Кабинет байера</TextBlock>
+                </Border>
+            </StackPanel>
             <c:CustomButton BorderThickness="2" FontSize="18" Padding="5,1,5,0" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0">Вход
             </c:CustomButton>
         </DockPanel>
