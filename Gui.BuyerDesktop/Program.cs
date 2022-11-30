@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Lib.Core;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Windows;
@@ -12,20 +13,14 @@ namespace Gui.BuyerDesktop
         {
             var app = new App();
             app.InitializeComponent();
-
-            try
-            {
-                app.Run();
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Exeption----->" + ex.ToString());
-            }
+            app.Run();
 
             //AppDomain currentDomain = AppDomain.CurrentDomain;
             //currentDomain.UnhandledException += new UnhandledExceptionEventHandler(UnhandledExeptionHandler);
 
         }
 
+        // Здесь можно сообщить, что приложение будет закрыто
         //static void UnhandledExeptionHandler(object sender, UnhandledExceptionEventArgs args)
         //{
         //    LocalizedException e = (LocalizedException)args.ExceptionObject;

@@ -2,7 +2,10 @@
 using Lib.Services.Print;
 using Lib.Wpf.Core;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace Gui.BuyerDesktop.Commands
 {
@@ -31,10 +34,10 @@ namespace Gui.BuyerDesktop.Commands
             {
                 var dict = new ExeptionCultureNode {
                     Ru_RU = "Не найден сетап для печати тестовой этикетки",
-                    En_US = "Not found setup for print TestLabel"
+                    En_US = "Not found setup for TestLabel printing"
                 };
 
-                throw new LocalizedException(dict);
+                throw new ApplicationException("", new WpfLocalizedException(dict));
             }
 
             var labelTask = new TestLabelTask() {

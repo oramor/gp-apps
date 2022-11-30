@@ -14,6 +14,17 @@ namespace Lib.Services.Print
             _supportedLabels.Add(TestLabelFabric.W43xH25_TscLib);
             _supportedLabels.Add(ProductLabelFabric.W43xH25_TscLib);
         }
+
+        /// <summary>
+        /// Обработка локальных экзепшенов происходит по-разному для каждой
+        /// платформы. Следовательно, их делегаты должны быть зарегистрированы
+        /// в библиотеки. В этом случае обработкой займется само приложение.
+        /// Так же можно создать BaseService с полем для хранения такого
+        /// делегата и методом RaiseLocalizeError(), через который его можно вызвать.
+        /// Сам этот метод можно передавать в виде коллбека в другие методы библиотеки.
+        /// </summary>
+        //delegate LoclizeExceptionDelegate 
+
         public ICollection<ILabelSetup> LabelSetups => _labelSetups;
 
         public IList<ISupportedLabel> SupportedLabels => _supportedLabels;

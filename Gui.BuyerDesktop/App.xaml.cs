@@ -29,23 +29,17 @@ namespace Gui.BuyerDesktop
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            var err = e.Exception.InnerException;
+            var ex = e.Exception.InnerException;
 
-            if (err is LocalizedException exception)
+            switch (ex)
             {
-                // TODO Определять язык по контексту приложения
-                MessageBox.Show(exception.GetLocalizeMessage(SupportedCulture.Ru_RU), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                e.Handled = true;
-            }
-            else
-            {
-                // TODO Так же добавить выбор из дефолтного языка. Можно создать класс Culture.Translate()
-                MessageBox.Show("Ошибка уровня приложения: " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                if (IsProductionMode)
-                {
+                case ISelfHandledException selfHandledException:
+                    selfHandledException.Handle();
                     e.Handled = true;
-                }
+                    break;
+                default:
+                    MessageBox.Show("Произошла непредвиденная ошибка (приложение будет закрыто): " + e.Exception.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
             }
         }
 
