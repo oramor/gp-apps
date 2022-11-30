@@ -127,7 +127,7 @@
         
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e">
             <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
-            <c:CustomButton BorderThickness="2" FontSize="18" Padding="5,1,5,0" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0">Веб-кабинет
+            <c:CustomButton BorderThickness="2" FontSize="18" Padding="5,1,5,0" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0">Вход
             </c:CustomButton>
         </DockPanel>
         
