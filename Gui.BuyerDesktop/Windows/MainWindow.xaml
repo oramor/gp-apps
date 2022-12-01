@@ -114,7 +114,32 @@
             </Style.Triggers>
         </Style>
 
-       
+        <!--Auth buttons-->
+
+        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Base">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="5,1,5,0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Logout" BasedOn="{StaticResource authButtons_Base}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsAuth}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Login" BasedOn="{StaticResource authButtons_Base}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsAuth}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     
     <!--Dock-->
@@ -126,14 +151,17 @@
         <!--Header-->
 
         <DockPanel DockPanel.Dock="Top" Height="65" Background="#fcec5e" DataContext="{Binding SessionContext, Source={StaticResource Contexts}}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47" Margin="12,0,0,0">Главпоставка</TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
+                <TextBlock FontFamily="{StaticResource AR}" HorizontalAlignment="Left" FontSize="47">Главпоставка</TextBlock>
                 <Border Height="50" BorderBrush="Black" BorderThickness="2,0,0,0" Margin="10,0,0,0">
                     <TextBlock FontSize="18" Width="100" LineStackingStrategy="BlockLineHeight" LineHeight="20" Height="40" TextWrapping="Wrap" Margin="10,0,0,0">Кабинет байера</TextBlock>
                 </Border>
             </StackPanel>
-            <c:CustomButton BorderThickness="2" FontSize="18" Padding="5,1,5,0" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0" Command="{Binding Path=ShowLoginFormCmd}" Content="{Binding Path=LoginFormTitle}">
-            </c:CustomButton>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
+                <c:CustomButton Style="{StaticResource authButtons_Login}" Command="{Binding Path=ShowLoginFormCmd}" Content="Вход">
+                </c:CustomButton>
+                <c:CustomButton Style="{StaticResource authButtons_Logout}" Command="{Binding Path=LogoutCmd}" Content="Выход"/>
+            </StackPanel>
         </DockPanel>
 
         <!--MainMenu-->

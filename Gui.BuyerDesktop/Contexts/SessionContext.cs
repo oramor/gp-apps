@@ -61,8 +61,7 @@ namespace Gui.BuyerDesktop.Contexts
         }
 
         public ICommand ShowLoginFormCmd => new ShowLoginFormCommand(this);
-
-        public string LoginFormTitle => IsAuth ? "Выход" : "Вход";
+        public ICommand LogoutCmd => new LogoutCommand(this);
 
         public void ShowLoginForm()
         {
@@ -86,6 +85,21 @@ namespace Gui.BuyerDesktop.Contexts
             public override void Execute(object? parameter)
             {
                 _context.ShowLoginForm();
+            }
+        }
+
+        private class LogoutCommand : BaseCommand
+        {
+            private readonly SessionContext _context;
+
+            public LogoutCommand(SessionContext context)
+            {
+                _context = context;
+            }
+
+            public override void Execute(object? parameter)
+            {
+                _context.Logout();
             }
         }
 

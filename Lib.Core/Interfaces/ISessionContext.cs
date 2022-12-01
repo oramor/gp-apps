@@ -32,7 +32,6 @@ namespace Lib.Core.Interfaces
         /// в коллекцию
         /// </summary>
         void Login(string sessionToken, ICollection<T_Role> roles, int sessionTokenDuration);
-        string LoginFormTitle { get; }
         /// <summary>
         /// Дата успешного логина. Используется для проверки expired токена.
         /// </summary>
