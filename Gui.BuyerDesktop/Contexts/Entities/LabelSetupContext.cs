@@ -58,7 +58,7 @@ namespace Gui.BuyerDesktop.Contexts
             return service;
         }
 
-        #region Command classes
+        #region Commands
 
         private class RemoveItemCmd : BaseCommand
         {

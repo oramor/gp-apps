@@ -28,7 +28,7 @@ namespace Gui.BuyerDesktop
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            var ex = e.Exception.InnerException;
+            var ex = e.Exception;
 
             switch (ex)
             {
@@ -105,6 +105,7 @@ namespace Gui.BuyerDesktop
             services.AddSingleton<ILabelSetupContext, LabelSetupContext>();
             services.AddTransient<ITestLabelPrintContext, TestLabelPrintContext>();
             services.AddSingleton<IMainWindowContext, MainWindowContext>();
+            services.AddSingleton<SessionContext>();
         }
 
         /// <summary>

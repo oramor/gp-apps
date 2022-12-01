@@ -1,6 +1,4 @@
-﻿using Lib.Core.Interfaces;
-using Lib.Models;
-using Lib.Services.Print;
+﻿using Lib.Services.Print;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Gui.BuyerDesktop.Contexts.Locator
@@ -16,6 +14,8 @@ namespace Gui.BuyerDesktop.Contexts.Locator
 
         public static IMainWindowContext? MainWindowContext => App.Host.Services.GetService<IMainWindowContext>();
 
-        public static ISessionContext<SubjectRoleId>? SessionContext => App.Host.Services.GetService<ISessionContext<SubjectRoleId>>();
+        //public static ISessionContext<SubjectRoleId>? SessionContext => App.Host.Services.GetService<ISessionContext<SubjectRoleId>>();
+
+        public static SessionContext? SessionContext => App.Host.Services.GetService<SessionContext>();
     }
 }

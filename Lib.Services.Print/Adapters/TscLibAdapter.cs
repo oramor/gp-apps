@@ -126,7 +126,7 @@ namespace Lib.Services.Print.Adapters
             //{
             //    var node = new ExeptionCultureNode() {
             //        Ru_RU = "TscDll: Не удалось выполнить команду openport.",
-            //        En_US = "TscDll: Filed to complete openport command."
+            //        en-US = "TscDll: Filed to complete openport command."
             //    };
 
             //    throw new LocalizedException(node);
@@ -155,7 +155,7 @@ namespace Lib.Services.Print.Adapters
             //{
             //    var node = new ExeptionCultureNode() {
             //        Ru_RU = "TscDll: Ошибка при вызове команды печати текстовой строки.",
-            //        En_US = "TscDll: Got error when text line command has been called."
+            //        en-US = "TscDll: Got error when text line command has been called."
             //    };
 
             //    throw new LocalizedException(node);
