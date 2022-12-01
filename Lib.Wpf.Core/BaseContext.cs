@@ -23,15 +23,6 @@ namespace Lib.Wpf.Core
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        /// <summary>
-        /// Всего лишь обертка, которая убирает необходимость вызывать OnPropertyChanged
-        /// напрямую в сеттерах свойств вьюмодели.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="currentValue"></param>
-        /// <param name="fieldValue"></param>
-        /// <param name="PropertyName">Строковое имя свойства, полученное через выражение nameof()</param>
-        /// <returns></returns>
         protected virtual bool Set<T>(ref T currentValue, T fieldValue, [CallerMemberName] string PropertyName = null)
         {
             if (Equals(fieldValue, currentValue)) return false;
