@@ -8,6 +8,19 @@
     <Application.Resources>
         <FontFamily x:Key="AR">pack://application:,,,/Resources/Fonts/#Montserrat</FontFamily>
         <FontFamily x:Key="BR">pack://application:,,,/Resources/Fonts/#Overpass Mono Medium</FontFamily>
+
         <ctx:ContextLocator x:Key="Contexts"/>
+
+        <Color x:Key="Red_Light">#e56044</Color>
+        <Color x:Key="Gray_10">#eaeaea</Color>
+        <Color x:Key="Gray_70">#373737</Color>
+        <Color x:Key="Gray_50">#7d7d7d</Color>
+        <Color x:Key="Green">#329f39</Color>
+
+        <SolidColorBrush x:Key="Red_Light_Brush" Color="{StaticResource Red_Light}"/>
+        <SolidColorBrush x:Key="Green_Brush" Color="{StaticResource Green}"/>
+        <SolidColorBrush x:Key="Gray_10_Brush" Color="{StaticResource Gray_10}"/>
+        <SolidColorBrush x:Key="Gray_70_Brush" Color="{StaticResource Gray_70}"/>
+        <SolidColorBrush x:Key="Gray_50_Brush" Color="{StaticResource Gray_50}"/>
     </Application.Resources>
 </Application>

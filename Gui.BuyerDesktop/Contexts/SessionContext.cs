@@ -65,7 +65,7 @@ namespace Gui.BuyerDesktop.Contexts
 
         public void ShowLoginForm()
         {
-            var ctx = new LoginFormContext();
+            var ctx = new LoginFormContext(this);
             var window = new LoginWindow();
             window.Title = "Вход";
             window.DataContext = ctx;
@@ -106,6 +106,13 @@ namespace Gui.BuyerDesktop.Contexts
         private class LoginFormContext : BaseFormContext, IServerHandledForm
         {
             private string _title = "Вход";
+            private readonly SessionContext _context;
+
+            public LoginFormContext(SessionContext context)
+            {
+                _context = context;
+            }
+
             public string Title { get => _title; set => Set<string>(ref _title, value); }
 
             public Uri Endpoint => new("http://localhost/api/v1/subjects/login");
@@ -130,12 +137,8 @@ namespace Gui.BuyerDesktop.Contexts
                 }
 
                 ResetState();
-                TopMessage = $"Вы авторизованы с токеном {dto.SessionToken}";
-                var loginWindow = Application.Current.Windows[0];
-                var mainWindow = new MainWindow();
-                Application.Current.MainWindow = mainWindow;
-                loginWindow.Close();
-                mainWindow.Show();
+                _context.Login(dto.SessionToken, new List<SubjectRoleId>(), 500);
+                CloseWindow<LoginWindow>();
             }
 
             #endregion

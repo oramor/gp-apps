@@ -114,28 +114,20 @@
             </Style.Triggers>
         </Style>
 
-        <!--Auth buttons-->
+        <!--Auth button-->
 
-        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Base">
+        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButton">
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Padding" Value="5,1,5,0"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Logout" BasedOn="{StaticResource authButtons_Base}">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsAuth}" Value="False">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type c:CustomButton}" x:Key="authButtons_Login" BasedOn="{StaticResource authButtons_Base}">
+            <Setter Property="Content" Value="Вход"/>
+            <Setter Property="Command" Value="{Binding ShowLoginFormCmd}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsAuth}" Value="True">
-                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Content" Value="Выход"/>
+                    <Setter Property="Command" Value="{Binding LogoutCmd}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -158,9 +150,7 @@
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
-                <c:CustomButton Style="{StaticResource authButtons_Login}" Command="{Binding Path=ShowLoginFormCmd}" Content="Вход">
-                </c:CustomButton>
-                <c:CustomButton Style="{StaticResource authButtons_Logout}" Command="{Binding Path=LogoutCmd}" Content="Выход"/>
+                <c:CustomButton Style="{StaticResource authButton}"/>
             </StackPanel>
         </DockPanel>
 
@@ -192,8 +182,33 @@
           StrokeThickness="1" Panel.ZIndex="-1" Margin="0,-7,0,0"></Line>
         
         <!--StatusBar-->
-        
-        <StatusBar Height="20" Background="LightGray" DockPanel.Dock="Bottom"></StatusBar>
+
+        <StatusBar Height="22" Background="{StaticResource Gray_10_Brush}" DockPanel.Dock="Bottom" DataContext="{Binding SessionContext, Source={StaticResource Contexts}}">
+            <StatusBar.Resources>
+                <Style TargetType="Ellipse">
+                    <Setter Property="Width" Value="10"/>
+                    <Setter Property="Height" Value="10"/>
+                    <Setter Property="Fill" Value="{StaticResource Red_Light_Brush}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAuth}" Value="True">
+                            <Setter Property="Fill" Value="{StaticResource Green_Brush}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="Вы не подключены к серверу"/>
+                    <Setter Property="Foreground" Value="{StaticResource Gray_50_Brush}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAuth}" Value="True">
+                            <Setter Property="Text" Value="Вы подключены"/>
+                            <Setter Property="Foreground" Value="{StaticResource Gray_70_Brush}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StatusBar.Resources>
+            <Ellipse/>
+            <TextBlock FontFamily="{StaticResource AR}"/>
+        </StatusBar>
         
         <!--Tabs-->
 

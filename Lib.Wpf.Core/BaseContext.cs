@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace Lib.Wpf.Core
 {
@@ -32,5 +33,15 @@ namespace Lib.Wpf.Core
 
             return true;
         }
+
+        #region Utility
+
+        protected void CloseWindow<T>() where T : Window
+        {
+            var window = Application.Current.Windows.OfType<T>().First();
+            window?.Close();
+        }
+
+        #endregion
     }
 }
