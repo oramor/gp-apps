@@ -104,7 +104,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType="{x:Type StackPanel}" x:Key="tab_Orders" BasedOn="{StaticResource tab_Base}">
             <Style.Triggers>
                 <!--Панель должна быть видна только если код табулятора=1-->
@@ -128,6 +128,15 @@
                 <DataTrigger Binding="{Binding IsAuth}" Value="True">
                     <Setter Property="Content" Value="Выход"/>
                     <Setter Property="Command" Value="{Binding LogoutCmd}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="mainMenuBlock_TextBlock_Orders">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SessionContext.IsAuth, Source={StaticResource Contexts}}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -167,6 +176,7 @@
                 </Hyperlink>
             </TextBlock>
             <TextBlock x:Name="mainMenuBlock_TextBlock_Orders"
+                       Style="{StaticResource mainMenuBlock_TextBlock_Orders}"
                        FontFamily="{StaticResource BR}">
                 <Hyperlink Style="{StaticResource hyperlink_Orders}"
                            Command="{Binding ChangeTabCmd}"
@@ -174,6 +184,9 @@
                     Заказы
                 </Hyperlink>
             </TextBlock>
+            <StackPanel.Resources>
+
+            </StackPanel.Resources>
         </StackPanel>
         <Line Stroke="LightGray"
           DockPanel.Dock="Top"
